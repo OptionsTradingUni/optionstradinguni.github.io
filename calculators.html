@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calculators — OTU</title><link rel="stylesheet" href="style.css"></head>
+<body>
+  <aside class="sidebar" id="sidebar"><div class="brand"><a href="index.html">OTU</a></div></aside>
+  <div class="page"><header class="topbar"><button class="burger" id="burger">☰</button></header>
+    <main class="container">
+      <h1>Calculators</h1>
+      <section class="card"><h2>Profit Calculator</h2><input id="calc-entry" placeholder="Entry"><input id="calc-exit" placeholder="Exit"><button class="btn sm" onclick="calcProfit()">Calc</button><div id="calc-result"></div></section>
+    </main>
+  </div>
+  <script src="config.js"></script><script src="script.js"></script>
+  <script>
+    function calcProfit(){const e=parseFloat(document.getElementById('calc-entry').value);const x=parseFloat(document.getElementById('calc-exit').value);document.getElementById('calc-result').textContent='P/L: '+(x-e).toFixed(2);}
+  </script>
+</body>
+</html>

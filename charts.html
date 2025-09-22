@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Charts</title>
+  <style>
+    body { margin:0;font-family:Arial,sans-serif;background:#eaf1ff;color:#0f1a33; }
+    a { text-decoration:none;color:inherit; }
+    .sidebar { position:fixed;top:0;left:0;bottom:0;width:220px;background:#0b1328;color:#fff;padding-top:10px; }
+    .brand { display:flex;align-items:center;gap:10px;padding:10px;font-weight:800; }
+    .brand-logo { width:30px;height:30px;border-radius:6px;object-fit:cover; }
+    .brand span { background:linear-gradient(90deg,#2a7fff,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900; }
+    .side-nav { display:flex;flex-direction:column;padding:10px;gap:5px; }
+    .side-nav a { color:#d8e2ff;padding:8px;border-radius:6px;font-weight:600;display:block; }
+    .side-nav a.active { background:#163067; }
+    .page { margin-left:220px;display:flex;flex-direction:column;min-height:100vh; }
+    .container { padding:20px; }
+    .topbar { background:#fff;border-bottom:1px solid #e3e9f2;padding:10px; }
+    h1 { color:#2a7fff; }
+    .carousel { display:flex;overflow:hidden;gap:12px; }
+    .carousel img { height:220px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.15); }
+    .footer { margin-top:auto;background:#0b1328;color:#9cb2ff;text-align:center;padding:12px; }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>Options Trading University</span></div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="charts.html" class="active">Charts</a>
+      <a href="chartvideo.html">Videos</a>
+    </nav>
+  </aside>
+  <div class="page">
+    <header class="topbar"><h1>Trading Charts</h1></header>
+    <main class="container">
+      <div class="carousel" id="charts-carousel"></div>
+    </main>
+    <footer class="footer">© 2025 Options Trading University</footer>
+  </div>
+  <script>
+    const car=document.getElementById("charts-carousel");
+    for(let i=1;i<=12;i++){ 
+      let img=document.createElement("img");
+      img.src=`Charts/chart${i}.jpeg`; // match your repo
+      img.alt=`Chart ${i}`;
+      img.onerror=()=>img.remove();
+      car.appendChild(img);
+    }
+    setInterval(()=>{
+      car.scrollBy({ left:250, behavior:'smooth' });
+      if(car.scrollLeft+car.clientWidth>=car.scrollWidth) car.scrollTo({left:0,behavior:'smooth'});
+    },2800);
+  </script>
+</body>
+</html>

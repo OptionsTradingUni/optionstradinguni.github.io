@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Training Modules</title>
+  <style>
+    body { margin:0; font-family:'Segoe UI',Tahoma,sans-serif; background:#f7f9ff; color:#0f1a33; }
+    a { text-decoration:none; color:inherit; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top:0; left:0; bottom:0; width:220px;
+      background:#0b1328; color:#fff; padding-top:20px; overflow-y:auto;
+      transform: translateX(-220px);
+      transition: transform 0.3s ease;
+      z-index:1000;
+    }
+    .sidebar.active { transform: translateX(0); }
+    .brand { display:flex; align-items:center; gap:10px; padding:10px; font-weight:800; }
+    .brand-logo { width:30px; height:30px; border-radius:6px; object-fit:cover; }
+    .brand span {
+      background:linear-gradient(90deg,#2a7fff,#ff4081);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      font-size:1.2em; font-weight:900;
+    }
+    .side-nav { display:flex; flex-direction:column; padding:10px; gap:8px; }
+    .side-nav a { color:#d8e2ff; padding:10px; border-radius:8px; font-weight:600; transition:background 0.2s; }
+    .side-nav a:hover { background:#163067; }
+    .side-nav a.active { background:#1a2b68; }
+
+    /* Page */
+    .page { margin-left:0; display:flex; flex-direction:column; min-height:100vh; }
+    .container { padding:30px; max-width:900px; margin:0 auto; }
+    .topbar {
+      background:linear-gradient(90deg,#2a7fff,#ff4081);
+      color:#fff; padding:20px; 
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .topbar h1 { margin:0; font-size:1.5em; font-weight:800; }
+    .burger { font-size:1.5em; background:none; border:none; color:#fff; cursor:pointer; }
+    .btn {
+      background:#fff; color:#2a7fff; border:none; padding:8px 14px;
+      border-radius:6px; font-weight:600; cursor:pointer;
+    }
+    .btn:hover { background:#eaf1ff; }
+
+    /* Module */
+    .module-card {
+      background:#ffffff; border-radius:10px; margin:20px 0; padding:20px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+    .module-title { font-size:1.4em; font-weight:700; color:#1749d4; margin-bottom:10px; }
+    .module-content { font-size:1em; line-height:1.6; color:#333; }
+    .controls { display:flex; justify-content:space-between; margin-top:20px; }
+    .btn.nav { background:#2a7fff; color:#fff; }
+    .btn.nav:disabled { background:#ccc; cursor:not-allowed; }
+
+    .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:20px; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.6);
+      display: none; align-items: center; justify-content: center;
+      z-index: 2000;
+    }
+    .modal {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    .modal h3 { margin-top:0; color:#2a7fff; }
+    .modal .close {
+      float: right; background: none; border: none;
+      font-size: 20px; cursor: pointer; color:#444;
+    }
+    .suggest {
+      background: #f5f9ff;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      margin-top: 10px;
+    }
+
+    @media(min-width:769px){
+      .sidebar { transform:translateX(0); }
+      .page { margin-left:220px; }
+      .burger { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="branding/logo.jpeg" class="brand-logo" alt="Logo">
+      <span>Options Trading University</span>
+    </div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="modules.html" class="active">Modules</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Disclaimer</a>
+    </nav>
+  </aside>
+
+  <!-- Page -->
+  <div class="page">
+    <header class="topbar">
+      <button class="burger" id="burger">☰</button>
+      <h1>Training Modules</h1>
+      <button class="btn" onclick="openTikTokModal()">Message a Mentor</button>
+    </header>
+    <main class="container">
+      <div id="modules-container">Loading module...</div>
+      <div class="controls">
+        <button class="btn nav" id="prevBtn">Previous</button>
+        <button class="btn nav" id="nextBtn">Next</button>
+      </div>
+    </main>
+    <footer class="footer">© 2025 Options Trading University</footer>
+  </div>
+
+  <!-- TikTok Modal -->
+  <div class="modal-backdrop" id="tt-modal">
+    <div class="modal">
+      <button class="close" onclick="closeTikTokModal()">✕</button>
+      <h3>Message on TikTok</h3>
+      <p class="small">Send a private DM on TikTok. Suggested message:</p>
+      <div class="suggest">
+        Hi — I found OTU. I'd like a trade review and to join the waitlist. — <i>Your name</i>
+      </div>
+      <div style="text-align:right;margin-top:12px">
+        <button class="btn" onclick="closeTikTokModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('modules-container');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let modules = [];
+    let currentIndex = 0;
+
+    // Sidebar toggle
+    document.getElementById('burger').addEventListener('click',()=>{
+      document.getElementById('sidebar').classList.toggle('active');
+    });
+
+    // Load modules.json
+    fetch('modules.json')
+      .then(res => res.json())
+      .then(data => {
+        modules = data;
+        showModule(0);
+      })
+      .catch(err => {
+        container.textContent = "Could not load modules.";
+        console.error(err);
+      });
+
+    function showModule(index){
+      if(index < 0 || index >= modules.length) return;
+      currentIndex = index;
+      container.innerHTML = `
+        <div class="module-card">
+          <div class="module-title">${modules[index].title}</div>
+          <div class="module-content">${modules[index].content}</div>
+        </div>
+      `;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === modules.length - 1;
+    }
+
+    prevBtn.addEventListener('click', ()=> showModule(currentIndex-1));
+    nextBtn.addEventListener('click', ()=> showModule(currentIndex+1));
+
+    // Modal controls
+    function openTikTokModal(){
+      document.getElementById("tt-modal").style.display="flex";
+    }
+    function closeTikTokModal(){
+      document.getElementById("tt-modal").style.display="none";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+[
+  {
+    "title": "Module 1: Introduction to Options",
+    "content": "Options trading gives you the right, but not the obligation, to buy or sell an underlying asset at a set price. Unlike stocks, which represent direct ownership, options represent contracts with defined expiration and risk. In this first module we’ll explore how options work, their history, and why traders use them. We’ll discuss leverage, hedging, speculation, and how options can fit into a broader portfolio. This introduction sets the foundation for everything else in the course."
+  },
+  {
+    "title": "Module 2: Calls vs. Puts",
+    "content": "Calls and puts are the building blocks of options trading. A call gives the right to buy the underlying, while a put gives the right to sell. In practice, traders use calls when bullish, and puts when bearish or hedging. This module breaks down simple scenarios—like betting on a stock rally with calls or protecting a portfolio with puts. You’ll also see how buying and selling each type can create vastly different outcomes."
+  },
+  {
+    "title": "Module 3: Understanding Premiums",
+    "content": "Premium is the cost of the option, influenced by intrinsic value (how far in-the-money it is) and extrinsic value (time + volatility). Premiums change as expiration approaches, and volatility spikes can make options expensive. In this module we’ll explore how premiums are priced, why weekly options are cheaper than monthlies, and how implied volatility crush can wipe out option value after earnings."
+  },
+  {
+    "title": "Module 4: The Greeks Explained",
+    "content": "The Greeks—Delta, Gamma, Theta, Vega, and Rho—measure risk and sensitivity. Delta tracks how much the option moves with the stock. Gamma shows how Delta itself changes. Theta represents time decay, the silent cost of holding options. Vega tracks volatility’s impact, and Rho measures interest rates. While intimidating, understanding these will separate you from gamblers. Examples with real option chains make this module practical."
+  },
+  {
+    "title": "Module 5: Risk Management Fundamentals",
+    "content": "Risk management is more important than strategy. Here we emphasize position sizing, stop-losses, and risk/reward ratios. Many beginners blow accounts because they risk 50% or 100% on one trade. We’ll walk through calculating max risk on a trade, setting stop-losses, and the psychology of cutting losers quickly while letting winners grow."
+  },
+  {
+    "title": "Module 6: Expiration and Assignment",
+    "content": "Every option expires. Traders must know what happens if a contract is left to expiration—automatic exercise, assignment risk, or total premium loss. This module covers weekly vs. monthly expirations, American vs. European exercise styles, and how brokers handle assignments. We also explain how to avoid unwanted assignment by closing before expiration."
+  },
+  {
+    "title": "Module 7: Break-Even Analysis",
+    "content": "Break-even is the price where gains begin. Every trade should be entered knowing its break-even. This module covers how to calculate break-even for single calls and puts, as well as spreads. We’ll walk through several examples, showing why knowing break-even helps set realistic expectations and avoid emotional exits."
+  },
+  {
+    "title": "Module 8: Covered Calls",
+    "content": "Covered calls are a conservative strategy for stockholders. By selling calls against shares you own, you earn premium income. This module explains how to choose strikes, manage assignment risk, and use covered calls to generate steady cash flow. A practical case study with Apple stock demonstrates the strategy in action."
+  },
+  {
+    "title": "Module 9: Protective Puts",
+    "content": "A protective put acts like insurance for a stock position. Traders pay a premium to buy downside protection, just like insurance on a car. This module shows when protective puts make sense, how to choose strike levels, and how they reduce portfolio drawdowns during market crashes."
+  },
+  {
+    "title": "Module 10: Vertical Spreads",
+    "content": "Vertical spreads limit risk and cap reward. By buying one option and selling another, traders can control cost. We’ll explain bull call spreads, bear put spreads, and credit spreads, with examples of risk graphs. You’ll learn when to deploy each and how to manage them as expiration nears."
+  },
+  {
+    "title": "Module 11: Debit vs. Credit Spreads",
+    "content": "Debit spreads require upfront cost, credit spreads generate income upfront. This module compares the two, showing how credit spreads can profit even if the market goes sideways, while debit spreads are better for directional conviction. We’ll break down max profit, max loss, and probability of profit."
+  },
+  {
+    "title": "Module 12: Iron Condors",
+    "content": "Iron condors are a non-directional strategy where traders sell both a call spread and a put spread. This creates a profit zone if the stock stays within a range. This module shows how iron condors generate income from time decay and volatility crush, but also the risks if the stock makes a large move."
+  },
+  {
+    "title": "Module 13: Straddles and Strangles",
+    "content": "Straddles and strangles profit from volatility. By buying both calls and puts, traders benefit from big moves in either direction. We’ll explore how these strategies are often used before earnings announcements, the dangers of implied volatility crush, and how to manage losing positions."
+  },
+  {
+    "title": "Module 14: Probability and Statistics",
+    "content": "Options trading is a game of probabilities. This module explains how to calculate probability of profit (POP), expected value, and how implied volatility affects these. Understanding probability keeps traders grounded in math instead of emotions."
+  },
+  {
+    "title": "Module 15: Technical Analysis Basics",
+    "content": "Chart reading is essential. This module introduces support, resistance, moving averages, and candlestick patterns. We explain how to integrate technical setups with option strategies, like buying calls on breakouts or selling spreads in ranges."
+  },
+  {
+    "title": "Module 16: Advanced Technical Analysis",
+    "content": "Going deeper, we cover Fibonacci retracements, RSI, MACD, and Bollinger Bands. We’ll show examples of option strategies paired with technical signals. For instance, how to use RSI divergence with debit spreads."
+  },
+  {
+    "title": "Module 17: Trading Psychology",
+    "content": "Mindset is everything. This module covers discipline, emotional control, and avoiding revenge trading. You’ll learn how to journal trades, build confidence, and avoid common psychological traps that destroy consistency."
+  },
+  {
+    "title": "Module 18: Building a Trading Plan",
+    "content": "Without a plan, traders gamble. We teach you how to build a written trading plan, including entry criteria, position sizing, risk limits, and review process. A structured plan ensures accountability and consistency."
+  },
+  {
+    "title": "Module 19: Journaling and Review",
+    "content": "The best traders journal every trade. This module shows how to track entry, exit, reasoning, and emotions. Reviewing journals reveals patterns and helps you improve. We provide templates to use immediately."
+  },
+  {
+    "title": "Module 20: Avoiding Common Mistakes",
+    "content": "Beginners often chase trades, ignore risk, or overtrade. This module highlights the most common mistakes and how to avoid them. Stories from real traders make it practical and relatable."
+  },
+  {
+    "title": "Module 21: Using Broker Platforms",
+    "content": "We walk through common broker platforms, showing how to place trades, read option chains, and avoid costly input errors. Screenshots and step-by-step guides make this beginner friendly."
+  },
+  {
+    "title": "Module 22: Earnings Plays",
+    "content": "Earnings season is popular for option traders, but also risky. This module shows how to trade earnings responsibly, using straddles, strangles, and iron condors. We cover implied volatility crush and how to size positions appropriately."
+  },
+  {
+    "title": "Module 23: Hedging with Options",
+    "content": "Institutions use options to hedge portfolios. This module covers protective puts, collars, and other hedging strategies for individuals. You’ll see how to protect gains during uncertain markets."
+  },
+  {
+    "title": "Module 24: Advanced Spreads",
+    "content": "Butterflies, calendars, and diagonals are advanced spreads. This module explains their risk/reward setups and when to use them. Case studies show how they can profit from time decay or volatility shifts."
+  },
+  {
+    "title": "Module 25: Scaling and Position Sizing",
+    "content": "Position sizing is the most overlooked skill. We show you how to scale in and out of trades, how to size based on account equity, and why consistency beats betting big on one trade."
+  },
+  {
+    "title": "Module 26: Small Account Strategies",
+    "content": "Not everyone starts with $10,000. This module focuses on strategies for accounts under $1,000, including spreads and defined-risk trades. We emphasize survival and growth, not gambling."
+  },
+  {
+    "title": "Module 27: Building Consistency",
+    "content": "Consistency comes from repeating good habits. This module shows how to treat trading like a business, with rules and discipline. It’s about playing the long game, not chasing one big win."
+  },
+  {
+    "title": "Module 28: Community and Mentorship",
+    "content": "Learning alone is hard. This module explains why mentorship and trading communities accelerate learning. You’ll hear real testimonials and see how accountability improves discipline."
+  },
+  {
+    "title": "Module 29: Case Studies in Success",
+    "content": "We share stories of real traders who applied OTU strategies. These case studies show how different personalities and account sizes found success with structured education."
+  },
+  {
+    "title": "Module 30: Case Studies in Failure",
+    "content": "Failure teaches more than success. Here we share cautionary tales of traders who ignored risk or chased hype, and what lessons you can learn from them without repeating the mistakes."
+  },
+  {
+    "title": "Module 31: Futures and Options",
+    "content": "Options extend beyond stocks. This module introduces futures options, their mechanics, and why advanced traders use them. We caution about higher risk and complexity."
+  },
+  {
+    "title": "Module 32: ETFs and Index Options",
+    "content": "Index options like SPX and ETF options like QQQ and IWM are popular. This module explains their liquidity, tax advantages, and why institutions love them. We also discuss differences vs. stock options."
+  },
+  {
+    "title": "Module 33: Portfolio Margin and Advanced Accounts",
+    "content": "For advanced traders, portfolio margin allows greater leverage. This module explains what it is, who qualifies, and the risks of using it. We emphasize caution and discipline."
+  },
+  {
+    "title": "Module 34: Scaling into Advanced Strategies",
+    "content": "As you grow, you can layer advanced strategies like condors, diagonals, and complex hedges. We show how to transition from beginner to advanced systematically."
+  },
+  {
+    "title": "Module 35: Trading Psychology Part 2",
+    "content": "Fear and greed never go away. This advanced psychology module digs deeper into emotional control, confidence cycles, and avoiding burnout. We cover how to handle both winning and losing streaks."
+  },
+  {
+    "title": "Module 36: Economic Events and Options",
+    "content": "FOMC meetings, inflation data, and jobs reports all impact volatility. This module shows how to trade around events responsibly, or stay out entirely to preserve capital."
+  },
+  {
+    "title": "Module 37: Building Passive Income with Options",
+    "content": "Options can create income streams through covered calls, credit spreads, and condors. This module focuses on sustainable income strategies that supplement other earnings."
+  },
+  {
+    "title": "Module 38: Options and Taxes",
+    "content": "Taxes are often ignored. This module explains basics of 1256 contracts, short vs. long-term gains, and how traders prepare for tax season. We recommend consulting professionals."
+  },
+  {
+    "title": "Module 39: Technology and Tools",
+    "content": "Good tools make trading easier. This module covers scanners, alerts, journaling apps, and charting software. We review free vs. paid tools and how to use them efficiently."
+  },
+     {
+    "title": "Module 40: Graduation and Next Steps",
+    "content": "This final module ties it all together. You’ll review what you learned, update your trading plan, and commit to ongoing education. We emphasize mentorship, journaling, and staying connected to the community for continued growth."
+  },
+  {
+    "title": "Module 41: Sector Rotation and Options",
+    "content": "Markets move in cycles, and so do sectors like tech, healthcare, and energy. This module explores how traders use options to capitalize on sector rotation, shifting exposure as leadership changes. We’ll review historical case studies and demonstrate how ETFs can be paired with options for sector bets."
+  },
+  {
+    "title": "Module 42: Seasonal Trends",
+    "content": "Seasonal patterns such as the 'Santa Claus rally' or 'Sell in May' influence volatility. This module covers how to spot seasonal setups and use spreads to position with limited risk. We’ll explore real examples like retail stocks around the holidays."
+  },
+  {
+    "title": "Module 43: Options on Commodities",
+    "content": "Options are not limited to equities. In this module, we’ll study gold, oil, and agricultural options. These instruments behave differently due to supply/demand shocks. You’ll see how futures options can diversify portfolios but require strong risk controls."
+  },
+  {
+    "title": "Module 44: Trading Volatility Itself",
+    "content": "You can trade volatility directly with VIX options or products like VXX. This module explains how volatility behaves differently from stocks, why VIX spikes fast but decays slowly, and how traders position for market fear or complacency."
+  },
+  {
+    "title": "Module 45: Event-Driven Strategies",
+    "content": "Beyond earnings, events like FDA approvals, mergers, or product launches move stocks sharply. This module demonstrates how to research catalysts and design option strategies with asymmetric risk/reward."
+  },
+  {
+    "title": "Module 46: Collars",
+    "content": "Collars involve owning stock, buying a protective put, and selling a covered call. It’s a way to lock in profits or guard against downside. This module explains when collars are best, and how to balance protection with cost."
+  },
+  {
+    "title": "Module 47: Synthetic Positions",
+    "content": "Synthetics replicate stock positions with options. For example, a long call + short put can mimic long stock. This module shows how to build synthetics, when to use them, and risks like margin requirements."
+  },
+  {
+    "title": "Module 48: Implied Volatility vs. Historical Volatility",
+    "content": "Successful traders compare implied volatility (IV) with historical volatility (HV). This module covers how to identify when options are overpriced or underpriced and how to structure trades to exploit volatility discrepancies."
+  },
+  {
+    "title": "Module 49: Adjusting Losing Trades",
+    "content": "No trader wins 100%. This module covers defensive tactics: rolling positions, converting losers into spreads, or reducing risk. We’ll show examples of how adjusting trades saved capital and sometimes turned losses into break-even."
+  },
+  {
+    "title": "Module 50: Options and Macroeconomics",
+    "content": "Interest rates, inflation, and unemployment reports impact options. This module teaches you to connect macro events with volatility and sector moves. You’ll learn why rates matter for tech vs. financials, and how to stay cautious during high-impact news."
+  },
+  {
+    "title": "Module 51: Options for Income Seekers",
+    "content": "For those not chasing speculation, options can generate income through systematic selling of covered calls or credit spreads. We’ll outline how retirees and conservative traders use options as yield enhancers."
+  },
+  {
+    "title": "Module 52: Trading Around Dividends",
+    "content": "Dividends influence option pricing and assignment risk. This module shows how to avoid early assignment, why calls may be exercised before ex-dividend dates, and how to use dividend plays as an edge."
+  },
+  {
+    "title": "Module 53: Weekly Options Mastery",
+    "content": "Weekly options offer fast action but higher risk. This module explains how to use them for event plays, short-term hedges, and income strategies. Risk management is emphasized since weeklies decay rapidly."
+  },
+  {
+    "title": "Module 54: Long-Term Options (LEAPS)",
+    "content": "LEAPS are long-dated options, often one to three years out. This module covers how to use LEAPS to make long-term bets with limited capital or hedge portfolios cost-effectively."
+  },
+  {
+    "title": "Module 55: Position Greeks Management",
+    "content": "Instead of focusing on one trade, this module explains how to manage Delta, Theta, and Vega across an entire portfolio. You’ll see how pros hedge exposure and keep Greeks balanced."
+  },
+  {
+    "title": "Module 56: Building Watchlists",
+    "content": "Success requires focus. This module shows how to build and maintain a watchlist of liquid, option-friendly stocks. We’ll cover criteria like volume, open interest, and implied volatility."
+  },
+  {
+    "title": "Module 57: Scaling Into Volatility Crush",
+    "content": "This advanced strategy shows how to layer positions before events like earnings, then scale out after volatility collapses. We’ll highlight examples of big tech names and how disciplined sizing prevents wipeouts."
+  },
+  {
+    "title": "Module 58: Reading Option Flow",
+    "content": "Institutional traders leave footprints in option order flow. This module explains unusual options activity, how to interpret block trades, and tools retail traders can use to follow smart money."
+  },
+  {
+    "title": "Module 59: Correlations and Hedging",
+    "content": "Stocks don’t move in isolation. This module shows how correlations impact your portfolio. For example, owning calls on both AAPL and MSFT might double risk instead of diversifying. We show how to hedge effectively across correlated assets."
+  },
+  {
+    "title": "Module 60: Managing a Trading Business",
+    "content": "Trading is a business, not a hobby. This module shows how to treat it professionally: setting monthly targets, reviewing performance, controlling costs, and documenting processes. A disciplined business mindset ensures survival."
+  },
+  {
+    "title": "Module 61: Intraday Options Trading",
+    "content": "Scalping options intraday requires speed and discipline. This module explores strategies for same-day expiration contracts, why they’re dangerous, and how pros use them sparingly."
+  },
+  {
+    "title": "Module 62: Swing Trading Options",
+    "content": "Swing traders hold for days or weeks. This module covers how to pair swing setups with options, managing overnight risk, and using spreads to reduce exposure during news cycles."
+  },
+  {
+    "title": "Module 63: Long Volatility vs. Short Volatility",
+    "content": "Every trade is either long or short volatility. This module explains the difference, when to buy premium, and when to sell it. We’ll review how pro traders think in terms of volatility positioning, not just direction."
+  },
+  {
+    "title": "Module 64: Dealing with Slippage",
+    "content": "Options can be illiquid. This module covers how to minimize slippage by using limit orders, avoiding thinly traded contracts, and focusing on liquid strikes. Real trade comparisons highlight the cost of poor execution."
+  },
+  {
+    "title": "Module 65: Advanced Iron Condor Adjustments",
+    "content": "Iron condors don’t always go smoothly. This module shows how to adjust wings, roll spreads, or exit early. We explain scenarios where taking a small loss is better than risking a blowout."
+  },
+  {
+    "title": "Module 66: Dealing with Market Crashes",
+    "content": "When markets crash, options spike in value. This module shows how to protect yourself, when to hedge aggressively, and how some traders profit by being prepared for volatility events."
+  },
+  {
+    "title": "Module 67: Scaling Up After Success",
+    "content": "After consistency, traders face the challenge of scaling. This module explains how to size bigger without losing discipline. We review psychology shifts when moving from $100 to $10,000 trades."
+  },
+  {
+    "title": "Module 68: Options and Crypto",
+    "content": "Crypto now offers options markets. This module explains how Bitcoin and Ethereum options differ from equities, their risks, and why volatility is both opportunity and danger."
+  },
+  {
+    "title": "Module 69: Market Makers and Liquidity",
+    "content": "Market makers control spreads and liquidity. This module explains how they profit, why spreads widen in volatile markets, and how retail traders can avoid getting trapped by illiquid contracts."
+  },
+  {
+    "title": "Module 70: Cross-Market Analysis",
+    "content": "Options don’t live in isolation. This module covers how bonds, commodities, and forex markets influence equities and options. Understanding cross-market signals improves timing."
+  },
+  {
+    "title": "Module 71: Pre-Market and After-Hours Moves",
+    "content": "Stocks often move outside of regular hours. This module shows how these gaps affect options, why liquidity is thin, and how to plan trades with these moves in mind."
+  },
+  {
+    "title": "Module 72: Trading Psychology Case Studies",
+    "content": "We dive into real stories of traders who overcame fear, greed, and doubt. This module reinforces mental discipline and offers practical tools for emotional control."
+  },
+  {
+    "title": "Module 73: Scaling Out of Winners",
+    "content": "Exiting trades is as important as entering. This module teaches scaling out, partial profits, and leaving runners. We explain why locking in gains avoids regret and keeps confidence steady."
+  },
+  {
+    "title": "Module 74: Dealing with Losses",
+    "content": "Every trader loses. This module shows how to manage losses without emotional breakdowns. We cover reframing, review processes, and mental resets that keep traders in the game long term."
+  },
+  {
+    "title": "Module 75: Building Confidence",
+    "content": "Confidence comes from practice and structure. This module outlines how to slowly build confidence by journaling, backtesting, and consistent routines. Confidence without ego is the goal."
+  },
+  {
+    "title": "Module 76: Trading Simulators and Paper Trading",
+    "content": "Beginners benefit from practicing risk-free. This module explains paper trading, simulators, and how to transition to live trading. We highlight the pros and cons of simulated experience."
+  },
+  {
+    "title": "Module 77: Building Long-Term Wealth",
+    "content": "Trading isn’t just about short-term wins. This module teaches how to integrate options into a bigger wealth plan. We explain compounding, reinvesting, and how trading can support life goals."
+  },
+  {
+    "title": "Module 78: Choosing Your Trading Style",
+    "content": "Not everyone is suited for scalping or iron condors. This module helps you identify your style—income trader, swing trader, event trader—and align strategies to personality."
+  },
+  {
+    "title": "Module 79: Mentorship and Continuous Growth",
+    "content": "Education never ends. This module emphasizes finding mentors, joining communities, and staying updated. We show how professional traders continue to learn even after decades."
+  },
+  {
+    "title": "Module 80: Final Review and Action Plan",
+    "content": "This module brings everything together. You’ll craft your personal action plan, integrating strategy, psychology, and risk management. The goal is independence and discipline, not reliance on signals or hype."
+  }
+]

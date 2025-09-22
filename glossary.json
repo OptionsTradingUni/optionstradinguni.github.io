@@ -1,0 +1,400 @@
+[
+  {
+    "term": "At The Money (ATM)",
+    "definition": "An option is considered at the money when its strike price is equal or very close to the current price of the underlying asset. ATM options often carry the highest time value since they have the greatest chance of finishing in or out of the money."
+  },
+  {
+    "term": "In The Money (ITM)",
+    "definition": "An option is in the money if exercising it would lead to a profit. Calls are ITM when the stock price is above the strike, puts are ITM when the stock price is below. ITM options have intrinsic value but are more expensive."
+  },
+  {
+    "term": "Out of The Money (OTM)",
+    "definition": "An option is out of the money if exercising it would not result in a profit. Calls are OTM when the strike price is above the current stock price, while puts are OTM when the strike price is below. These contracts are cheaper but riskier."
+  },
+  {
+    "term": "Implied Volatility (IV)",
+    "definition": "IV represents the market’s forecast of expected volatility in the underlying asset. High IV inflates option premiums, while low IV reduces them. Traders use IV to determine whether options are overpriced or underpriced."
+  },
+  {
+    "term": "Historical Volatility (HV)",
+    "definition": "HV measures how much an asset’s price has fluctuated in the past over a set period. It is useful to compare HV with IV to evaluate whether the current option premiums are justified."
+  },
+  {
+    "term": "Bid-Ask Spread",
+    "definition": "The bid-ask spread is the difference between the highest price a buyer will pay (bid) and the lowest price a seller will accept (ask). Narrow spreads indicate liquid markets, while wide spreads can increase trading costs."
+  },
+  {
+    "term": "Liquidity",
+    "definition": "Liquidity refers to how easily an option or security can be bought or sold without significantly impacting its price. High liquidity ensures tighter spreads and faster execution."
+  },
+  {
+    "term": "Open Interest",
+    "definition": "Open interest reflects the number of outstanding option contracts not yet settled. It is an important measure of market activity and liquidity."
+  },
+  {
+    "term": "Delta",
+    "definition": "Delta measures how much an option’s price is expected to change for every $1 move in the underlying asset. Calls have positive delta, puts have negative. Delta also represents the probability of expiring in the money."
+  },
+  {
+    "term": "Gamma",
+    "definition": "Gamma measures how quickly delta changes as the underlying moves. High gamma means delta is very sensitive, often in near-the-money, short-dated contracts."
+  },
+  {
+    "term": "Theta",
+    "definition": "Theta measures time decay in option pricing. It tells you how much value an option loses each day as expiration nears. Buyers suffer from theta decay; sellers benefit from it."
+  },
+  {
+    "term": "Vega",
+    "definition": "Vega measures sensitivity to changes in implied volatility. A vega of 0.15 means the option’s premium changes by 15 cents for each 1% shift in IV."
+  },
+  {
+    "term": "Rho",
+    "definition": "Rho measures how much an option’s value changes when interest rates move. While less influential for short-term traders, rho matters for LEAPS and long-dated options."
+  },
+  {
+    "term": "Strike Price",
+    "definition": "The strike price is the level at which the buyer of the option can exercise their right to buy (calls) or sell (puts) the underlying asset."
+  },
+  {
+    "term": "Expiration Date",
+    "definition": "The expiration date marks the last day the option is valid. After expiration, options either settle in cash or are worthless."
+  },
+  {
+    "term": "Exercise",
+    "definition": "To exercise means to use the right granted by an option. For calls, it means buying the stock at the strike. For puts, it means selling at the strike."
+  },
+  {
+    "term": "Assignment",
+    "definition": "Assignment occurs when the seller of an option is obligated to fulfill the contract. For calls, the seller must deliver shares; for puts, the seller must buy shares."
+  },
+  {
+    "term": "American Option",
+    "definition": "An American-style option can be exercised at any point before expiration. Most U.S.-listed stock options are American style."
+  },
+  {
+    "term": "European Option",
+    "definition": "A European-style option can only be exercised at expiration. Many index options follow this style, reducing early assignment risk."
+  },
+  {
+    "term": "LEAPS",
+    "definition": "Long-Term Equity Anticipation Securities (LEAPS) are options with expirations longer than one year. They are often used for long-term speculation or hedging."
+  },
+  {
+    "term": "Covered Call",
+    "definition": "A strategy where a trader holds 100 shares of stock and sells a call against it. It generates income from premiums but risks losing shares if assigned."
+  },
+  {
+    "term": "Protective Put",
+    "definition": "A protective put acts as insurance. By holding stock and buying a put, traders limit downside risk while keeping upside potential."
+  },
+  {
+    "term": "Vertical Spread",
+    "definition": "A spread strategy involving buying and selling the same type of option with the same expiration but different strikes."
+  },
+  {
+    "term": "Credit Spread",
+    "definition": "A spread where the premium collected from selling options is greater than the premium paid for buying. Maximum profit is limited to the net credit received."
+  },
+  {
+    "term": "Debit Spread",
+    "definition": "A spread strategy where the cost of the long option exceeds the premium received from the short. The trader pays to enter the position."
+  },
+  {
+    "term": "Iron Condor",
+    "definition": "An advanced strategy that combines a bear call spread and a bull put spread. It profits if the stock stays within a defined range."
+  },
+  {
+    "term": "Straddle",
+    "definition": "A strategy where a trader buys a call and a put at the same strike and expiration. It profits from big moves in either direction."
+  },
+  {
+    "term": "Strangle",
+    "definition": "A strategy involving buying a call and a put with different strikes but the same expiration. It profits from large price movements."
+  },
+  {
+    "term": "Butterfly Spread",
+    "definition": "An advanced strategy using three strike prices. It benefits from minimal price movement around the middle strike."
+  },
+  {
+    "term": "Calendar Spread",
+    "definition": "A strategy where traders sell short-term options and buy longer-dated ones, profiting from time decay differences."
+  },
+  {
+    "term": "Diagonal Spread",
+    "definition": "A spread that involves options with different strikes and different expirations. It combines elements of vertical and calendar spreads."
+  },
+  {
+    "term": "Naked Option",
+    "definition": "An uncovered option sold without holding the underlying asset or offsetting position. It exposes the trader to unlimited risk."
+  },
+  {
+    "term": "Margin",
+    "definition": "Margin is collateral deposited to cover the risk of holding positions. Brokers set margin requirements for short options and spreads."
+  },
+  {
+    "term": "Intrinsic Value",
+    "definition": "The value an option would have if exercised immediately. For calls, it’s stock price minus strike; for puts, strike minus stock price."
+  },
+  {
+    "term": "Extrinsic Value",
+    "definition": "The portion of an option’s premium that reflects time and volatility, not intrinsic value."
+  },
+  {
+    "term": "Implied Move",
+    "definition": "The expected price movement of the underlying stock based on option premiums. It’s often used around earnings events."
+  },
+  {
+    "term": "Break-Even Point",
+    "definition": "The stock price at which an option strategy starts to make money. Each strategy has a unique break-even calculation."
+  },
+  {
+    "term": "Hedging",
+    "definition": "Using options to protect against adverse price moves in a portfolio. Common hedges include protective puts and collars."
+  },
+  {
+    "term": "Speculation",
+    "definition": "Trading for profit without ownership, often using leverage. Options are popular speculative instruments due to their asymmetric payoff."
+  },
+  {
+    "term": "Leverage",
+    "definition": "Options provide leverage because they control more shares for less cost compared to buying stock outright. This magnifies gains and losses."
+  },
+  {
+    "term": "Theta Decay",
+    "definition": "Another term for time decay, theta decay refers to the loss of value in options as expiration nears."
+  },
+  {
+    "term": "Expiration Friday",
+    "definition": "The Friday when options expire. It often brings increased volatility and volume as traders adjust or close positions."
+  },
+  {
+    "term": "Settlement",
+    "definition": "The process of finalizing an option trade, either by delivering the underlying asset or through cash settlement."
+  },
+  {
+    "term": "Pin Risk",
+    "definition": "The risk that the stock closes exactly at the option strike price on expiration, leaving uncertainty about assignment."
+  },
+  {
+    "term": "Volatility Crush",
+    "definition": "A sharp drop in implied volatility after events like earnings, which reduces option premiums regardless of price movement."
+  },
+  {
+    "term": "Volatility Skew",
+    "definition": "The phenomenon where options at different strikes or expirations have varying implied volatility, often due to demand for protection."
+  },
+  {
+    "term": "Outright Position",
+    "definition": "Taking a single directional trade by buying or selling an option, rather than combining multiple contracts into a strategy."
+  },
+  {
+    "term": "Synthetic Position",
+    "definition": "Constructing a position with options that replicates another asset. For example, long call + short put = synthetic long stock."
+  },
+  {
+    "term": "Assignment Risk",
+    "definition": "The possibility that an option seller may be assigned early, especially when the option is deep in the money or near ex-dividend."
+  },
+
+  {
+    "term": "Volatility Index (VIX)",
+    "definition": "The VIX, often called the 'fear gauge,' measures expected market volatility derived from S&P 500 options. Rising VIX usually signals investor fear and falling stock prices, while a low VIX indicates complacency."
+  },
+  {
+    "term": "Covered Put",
+    "definition": "A covered put involves shorting the underlying stock while selling a put option. It generates income but carries unlimited risk if the stock rises."
+  },
+  {
+    "term": "Protective Collar",
+    "definition": "A collar involves owning stock, buying a protective put, and selling a covered call. This limits both downside and upside, acting as a defined-risk strategy."
+  },
+  {
+    "term": "Collar Strategy",
+    "definition": "Similar to the protective collar, this approach is commonly used by long-term investors to safeguard large stock positions while generating some premium income."
+  },
+  {
+    "term": "Arbitrage",
+    "definition": "Arbitrage is the practice of exploiting price discrepancies between related securities or markets to earn a risk-free profit. Options arbitrage opportunities are rare and often corrected quickly."
+  },
+  {
+    "term": "Assignment Fee",
+    "definition": "The commission or fee charged by brokers when an option seller is assigned. Fees vary by broker but should be accounted for in strategy design."
+  },
+  {
+    "term": "Delta Neutral",
+    "definition": "A portfolio or position structured so its net delta is zero, meaning it is hedged against small directional moves in the underlying asset."
+  },
+  {
+    "term": "Hedge Ratio",
+    "definition": "The ratio of options contracts needed to offset risk in an underlying position. Traders use hedge ratios to create delta-neutral strategies."
+  },
+  {
+    "term": "Synthetic Long Stock",
+    "definition": "A position made by buying a call and selling a put at the same strike. It mimics owning the stock outright with less capital but similar risk."
+  },
+  {
+    "term": "Synthetic Short Stock",
+    "definition": "A position created by selling a call and buying a put at the same strike. It replicates shorting the stock."
+  },
+  {
+    "term": "Intrinsic Risk",
+    "definition": "The portion of risk directly tied to the underlying stock price moving against the option’s strike price."
+  },
+  {
+    "term": "Extrinsic Risk",
+    "definition": "Risk that comes from external factors like time decay and volatility changes, separate from the intrinsic value of an option."
+  },
+  {
+    "term": "Covered Combination",
+    "definition": "Selling both a call and a put against stock you hold. This generates income but increases assignment risk on both sides."
+  },
+  {
+    "term": "Protective Call",
+    "definition": "A less common hedge where a short stock position is protected by buying call options."
+  },
+  {
+    "term": "Exercise Style",
+    "definition": "Refers to whether an option is American or European style, determining when it can be exercised."
+  },
+  {
+    "term": "Time Value",
+    "definition": "The portion of an option’s price that reflects how long remains until expiration and the potential for volatility during that period."
+  },
+  {
+    "term": "Calendar Risk",
+    "definition": "Risk that comes from mismatched expiration dates in options spreads, like calendars or diagonals."
+  },
+  {
+    "term": "Early Exercise",
+    "definition": "The act of exercising an American-style option before expiration. It often occurs with deep ITM options or around dividends."
+  },
+  {
+    "term": "Implied Move Range",
+    "definition": "The expected price range for a stock, calculated from option premiums. Often used to gauge potential post-earnings movement."
+  },
+  {
+    "term": "Gamma Risk",
+    "definition": "The risk of large swings in delta as the stock moves. Gamma risk increases near expiration for at-the-money options."
+  },
+  {
+    "term": "Volatility Smile",
+    "definition": "A pattern where implied volatility is higher for ITM and OTM options compared to ATM options. It often signals demand for hedging."
+  },
+  {
+    "term": "Volatility Surface",
+    "definition": "A three-dimensional representation of implied volatility across different strikes and expirations."
+  },
+  {
+    "term": "Skew",
+    "definition": "Another word for volatility skew, describing differences in IV across strikes. Traders use skew to anticipate institutional hedging activity."
+  },
+  {
+    "term": "Backspread",
+    "definition": "An advanced strategy where a trader sells one option and buys two further OTM options. It benefits from big moves in one direction."
+  },
+  {
+    "term": "Ratio Spread",
+    "definition": "A spread where the number of long and short contracts are unequal. For example, buying one call and selling two higher-strike calls."
+  },
+  {
+    "term": "Covered Ratio Spread",
+    "definition": "A covered call strategy combined with a ratio spread to generate extra premium. It carries risk of assignment on multiple contracts."
+  },
+  {
+    "term": "Diagonal Call Spread",
+    "definition": "A spread involving buying a long-term call and selling a shorter-term call at a different strike. It profits from time decay while maintaining upside."
+  },
+  {
+    "term": "Diagonal Put Spread",
+    "definition": "Similar to the diagonal call spread but with puts. It profits when stock drifts lower while shorter-term options decay."
+  },
+  {
+    "term": "Assignment Probability",
+    "definition": "The chance that an option seller will be assigned. Deep ITM options have higher assignment probabilities."
+  },
+  {
+    "term": "Implied Probability",
+    "definition": "The probability derived from option prices that reflects expected outcomes, such as chance of hitting a strike before expiration."
+  },
+  {
+    "term": "Greeks Exposure",
+    "definition": "Refers to the total effect of delta, gamma, theta, vega, and rho across a portfolio, rather than one position."
+  },
+  {
+    "term": "Synthetic Put",
+    "definition": "A position created by shorting stock and buying a call. It behaves like a long put contract."
+  },
+  {
+    "term": "Synthetic Call",
+    "definition": "A position created by owning stock and buying a put. It replicates the payoff of a long call."
+  },
+  {
+    "term": "Protective Synthetic",
+    "definition": "Combining stock with options to create a defined-risk hedge that mimics simpler positions while lowering costs."
+  },
+  {
+    "term": "Cash-Secured Put",
+    "definition": "Selling a put option while setting aside enough cash to buy the stock if assigned. It’s a conservative way to acquire shares at a discount."
+  },
+  {
+    "term": "Premium",
+    "definition": "The price of an option contract, determined by intrinsic value, time to expiration, volatility, and demand."
+  },
+  {
+    "term": "Long Position",
+    "definition": "Owning a security or option. In options, being long means you’ve purchased the contract and have rights, not obligations."
+  },
+  {
+    "term": "Short Position",
+    "definition": "Selling a security you don’t own. In options, being short means you’ve sold the contract and now have obligations to fulfill."
+  },
+  {
+    "term": "Collateral",
+    "definition": "Funds or stock held as security by a broker when you sell uncovered options. It ensures obligations can be met if assigned."
+  },
+  {
+    "term": "Cash Settlement",
+    "definition": "Some options, like index options, settle in cash rather than physical delivery of shares. This prevents the need to trade underlying securities."
+  },
+  {
+    "term": "Physical Settlement",
+    "definition": "Occurs when options are exercised and actual shares of stock are delivered or received, common with equity options."
+  },
+  {
+    "term": "Ex-Dividend Date",
+    "definition": "The date on which a stock trades without the right to its declared dividend. Call sellers risk early assignment around this date."
+  },
+  {
+    "term": "Assignment Risk Window",
+    "definition": "The period leading into expiration when options, especially ITM, are most likely to be assigned."
+  },
+  {
+    "term": "Protective Strategy",
+    "definition": "Any options strategy designed to reduce risk exposure in a portfolio, such as protective puts, collars, or hedges."
+  },
+  {
+    "term": "Rolling",
+    "definition": "The act of closing one option position and opening another with a later expiration or different strike. Rolling is used to extend duration or adjust risk."
+  },
+  {
+    "term": "Position Sizing",
+    "definition": "Determining how many contracts to trade relative to account size. Proper position sizing helps avoid catastrophic losses."
+  },
+  {
+    "term": "Liquidity Trap",
+    "definition": "Entering into options with low open interest and wide spreads, making it difficult to exit without major losses."
+  },
+  {
+    "term": "Order Types",
+    "definition": "Market, limit, stop, and stop-limit orders control execution. In options, using limit orders is especially important to avoid slippage."
+  },
+  {
+    "term": "Slippage",
+    "definition": "The difference between expected trade price and executed price, often caused by low liquidity or fast markets."
+  },
+  {
+    "term": "Execution Risk",
+    "definition": "The possibility of not getting filled at the desired price due to wide spreads or market conditions."
+  }
+]
+    

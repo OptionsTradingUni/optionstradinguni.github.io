@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Profit Snapshots</title>
+  <style>
+    body { margin:0; font-family:Arial,sans-serif; background:#eaf1ff; color:#0f1a33; }
+    a { text-decoration:none; color:inherit; }
+    .sidebar { position:fixed;top:0;left:0;bottom:0;width:220px;background:#0b1328;color:#fff;padding-top:10px; }
+    .brand { display:flex;align-items:center;gap:10px;padding:10px;font-weight:800; }
+    .brand-logo { width:30px;height:30px;border-radius:6px;object-fit:cover; }
+    .brand span { background:linear-gradient(90deg,#2a7fff,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900; }
+    .side-nav { display:flex;flex-direction:column;padding:10px;gap:5px; }
+    .side-nav a { color:#d8e2ff;padding:8px;border-radius:6px;font-weight:600;display:block; }
+    .side-nav a.active { background:#163067; }
+    .page { margin-left:220px;display:flex;flex-direction:column;min-height:100vh; }
+    .container { padding:20px; }
+    .topbar { background:#fff;border-bottom:1px solid #e3e9f2;padding:10px;display:flex;justify-content:space-between;align-items:center; }
+    h1 { color:#2a7fff; }
+    .carousel { display:flex;overflow:hidden;gap:12px; }
+    .carousel img { height:180px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.15); }
+    .footer { margin-top:auto;background:#0b1328;color:#9cb2ff;text-align:center;padding:12px; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.6);
+      display: none; align-items: center; justify-content: center;
+      z-index: 2000;
+    }
+    .modal {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    .modal h3 { margin-top:0; color:#2a7fff; }
+    .modal .close {
+      float: right; background: none; border: none;
+      font-size: 20px; cursor: pointer; color:#444;
+    }
+    .suggest {
+      background: #f5f9ff;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      margin-top: 10px;
+    }
+    .btn {
+      background:#2a7fff; color:#fff;
+      border:none; border-radius:6px; padding:8px 14px;
+      cursor:pointer; font-weight:600;
+    }
+    .btn:hover { background:#1e5fd9; }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>Options Trading University</span></div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="profits.html" class="active">Profit Snapshots</a>
+      <a href="lifestyle.html">Lifestyle</a>
+      <a href="charts.html">Charts</a>
+    </nav>
+  </aside>
+  <div class="page">
+    <header class="topbar">
+      <h1>Profit Snapshots</h1>
+      <button class="btn" onclick="openTikTokModal()">Message a Mentor</button>
+    </header>
+    <main class="container">
+      <div class="carousel" id="profits-carousel"></div>
+    </main>
+    <footer class="footer">© 2025 Options Trading University</footer>
+  </div>
+
+  <!-- TikTok Modal -->
+  <div class="modal-backdrop" id="tt-modal">
+    <div class="modal">
+      <button class="close" onclick="closeTikTokModal()">✕</button>
+      <h3>Message on TikTok</h3>
+      <p>Send us a DM directly on TikTok. Suggested message:</p>
+      <div class="suggest">
+        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+      </div>
+      <div style="text-align:right;margin-top:12px">
+        <button class="btn" onclick="closeTikTokModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const car=document.getElementById("profits-carousel");
+    for(let i=1;i<=57;i++){ 
+      let img=document.createElement("img");
+      img.src=`Images/img${i}.jpeg`; // match your repo
+      img.alt=`Profit ${i}`;
+      img.onerror=()=>img.remove();
+      car.appendChild(img);
+    }
+    // Auto-scroll
+    setInterval(()=>{
+      car.scrollBy({ left:220, behavior:'smooth' });
+      if(car.scrollLeft+car.clientWidth>=car.scrollWidth) car.scrollTo({left:0,behavior:'smooth'});
+    },2500);
+
+    // Modal
+    function openTikTokModal(){
+      document.getElementById("tt-modal").style.display="flex";
+    }
+    function closeTikTokModal(){
+      document.getElementById("tt-modal").style.display="none";
+    }
+  </script>
+</body>
+</html>

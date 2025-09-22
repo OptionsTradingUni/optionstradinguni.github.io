@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Team - OTU</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#f4f7ff;color:#0f1a33;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px;}
+.card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1);text-align:center;}
+.card img{width:120px;height:120px;object-fit:cover;border-radius:50%;}
+</style>
+</head>
+<body>
+  <h1 style="color:#2a7fff;text-align:center">👥 Our Mentors</h1>
+  <div id="team" class="grid"></div>
+  <script>
+    function loadTeam(){const c=document.getElementById("team");for(let i=1;i<=20;i++){let img=new Image();img.src=`team/member${i}.jpeg`;img.onerror=()=>{};img.onload=()=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<img src="${img.src}"><h3>Mentor ${i}</h3>`;c.appendChild(card);};}}
+    document.addEventListener("DOMContentLoaded",loadTeam);
+  </script>
+</body>
+</html>

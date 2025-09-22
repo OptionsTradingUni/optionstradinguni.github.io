@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Live Profits - OTU</title>
+  <style>
+    body { margin:0; font-family:sans-serif; background:#f4f7ff; color:#0f1a33; }
+
+    /* Sidebar */
+    .sidebar { position:fixed; top:0; left:0; bottom:0; width:220px; background:#0b1328; color:#fff; padding-top:10px; }
+    .brand { display:flex; align-items:center; gap:10px; padding:10px; font-weight:800; }
+    .brand-logo { width:30px; height:30px; border-radius:6px; object-fit:cover; }
+    .brand span { background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900; }
+
+    /* Remove underline */
+    a { text-decoration:none; }
+
+    .side-nav { display:flex; flex-direction:column; padding:10px; gap:5px; }
+    .side-nav a { color:#d8e2ff; padding:8px; border-radius:6px; font-weight:600; display:block; }
+    .side-nav a.active { background:#163067; }
+
+    /* Page */
+    .page { margin-left:220px; min-height:100vh; display:flex; flex-direction:column; }
+    .container { max-width:900px; margin:0 auto; padding:20px; }
+
+    /* Topbar */
+    .topbar { background:#fff; border-bottom:1px solid #e3e9f2; display:flex; justify-content:space-between; align-items:center; padding:10px; }
+    .burger { display:none; font-size:20px; background:none; border:none; cursor:pointer; animation:shake 2s infinite; }
+    @keyframes shake {
+      0%,100%{transform:translateX(0);}
+      20%{transform:translateX(-2px);}
+      40%{transform:translateX(2px);}
+      60%{transform:translateX(-2px);}
+      80%{transform:translateX(2px);}
+    }
+    .brand-inline {
+      font-weight:900;
+      background:linear-gradient(90deg,#2a7fff,#ff4081);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* Hero */
+    .hero { background:linear-gradient(135deg,#ff4081,#2a7fff); color:#fff; text-align:center; padding:40px 20px; border-radius:12px; }
+    .hero h1 { margin:0; font-size:28px; }
+
+    /* Card */
+    .card { background:#fff; border:1px solid #e3e9f2; border-radius:12px; padding:16px; margin:20px 0; box-shadow:0 4px 12px rgba(0,0,0,.04); }
+
+    /* Ticker */
+    .ticker-shell { background:#0b1328; border-radius:6px; height:32px; overflow:hidden; display:flex; align-items:center; padding:0 6px; }
+    .ticker-track { display:flex; gap:40px; white-space:nowrap; animation:scrollTicker 14s linear infinite; }
+    .ticker-item { color:#fff; font-size:14px; font-weight:700; }
+    @keyframes scrollTicker { from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+
+    /* Footer */
+    .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
+
+    @media(max-width:768px){
+      .sidebar{display:none;} .page{margin-left:0;} .burger{display:block;}
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.6);
+      display: none; align-items: center; justify-content: center;
+      z-index: 2000;
+    }
+    .modal {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    .modal h3 { margin-top:0; color:#2a7fff; }
+    .modal .close {
+      float: right; background: none; border: none;
+      font-size: 20px; cursor: pointer; color:#444;
+    }
+    .suggest {
+      background: #f5f9ff;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      margin-top: 10px;
+    }
+    .btn {
+      background:#2a7fff; color:#fff;
+      border:none; border-radius:6px; padding:8px 14px;
+      cursor:pointer; font-weight:600;
+    }
+    .btn:hover { background:#1e5fd9; }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>OTU</span></div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="liveprofits.html" class="active">Live Profits</a>
+      <a href="watchlist.html">Watchlist</a>
+      <a href="profits.html">Profit Snapshots</a>
+      <a href="lifestyle.html">Lifestyle</a>
+      <a href="charts.html">Charts</a>
+      <a href="chartvideo.html">Videos</a>
+      <a href="modules.html">Modules</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Disclaimer</a>
+    </nav>
+  </aside>
+
+  <!-- Page -->
+  <div class="page">
+    <header class="topbar">
+      <button class="burger" id="burger">☰</button>
+      <div class="brand-inline">Options Trading University</div>
+      <button class="btn" onclick="openTikTokModal()">Message a Mentor</button>
+    </header>
+
+    <main class="container">
+      <section class="hero"><h1>Real-time Member Wins</h1></section>
+      <section class="card">
+        <div id="live-ticker" class="ticker-shell"><div id="ticker-track" class="ticker-track"></div></div>
+        <p style="font-size:12px;color:#7e89a6">Auto-refreshes with new wins every few seconds.</p>
+      </section>
+    </main>
+
+    <footer class="footer">© 2025 Options Trading University</footer>
+  </div>
+
+  <!-- TikTok Modal -->
+  <div class="modal-backdrop" id="tt-modal">
+    <div class="modal">
+      <button class="close" onclick="closeTikTokModal()">✕</button>
+      <h3>Message on TikTok</h3>
+      <p>Send us a DM directly on TikTok. Suggested message:</p>
+      <div class="suggest">
+        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+      </div>
+      <div style="text-align:right;margin-top:12px">
+        <button class="btn" onclick="closeTikTokModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Burger toggle
+    document.addEventListener('DOMContentLoaded',()=>{
+      const burger=document.getElementById('burger');
+      const sidebar=document.getElementById('sidebar');
+      burger.addEventListener('click',()=> sidebar.style.display=(sidebar.style.display==='block'?'none':'block'));
+    });
+
+    // Ticker logic
+    function initTicker(){
+      const track=document.getElementById('ticker-track');
+      if(!track) return;
+      const names=["Ava","Noah","Liam","Mia","Ethan","Zoe","Lucas","Aria","Mason","Grace"];
+      const randAmt=()=> Math.floor(50 + Math.random()*950);
+      const makeItem=()=>`💰 ${names[Math.floor(Math.random()*names.length)]} +$${randAmt()} just now`;
+
+      function refill(){
+        track.innerHTML='';
+        for(let i=0;i<2;i++){
+          const span=document.createElement('span');
+          span.className='ticker-item';
+          span.textContent=makeItem();
+          track.appendChild(span);
+        }
+      }
+      refill();
+      setInterval(refill,10000);
+    }
+    document.addEventListener('DOMContentLoaded', initTicker);
+
+    // Modal
+    function openTikTokModal(){
+      document.getElementById("tt-modal").style.display="flex";
+    }
+    function closeTikTokModal(){
+      document.getElementById("tt-modal").style.display="none";
+    }
+  </script>
+</body>
+</html>

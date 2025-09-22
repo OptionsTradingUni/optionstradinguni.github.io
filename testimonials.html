@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Testimonials - Options Trading University</title>
+  <style>
+    body { margin:0; font-family:Arial, sans-serif; background:#f5f9ff; color:#222; }
+
+    /* Sidebar */
+    .sidebar {
+      position:fixed; top:0; left:0; bottom:0;
+      width:220px; background:#0b1328; color:#fff;
+      transform:translateX(-220px); transition:transform .3s ease;
+      padding:20px; z-index:1000;
+    }
+    .sidebar.active { transform:translateX(0); }
+    .sidebar h2 { margin:0 0 20px; color:#ffd166; }
+    .sidebar a { display:block; color:#fff; padding:8px 0; text-decoration:none; }
+    .sidebar a:hover { color:#ffd166; }
+
+    /* Page */
+    .page { margin-left:0; padding:20px; transition:margin-left .3s ease; }
+    .sidebar.active ~ .page { margin-left:240px; }
+
+    /* Topbar */
+    .topbar {
+      background:linear-gradient(90deg,#2a7fff,#ff4081);
+      color:#fff; padding:15px; display:flex;
+      justify-content:space-between; align-items:center;
+    }
+    .burger { font-size:20px; background:none; border:none; color:#fff; cursor:pointer; }
+    .btn { background:#fff; color:#2a7fff; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; font-weight:600; }
+
+    h1 { margin:20px 0; font-size:1.8em; color:#2a7fff; text-align:center; }
+
+    /* Testimonial Card */
+    .testimonial-card {
+      background:#fff; border-radius:8px; padding:20px;
+      box-shadow:0 3px 8px rgba(0,0,0,.1);
+      margin:20px auto; max-width:700px;
+    }
+    .testimonial-header {
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:12px;
+    }
+    .testimonial-header img {
+      width:60px; height:60px; border-radius:50%; object-fit:cover;
+    }
+    .testimonial-author { font-weight:700; font-size:1.1em; color:#2a7fff; }
+    .testimonial-profit { color:green; font-weight:700; font-size:1em; }
+    .testimonial-proof img {
+      margin-top:12px; max-width:100%; border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    }
+    .testimonial-content { margin-top:12px; font-style:italic; line-height:1.5; color:#333; }
+
+    /* Nav Buttons */
+    .nav-buttons { margin-top:20px; text-align:center; }
+    .nav-buttons .btn {
+      background:#2a7fff; color:#fff;
+      margin:0 8px;
+    }
+    .nav-buttons .btn:hover { background:#1e5fd9; }
+
+    /* Footer */
+    .footer { margin-top:40px; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <h2>OTU</h2>
+    <a href="index.html">Home</a>
+    <a href="modules.html">Modules</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="testimonials.html" class="active">Testimonials</a>
+    <a href="contact.html">Contact</a>
+    <a href="terms.html">Disclaimer</a>
+  </aside>
+
+  <!-- Page -->
+  <div class="page">
+    <header class="topbar">
+      <button class="burger" id="burger">☰</button>
+      <div>Testimonials</div>
+      <button class="btn" onclick="openTikTokModal()">Message a Mentor</button>
+    </header>
+
+    <main>
+      <h1>What Our Members Say</h1>
+      <div id="testimonial-container">Loading testimonials...</div>
+      <div class="nav-buttons">
+        <button class="btn" id="prevBtn">Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+      </div>
+    </main>
+
+    <footer class="footer">© 2025 Options Trading University</footer>
+  </div>
+
+  <script>
+    // Sidebar toggle
+    document.getElementById("burger").addEventListener("click",()=>{
+      document.getElementById("sidebar").classList.toggle("active");
+    });
+
+    let testimonials = [];
+    let currentIndex = 0;
+
+    function renderTestimonial() {
+      if (testimonials.length === 0) return;
+      const t = testimonials[currentIndex];
+      document.getElementById("testimonial-container").innerHTML = `
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <img src="${t.photo}" alt="${t.name}">
+            <div>
+              <div class="testimonial-author">${t.name}</div>
+              <div class="testimonial-profit">${t.profit}</div>
+            </div>
+          </div>
+          <div class="testimonial-proof">
+            <img src="${t.profitImage}" alt="Profit proof">
+          </div>
+          <div class="testimonial-content">"${t.testimonial}"</div>
+        </div>
+      `;
+    }
+
+    document.getElementById("prevBtn").addEventListener("click",()=>{
+      if (currentIndex > 0) { currentIndex--; renderTestimonial(); }
+    });
+    document.getElementById("nextBtn").addEventListener("click",()=>{
+      if (currentIndex < testimonials.length-1) { currentIndex++; renderTestimonial(); }
+    });
+
+    fetch('testimonials.json')
+      .then(res=>res.json())
+      .then(data=>{
+        testimonials = data;
+        currentIndex = 0;
+        renderTestimonial();
+      })
+      .catch(err=>{
+        document.getElementById("testimonial-container").innerText="Could not load testimonials.";
+        console.error(err);
+      });
+
+    // TikTok modal placeholder
+    function openTikTokModal(){ alert("Open TikTok DM modal here"); }
+  </script>
+</body>
+</html>
