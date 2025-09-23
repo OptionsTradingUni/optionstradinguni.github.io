@@ -65,6 +65,32 @@
 
     /* Footer */
     .footer { margin-top:40px; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; inset:0; display:none;
+      align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.55); z-index:2000;
+    }
+    .modal {
+      background:#fff; padding:20px; border-radius:10px;
+      max-width:400px; width:90%; box-shadow:0 4px 20px rgba(0,0,0,0.3);
+      position:relative;
+      animation:fadeIn .3s ease;
+    }
+    .modal h3 { margin-top:0; color:#2a7fff; }
+    .modal .close {
+      position:absolute; top:10px; right:10px;
+      background:none; border:none; font-size:20px; cursor:pointer; color:#444;
+    }
+    .suggest {
+      background:#f5f9ff; padding:12px; border-radius:6px;
+      font-family:monospace; margin:10px 0;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:scale(0.95);}
+      to {opacity:1; transform:scale(1);}
+    }
   </style>
 </head>
 <body>
@@ -97,6 +123,21 @@
     </main>
 
     <footer class="footer">© 2025 Options Trading University</footer>
+  </div>
+
+  <!-- TikTok Modal -->
+  <div class="modal-backdrop" id="tt-modal">
+    <div class="modal">
+      <button class="close" onclick="closeTikTokModal()">✕</button>
+      <h3>Message on TikTok</h3>
+      <p>Send us a quick DM. Suggested message:</p>
+      <div class="suggest">
+        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+      </div>
+      <div style="text-align:right;margin-top:12px;">
+        <button class="btn" onclick="closeTikTokModal()">Close</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -147,8 +188,9 @@
         console.error(err);
       });
 
-    // TikTok modal placeholder
-    function openTikTokModal(){ alert("Open TikTok DM modal here"); }
+    // Modal functions
+    function openTikTokModal(){ document.getElementById("tt-modal").style.display="flex"; }
+    function closeTikTokModal(){ document.getElementById("tt-modal").style.display="none"; }
   </script>
 </body>
 </html>
