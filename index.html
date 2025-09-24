@@ -12,19 +12,30 @@
     a { text-decoration:none; color:inherit; }
 
     /* Sidebar */
-    .sidebar { position:fixed; top:0; left:0; bottom:0;
-      width:220px; background:#0b1328; color:#fff; padding:10px;
+    .sidebar {
+      position:fixed; top:0; left:0; bottom:0;
+      width:220px; background:#0b1328; color:#fff;
+      padding:10px; transform:translateX(-100%);
+      transition:transform 0.3s ease; z-index:2000;
     }
+    .sidebar.active { transform:translateX(0); }
     .brand { display:flex; align-items:center; gap:10px; padding:10px; font-weight:800; }
     .brand-logo { width:30px; height:30px; border-radius:6px; object-fit:cover; }
-    .brand-text, .brand-inline {
-      background:linear-gradient(90deg,#2a7fff,#ff4081);
+    .brand-text { background:linear-gradient(90deg,#2a7fff,#ff4081);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      font-weight:900;
+      font-weight:900; font-size:18px;
     }
     .side-nav { display:flex; flex-direction:column; gap:10px; padding:10px; }
     .side-nav a { color:#d8e2ff; padding:8px; border-radius:6px; font-weight:600; }
     .side-nav a.active { background:#163067; }
+
+    /* Sidebar Overlay */
+    .sidebar-overlay {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.4);
+      display:none; z-index:1500;
+    }
+    .sidebar-overlay.active { display:block; }
 
     /* Page */
     .page { margin-left:220px; display:flex; flex-direction:column; min-height:100vh; }
@@ -91,7 +102,6 @@
       background:#fff; border-radius:10px; padding:20px;
       box-shadow:0 3px 8px rgba(0,0,0,.1);
       margin:0 auto; max-width:600px;
-      transition:all .4s ease;
       border:2px solid transparent;
       animation: glowPulse 4s ease-in-out infinite;
     }
@@ -116,21 +126,30 @@
     /* Popup */
     .popup-backdrop { position:fixed; inset:0;
       background:rgba(0,0,0,0.4); backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      display:none; align-items:center; justify-content:center; z-index:3000;
+      display:none; align-items:flex-end; justify-content:center; z-index:3000;
     }
-    .popup { background:#fff; padding:24px; border-radius:14px; max-width:420px; width:92%;
-      box-shadow:0 12px 40px rgba(0,0,0,0.3); text-align:center; position:relative;
-      border:2px solid transparent;
-      animation: glowPulse 4s ease-in-out infinite;
+    .popup {
+      background:#fff; padding:24px; border-radius:14px 14px 0 0; max-width:420px; width:100%;
+      box-shadow:0 -6px 20px rgba(0,0,0,0.3); text-align:center; position:relative;
+      border:2px solid transparent; animation: glowPulse 4s ease-in-out infinite;
+      transform: translateY(100%); opacity:0; transition: all 0.6s ease;
     }
+    .popup.show { transform: translateY(0); opacity:1; }
     .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     .popup p { color:#333; margin:0 0 14px; }
     .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
     .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
 
+    /* Mentor Modal */
+    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none;
+      align-items:center; justify-content:center; z-index:4000;
+    }
+    .modal { background:#fff; padding:20px; border-radius:12px; max-width:400px; width:90%; text-align:left; position:relative; }
+    .modal h3 { color:#2a7fff; margin-top:0; }
+    .modal .close { position:absolute; top:10px; right:10px; border:none; background:none; font-size:20px; cursor:pointer; }
+
     @media(max-width:768px){
-      .sidebar{display:none;}
+      .sidebar{transform:translateX(-100%); position:fixed;}
       .page{margin-left:0;}
       .burger{display:block;}
     }
@@ -141,7 +160,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <img src="branding/logo.jpeg" class="brand-logo" alt="Logo">
-      <span class="brand-text">Options Trading University</span>
+      <span class="brand-text">OTU</span>
     </div>
     <nav class="side-nav">
       <a href="index.html" class="active">Home</a>
@@ -153,6 +172,9 @@
       <a href="terms.html">Disclaimer</a>
     </nav>
   </aside>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <!-- Page -->
   <div class="page">
@@ -204,7 +226,7 @@
 
   <!-- Discount Popup -->
   <div class="popup-backdrop" id="discount-popup">
-    <div class="popup">
+    <div class="popup" id="popupBox">
       <button class="close" onclick="dismissPopup()">✕</button>
       <h2>🎉 20% OFF Membership</h2>
       <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM us on TikTok to claim before spots run out!</p>
@@ -212,12 +234,35 @@
     </div>
   </div>
 
+  <!-- Mentor Modal -->
+  <div class="modal-backdrop" id="mentor-modal">
+    <div class="modal">
+      <button class="close" onclick="closeMentorModal()">✕</button>
+      <h3>Message a Mentor</h3>
+      <p>Send us a DM on TikTok. Suggested message:</p>
+      <div style="background:#f5f9ff;padding:12px;border-radius:6px;font-family:monospace;margin-top:10px;">
+        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+      </div>
+      <div style="text-align:right; margin-top:12px;">
+        <button class="btn ghost" onclick="closeMentorModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded",()=>{
       // Sidebar toggle
-      document.getElementById("burger").addEventListener("click",()=>{
-        const sidebar=document.getElementById("sidebar");
-        sidebar.style.display=sidebar.style.display==="block"?"none":"block";
+      const burger=document.getElementById("burger");
+      const sidebar=document.getElementById("sidebar");
+      const overlay=document.getElementById("sidebarOverlay");
+
+      burger.addEventListener("click",()=>{
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+      });
+      overlay.addEventListener("click",()=>{
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
       });
 
       // Stats animation
@@ -255,10 +300,22 @@
       renderTestimonial();
       setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
 
-      // Always show popup on load
+      // Show popup with slide
       const popup=document.getElementById("discount-popup");
-      setTimeout(()=>{ popup.style.display="flex"; },1500);
-      window.dismissPopup=()=>{ popup.style.display="none"; };
+      const popupBox=document.getElementById("popupBox");
+      setTimeout(()=>{
+        popup.style.display="flex";
+        requestAnimationFrame(()=>popupBox.classList.add("show"));
+      },1500);
+      window.dismissPopup=()=>{
+        popupBox.classList.remove("show");
+        setTimeout(()=>{ popup.style.display="none"; },600);
+      };
+
+      // Mentor modal
+      const mentorModal=document.getElementById("mentor-modal");
+      document.getElementById("mentorBtn").addEventListener("click",()=>{ mentorModal.style.display="flex"; });
+      window.closeMentorModal=()=>{ mentorModal.style.display="none"; };
     });
   </script>
 </body>
