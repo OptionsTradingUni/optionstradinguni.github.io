@@ -78,7 +78,7 @@
       100%{background-position:0% 50%;}
     }
 
-    /* Testimonials Section */
+    /* Success Stories Section */
     .success-stories-section {
       background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff);
       background-size:800% 800%;
@@ -112,6 +112,22 @@
 
     /* Footer */
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
+
+    /* Popup */
+    .popup-backdrop { position:fixed; inset:0;
+      background:rgba(0,0,0,0.4); backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display:none; align-items:center; justify-content:center; z-index:3000;
+    }
+    .popup { background:#fff; padding:24px; border-radius:14px; max-width:420px; width:92%;
+      box-shadow:0 12px 40px rgba(0,0,0,0.3); text-align:center; position:relative;
+      border:2px solid transparent;
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+    .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .popup p { color:#333; margin:0 0 14px; }
+    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
+    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
 
     @media(max-width:768px){
       .sidebar{display:none;}
@@ -186,6 +202,16 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
+  <!-- Discount Popup -->
+  <div class="popup-backdrop" id="discount-popup">
+    <div class="popup">
+      <button class="close" onclick="dismissPopup()">✕</button>
+      <h2>🎉 20% OFF Membership</h2>
+      <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM us on TikTok to claim before spots run out!</p>
+      <button class="btn" onclick="dismissPopup()">Got it — Message Mentor</button>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded",()=>{
       // Sidebar toggle
@@ -206,33 +232,14 @@
 
       // Testimonials carousel
       const testimonials = [
-        {
-          name: "Emma Rodriguez",
-          profit: "$4,125 profit",
-          photo: "faces/faces6.jpeg",
-          profitImage: "profits/profit6.jpeg",
-          testimonial: "OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains."
-        },
-        {
-          name: "Liam Nguyen",
-          profit: "$2,950 profit",
-          photo: "faces/faces7.jpeg",
-          profitImage: "profits/profit7.jpeg",
-          testimonial: "The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades."
-        },
-        {
-          name: "Sophia Kim",
-          profit: "$3,780 profit",
-          photo: "faces/faces8.jpeg",
-          profitImage: "profits/profit8.jpeg",
-          testimonial: "I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence."
-        }
+        { name:"Emma Rodriguez", profit:"$4,125 profit", photo:"faces/faces6.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
+        { name:"Liam Nguyen", profit:"$2,950 profit", photo:"faces/faces7.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
+        { name:"Sophia Kim", profit:"$3,780 profit", photo:"faces/faces8.jpeg", profitImage:"profits/profit8.jpeg", testimonial:"I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
       ];
-
-      let tIndex = 0;
-      function renderTestimonial() {
-        const t = testimonials[tIndex];
-        document.getElementById("testimonial-slider").innerHTML = `
+      let tIndex=0;
+      function renderTestimonial(){
+        const t=testimonials[tIndex];
+        document.getElementById("testimonial-slider").innerHTML=`
           <div>
             <div class="testimonial-header">
               <img src="${t.photo}" alt="${t.name}">
@@ -243,11 +250,15 @@
             </div>
             <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
             <div class="testimonial-content">"${t.testimonial}"</div>
-          </div>
-        `;
+          </div>`;
       }
       renderTestimonial();
-      setInterval(()=>{ tIndex = (tIndex+1) % testimonials.length; renderTestimonial(); }, 5000);
+      setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
+
+      // Always show popup on load
+      const popup=document.getElementById("discount-popup");
+      setTimeout(()=>{ popup.style.display="flex"; },1500);
+      window.dismissPopup=()=>{ popup.style.display="none"; };
     });
   </script>
 </body>
