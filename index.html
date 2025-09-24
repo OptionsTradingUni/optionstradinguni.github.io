@@ -64,27 +64,27 @@
     .image-card h2 { margin:0 0 10px; }
     .image-card p { margin:6px 0; }
 
+    /* Testimonials Section */
+    .testimonial-card {
+      background:#fff; border-radius:8px; padding:20px;
+      box-shadow:0 3px 8px rgba(0,0,0,.1);
+      margin:0 auto; max-width:600px;
+      transition:opacity .4s ease;
+    }
+    .testimonial-header {
+      display:flex; align-items:center; gap:12px; margin-bottom:12px;
+    }
+    .testimonial-header img { width:60px; height:60px; border-radius:50%; object-fit:cover; }
+    .testimonial-author { font-weight:700; color:#2a7fff; }
+    .testimonial-profit { color:green; font-weight:700; }
+    .testimonial-proof img {
+      margin-top:12px; max-width:100%; border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    }
+    .testimonial-content { margin-top:12px; font-style:italic; color:#333; }
+
     /* Footer */
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
-
-    /* Modal */
-    .modal-backdrop { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:2000; }
-    .modal { background:#fff; padding:20px; border-radius:10px; max-width:400px; width:90%; text-align:left; position:relative; }
-    .modal .close { position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer; color:#444; }
-    .suggest { background:#f5f9ff; padding:12px; border-radius:6px; font-family:monospace; margin-top:10px; }
-
-    /* Discount Popup */
-    .popup-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.55);
-      display:none; align-items:center; justify-content:center; z-index:3000;
-    }
-    .popup { background:#fff; padding:24px; border-radius:14px; max-width:420px; width:92%;
-      box-shadow:0 12px 40px rgba(0,0,0,0.3); text-align:center; position:relative;
-      border-top:6px solid #ff4081;
-    }
-    .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .popup p { color:#333; margin:0 0 14px; }
-    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
-    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
 
     @media(max-width:768px){
       .sidebar{display:none;}
@@ -145,33 +145,32 @@
         focus on disciplined growth.</p>
         <p style="font-weight:700;color:#ffd166">📈 Don’t trade alone. Join a network that wins together.</p>
       </section>
+
+      <!-- Success Stories Carousel -->
+      <section class="card" style="text-align:center; padding:24px;">
+        <h2 style="color:#2a7fff; margin-bottom:16px;">Success Stories</h2>
+        <div id="testimonial-slider" class="testimonial-card">Loading...</div>
+        <div style="margin-top:16px;">
+          <a href="testimonials.html" class="btn ghost">Show More</a>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
   <!-- Modal -->
-  <div class="modal-backdrop" id="tt-modal">
-    <div class="modal">
-      <button class="close" id="modalClose">✕</button>
-      <h3>Message on TikTok</h3>
+  <div class="modal-backdrop" id="tt-modal" style="display:none;align-items:center;justify-content:center;">
+    <div class="modal" style="background:#fff;padding:20px;border-radius:10px;max-width:400px;width:90%;position:relative;">
+      <button class="close" id="modalClose" style="position:absolute;top:10px;right:10px;border:none;background:none;font-size:20px;cursor:pointer;">✕</button>
+      <h3 style="color:#2a7fff;">Message on TikTok</h3>
       <p>Send us a DM on TikTok. Suggested message:</p>
-      <div class="suggest">
+      <div class="suggest" style="background:#f5f9ff;padding:12px;border-radius:6px;font-family:monospace;margin-top:10px;">
         Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
       </div>
       <div style="text-align:right; margin-top:12px;">
         <button class="btn ghost" id="modalCloseBtn">Close</button>
       </div>
-    </div>
-  </div>
-
-  <!-- Discount Popup -->
-  <div class="popup-backdrop" id="discount-popup">
-    <div class="popup">
-      <button class="close" onclick="dismissPopup()">✕</button>
-      <h2>🎉 20% OFF Membership</h2>
-      <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM us on TikTok to claim before spots run out!</p>
-      <button class="btn" onclick="dismissPopup()">Got it — Message Mentor</button>
     </div>
   </div>
 
@@ -199,10 +198,50 @@
         },30);
       });
 
-      // Discount popup (always on load, dismiss stays until refresh/revisit)
-      const popup=document.getElementById("discount-popup");
-      setTimeout(()=>{ popup.style.display="flex"; },1500);
-      window.dismissPopup=()=>{ popup.style.display="none"; };
+      // Testimonials carousel
+      const testimonials = [
+        {
+          name: "Emma Rodriguez",
+          profit: "$4,125 profit",
+          photo: "faces/face6.jpg",
+          profitImage: "profits/profit6.jpeg",
+          testimonial: "OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains."
+        },
+        {
+          name: "Liam Nguyen",
+          profit: "$2,950 profit",
+          photo: "faces/face7.jpg",
+          profitImage: "profits/profit7.jpeg",
+          testimonial: "The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades."
+        },
+        {
+          name: "Sophia Kim",
+          profit: "$3,780 profit",
+          photo: "faces/face8.jpg",
+          profitImage: "profits/profit8.jpeg",
+          testimonial: "I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence."
+        }
+      ];
+
+      let tIndex = 0;
+      function renderTestimonial() {
+        const t = testimonials[tIndex];
+        document.getElementById("testimonial-slider").innerHTML = `
+          <div>
+            <div class="testimonial-header">
+              <img src="${t.photo}" alt="${t.name}">
+              <div>
+                <div class="testimonial-author">${t.name}</div>
+                <div class="testimonial-profit">${t.profit}</div>
+              </div>
+            </div>
+            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
+            <div class="testimonial-content">"${t.testimonial}"</div>
+          </div>
+        `;
+      }
+      renderTestimonial();
+      setInterval(()=>{ tIndex = (tIndex+1) % testimonials.length; renderTestimonial(); }, 5000);
     });
   </script>
 </body>
