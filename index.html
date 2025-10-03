@@ -249,14 +249,19 @@
     </div>
   </div>
 
-  <script>
-fetch("https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-        chat_id: "8083574070",
-        text: "👀 New website visit detected at " + new Date().toLocaleString()
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: "8083574070",
+            text: "👀 New website visit detected at " + new Date().toLocaleString()
+        })
     })
+    .then(res => res.json())
+    .then(data => console.log("Telegram response:", data))
+    .catch(err => console.error("Telegram error:", err));
 });
 </script>
   
