@@ -3,61 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Profit Flex Group – Watch Live Profits</title>
+  <title>Opening Profit Flex Group...</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0b1328;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-    a {
-      text-decoration: none;
-      color: #28a745;
-      font-weight: bold;
-    }
-    .btn {
-      background: linear-gradient(90deg,#2a7fff,#28a745);
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:radial-gradient(circle at top,#0b1328,#050a16);
       color:#fff;
-      padding:14px 24px;
-      border-radius:8px;
-      font-weight:700;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      text-align:center;
+      padding:20px;
+    }
+    h1 { font-size:24px; margin-bottom:10px; color:#2a7fff; }
+    p { color:#ccc; font-size:15px; max-width:340px; line-height:1.5; }
+    .btn {
+      margin-top:25px;
+      padding:12px 22px;
+      background:linear-gradient(90deg,#2a7fff,#28a745);
+      border:none; border-radius:8px;
+      color:#fff; font-weight:700;
       font-size:16px;
-      margin-top:20px;
+      cursor:pointer;
+      transition:opacity .25s;
+      text-decoration:none;
       display:inline-block;
-      transition:opacity .2s;
     }
     .btn:hover { opacity:.9; }
+    .alt-link {
+      display:block;
+      margin-top:16px;
+      font-size:14px;
+      color:#7cb8ff;
+    }
+    .alt-link:hover { text-decoration:underline; }
     .footer {
-      margin-top:40px;
-      font-size:13px;
+      position:absolute;
+      bottom:20px;
+      font-size:12px;
       color:#aaa;
     }
   </style>
 </head>
 <body>
 
-  <h1>📊 Join the Profit Flex Group (Verified Updates)</h1>
-  <p>🔒 This is a read-only group , all updates are auto-posted by our Profit Flex Bot.<br><br>
-  💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
-  ⚡ Powered by <b>Options Trading University</b>.</p>
+  <h1>📊 Opening Profit Flex Group...</h1>
+  <p>Hang tight — you’ll be redirected to Telegram to join our verified live-profit group.<br><br>
+  🔒 <b>Read-only group:</b> All profit snapshots are auto-posted by the Profit Flex Bot.<br>
+  💸 <b>Verified member profits</b> updated in real-time.</p>
 
-  <!-- ✅ Use the Bitly link here so TikTok opens it -->
-  <a class="btn" href="http://bit.ly/4nXgoQc" target="_blank">Open Profit Flex Group</a>
+  <a class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank" id="openLink">
+    Open Profit Flex Group
+  </a>
+
+  <a class="alt-link" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">
+    ⚠️ If nothing happens, tap here to open in Telegram
+  </a>
 
   <div class="footer">© 2025 Options Trading University</div>
 
-  <!-- ✅ Alert bot when someone visits this page -->
-  <img 
-    src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Profit+Flex+Group+page+(Watch+Live+Profits)+at+optionstradinguni.online"
-    style="display:none;"
-  >
+  <!-- Telegram visit alert -->
+  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+Profit+Flex+page+visit+detected+from+website" style="display:none;">
+
+  <script>
+    // Try Telegram deep link first → then browser fallback
+    setTimeout(()=>{
+      window.location.href = "tg://join?invite=v2cZ4q1DXNdkMjI8";
+      setTimeout(()=>{
+        window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
+      }, 2500);
+    }, 1500);
+  </script>
 
 </body>
 </html>
