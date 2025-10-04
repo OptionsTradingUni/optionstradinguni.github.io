@@ -1,138 +1,94 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Profit Flex Group – Watch Live Profits</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #0b1328;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    padding: 20px;
-  }
-  h1 { 
-    color:#2a7fff; 
-    margin-bottom:10px; 
-    font-size:24px; 
-    font-weight:900;
-  }
-  p { 
-    max-width:600px; 
-    line-height:1.6; 
-    color:#ddd; 
-    margin:10px 0 25px; 
-  }
-  .btn {
-    background:linear-gradient(90deg,#2a7fff,#28a745);
-    color:#fff;
-    padding:14px 24px;
-    border-radius:8px;
-    font-weight:700;
-    font-size:16px;
-    margin-top:20px;
-    display:inline-block;
-    transition:opacity .2s;
-  }
-  .btn:hover { opacity:.9; }
-
-  /* TikTok notice box */
-  .notice-box {
-    background:#ff408120;
-    border:1px solid #ff4081;
-    border-radius:12px;
-    padding:20px;
-    margin-top:25px;
-    max-width:600px;
-    color:#fff;
-    box-shadow:0 0 15px rgba(255,64,129,0.5);
-    display:none;
-    animation:fadeIn 1s ease forwards, pulse 3s infinite;
-    opacity:0;
-  }
-  @keyframes pulse {
-    0%{box-shadow:0 0 10px rgba(255,64,129,0.3);}
-    50%{box-shadow:0 0 25px rgba(255,64,129,0.7);}
-    100%{box-shadow:0 0 10px rgba(255,64,129,0.3);}
-  }
-  @keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0); }
-    from { opacity: 0; transform: translateY(20px); }
-  }
-  .notice-box b { color:#ffd166; }
-  .notice-btn {
-    background:linear-gradient(90deg,#ff4081,#2a7fff);
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    padding:10px 22px;
-    margin-top:12px;
-    font-weight:700;
-    font-size:15px;
-    cursor:pointer;
-  }
-  .footer { 
-    margin-top:40px; 
-    font-size:13px; 
-    color:#aaa; 
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Profit Flex Group – Watch Live Profits</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1328;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 16px;
+      color: #4ea3ff;
+    }
+    p { font-size: 16px; line-height: 1.6; max-width: 480px; margin: 0 auto 24px; }
+    .btn {
+      background: linear-gradient(90deg,#2a7fff,#28a745);
+      color:#fff;
+      padding:14px 24px;
+      border-radius:8px;
+      font-weight:700;
+      font-size:16px;
+      margin-top:20px;
+      display:inline-block;
+      transition:opacity .2s;
+    }
+    .btn:hover { opacity:.9; }
+    .notice {
+      background: rgba(255,0,80,0.1);
+      border: 1px solid rgba(255,0,80,0.5);
+      color: #ff9ab3;
+      border-radius: 12px;
+      padding: 16px;
+      max-width: 480px;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+    .footer { margin-top:40px; font-size:13px; color:#aaa; }
+  </style>
 </head>
 <body>
 
-<h1>📊 Joine the Profit Flex Group (Verified Updates)</h1>
-<p>🔒 This is a read-only group — all updates are auto-posted by our Profit Flex Bot.<br><br>
-💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
-⚡ Powered by <b>Options Trading University</b>.</p>
+  <h1>📊 Join the Profit Flex Group (Verified Updates)</h1>
+  <p>🔒 This is a read-only group — all updates are auto-posted by our Profit Flex Bot.<br><br>
+  💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
+  ⚡ Powered by <b>Options Trading University</b>.</p>
 
-<a id="joinBtn" class="btn" href="#">Opening Profit Flex Group…</a>
+  <a id="openBtn" class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">Open Profit Flex Group</a>
 
-<div id="notice" class="notice-box">
-  ⚠️ <b>Open in your browser</b><br><br>
-  It looks like you’re inside <b>TikTok</b>.<br>
-  Tap the <b>three dots ⋯</b> or <b>share icon</b> → choose <b>“Open in browser”</b> (Safari or Chrome).<br><br>
-  Once opened there, tap below to continue.<br>
-  <button class="notice-btn" id="continueBtn">I’ve opened it in browser — Continue</button>
-</div>
+  <div id="notice" class="notice" style="display:none;">
+    ⚠️ <b>Open in your browser</b><br><br>
+    It looks like you’re inside TikTok.  
+    Tap the <b>three dots ⋯</b> or <b>share icon</b> → choose “<b>Open in browser</b>” (Safari or Chrome).  
+    <br><br>
+    Once opened in your browser, tap below to continue.  
+    <br><br>
+    <a href="https://t.me/+v2cZ4q1DXNdkMjI8" class="btn">Continue</a>
+  </div>
 
-<div class="footer">© 2025 Options Trading University</div>
+  <div class="footer">© 2025 Options Trading University</div>
 
-<!-- Telegram alert -->
-<img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+Profit+Flex+page+visit+detected" style="display:none;">
+  <!-- Send visit alert -->
+  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Profit+Flex+Page+Visited" style="display:none;">
 
-<script>
-  const groupLink = "https://t.me/+v2cZ4q1DXNdkMjI8";
-  const joinBtn = document.getElementById("joinBtn");
-  const notice = document.getElementById("notice");
-  const continueBtn = document.getElementById("continueBtn");
+  <script>
+    const userAgent = navigator.userAgent.toLowerCase();
+    const insideTikTok = userAgent.includes("tiktok");
+    const btn = document.getElementById("openBtn");
+    const notice = document.getElementById("notice");
 
-  function isTikTok() {
-    return navigator.userAgent.toLowerCase().includes("tiktok");
-  }
-
-  if (isTikTok()) {
-    // Inside TikTok
-    joinBtn.style.display = "none";
-    notice.style.display = "block";
-    continueBtn.addEventListener("click", () => {
-      window.location.href = groupLink;
-    });
-  } else {
-    // Normal browser
-    joinBtn.textContent = "Open Profit Flex Group";
-    joinBtn.href = groupLink;
-    joinBtn.target = "_blank";
-    setTimeout(() => {
-      window.location.href = groupLink;
-    }, 3000);
-  }
-</script>
+    if (insideTikTok) {
+      // Hide main button and show “open in browser” box
+      btn.style.display = "none";
+      notice.style.display = "block";
+    } else {
+      // Automatically open Telegram after 1.5s if not in TikTok
+      setTimeout(() => {
+        window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
+      }, 1500);
+    }
+  </script>
 
 </body>
 </html>
