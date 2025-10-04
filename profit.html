@@ -1,94 +1,102 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Profit Flex Group – Watch Live Profits</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b1328;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 26px;
-      margin-bottom: 16px;
-      color: #4ea3ff;
-    }
-    p { font-size: 16px; line-height: 1.6; max-width: 480px; margin: 0 auto 24px; }
-    .btn {
-      background: linear-gradient(90deg,#2a7fff,#28a745);
-      color:#fff;
-      padding:14px 24px;
-      border-radius:8px;
-      font-weight:700;
-      font-size:16px;
-      margin-top:20px;
-      display:inline-block;
-      transition:opacity .2s;
-    }
-    .btn:hover { opacity:.9; }
-    .notice {
-      background: rgba(255,0,80,0.1);
-      border: 1px solid rgba(255,0,80,0.5);
-      color: #ff9ab3;
-      border-radius: 12px;
-      padding: 16px;
-      max-width: 480px;
-      margin-top: 30px;
-      line-height: 1.6;
-    }
-    .footer { margin-top:40px; font-size:13px; color:#aaa; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profit Flex Group – Watch Live Profits</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0b1328;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 26px;
+    color: #4ea3ff;
+    margin-bottom: 16px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+  .btn {
+    background: linear-gradient(90deg,#2a7fff,#28a745);
+    color:#fff;
+    padding:14px 24px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:16px;
+    margin-top:20px;
+    display:inline-block;
+    transition:opacity .2s;
+  }
+  .btn:hover { opacity:.9; }
+  .notice {
+    background: rgba(255,0,80,0.1);
+    border: 1px solid rgba(255,0,80,0.5);
+    color: #ff9ab3;
+    border-radius: 12px;
+    padding: 16px;
+    max-width: 480px;
+    margin-top: 30px;
+    line-height: 1.6;
+    display:none;
+  }
+  .footer { margin-top:40px; font-size:13px; color:#aaa; }
+</style>
 </head>
 <body>
 
-  <h1>📊 Join the Profit Flex Group (Verified Updates)</h1>
-  <p>🔒 This is a read-only group — all updates are auto-posted by our Profit Flex Bot.<br><br>
-  💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
-  ⚡ Powered by <b>Options Trading University</b>.</p>
+<h1>📊 Join the Profit Flex Group (Verified Updates)</h1>
+<p>🔒 This is a read-only group — all updates are auto-posted by our Profit Flex Bot.<br><br>
+💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
+⚡ Powered by <b>Options Trading University</b>.</p>
 
-  <a id="openBtn" class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">Open Profit Flex Group</a>
+<a id="openBtn" class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">Open Profit Flex Group</a>
 
-  <div id="notice" class="notice" style="display:none;">
-    ⚠️ <b>Open in your browser</b><br><br>
-    It looks like you’re inside TikTok.  
-    Tap the <b>three dots ⋯</b> or <b>share icon</b> → choose “<b>Open in browser</b>” (Safari or Chrome).  
-    <br><br>
-    Once opened in your browser, tap below to continue.  
-    <br><br>
-    <a href="https://t.me/+v2cZ4q1DXNdkMjI8" class="btn">Continue</a>
-  </div>
+<div id="notice" class="notice">
+  ⚠️ <b>Open in your browser</b><br><br>
+  It looks like you’re inside TikTok.<br>
+  Tap the <b>three dots ⋯</b> or <b>share icon</b> → choose “<b>Open in browser</b>” (Safari or Chrome).<br><br>
+  Once opened in your browser, tap below to continue.<br><br>
+  <a href="https://t.me/+v2cZ4q1DXNdkMjI8" class="btn">Continue</a>
+</div>
 
-  <div class="footer">© 2025 Options Trading University</div>
+<div class="footer">© 2025 Options Trading University</div>
 
-  <!-- Send visit alert -->
-  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Profit+Flex+Page+Visited" style="display:none;">
+<!-- Hidden Telegram alert -->
+<img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+ProfitFlex+page+visited" style="display:none;">
 
-  <script>
-    const userAgent = navigator.userAgent.toLowerCase();
-    const insideTikTok = userAgent.includes("tiktok");
-    const btn = document.getElementById("openBtn");
-    const notice = document.getElementById("notice");
+<script>
+(function(){
+  const btn = document.getElementById("openBtn");
+  const notice = document.getElementById("notice");
+  const userAgent = navigator.userAgent.toLowerCase();
 
-    if (insideTikTok) {
-      // Hide main button and show “open in browser” box
-      btn.style.display = "none";
-      notice.style.display = "block";
-    } else {
-      // Automatically open Telegram after 1.5s if not in TikTok
-      setTimeout(() => {
-        window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
-      }, 1500);
-    }
-  </script>
+  // detect TikTok browser
+  const insideTikTok = userAgent.includes("tiktok");
+  
+  if (insideTikTok) {
+    // hide main button, show open-in-browser notice
+    btn.style.display = "none";
+    notice.style.display = "block";
+  } else {
+    // non-TikTok → auto redirect after small delay
+    setTimeout(() => {
+      window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
+    }, 2000);
+  }
+})();
+</script>
 
 </body>
 </html>
