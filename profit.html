@@ -1,82 +1,102 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Opening Profit Flex Group...</title>
-  <style>
-    body {
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:radial-gradient(circle at top,#0b1328,#050a16);
-      color:#fff;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-      text-align:center;
-      padding:20px;
-    }
-    h1 { font-size:24px; margin-bottom:10px; color:#2a7fff; }
-    p { color:#ccc; font-size:15px; max-width:340px; line-height:1.5; }
-    .btn {
-      margin-top:25px;
-      padding:12px 22px;
-      background:linear-gradient(90deg,#2a7fff,#28a745);
-      border:none; border-radius:8px;
-      color:#fff; font-weight:700;
-      font-size:16px;
-      cursor:pointer;
-      transition:opacity .25s;
-      text-decoration:none;
-      display:inline-block;
-    }
-    .btn:hover { opacity:.9; }
-    .alt-link {
-      display:block;
-      margin-top:16px;
-      font-size:14px;
-      color:#7cb8ff;
-    }
-    .alt-link:hover { text-decoration:underline; }
-    .footer {
-      position:absolute;
-      bottom:20px;
-      font-size:12px;
-      color:#aaa;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profit Flex Group – Watch Live Profits</title>
+<style>
+  body {
+    margin:0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background:linear-gradient(180deg,#0b1328,#040713);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+    padding:20px;
+  }
+  .card {
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    padding:40px 28px;
+    max-width:380px;
+    width:100%;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    backdrop-filter:blur(8px);
+  }
+  .emoji { font-size:36px; }
+  h1 {
+    font-size:22px;
+    margin:10px 0 12px;
+    background:linear-gradient(90deg,#2a7fff,#00ff99);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  p {
+    font-size:15px;
+    color:#c9d4ff;
+    line-height:1.5;
+    margin-bottom:28px;
+  }
+  .btn {
+    display:inline-block;
+    background:linear-gradient(90deg,#2a7fff,#00ff99);
+    color:#fff;
+    font-weight:700;
+    font-size:16px;
+    padding:12px 26px;
+    border-radius:10px;
+    text-decoration:none;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .btn:hover {
+    transform:translateY(-3px);
+    box-shadow:0 4px 12px rgba(0,255,153,0.4);
+  }
+  .alt-link {
+    display:block;
+    margin-top:16px;
+    font-size:14px;
+    color:#7cb8ff;
+  }
+  .alt-link:hover { text-decoration:underline; }
+  footer {
+    margin-top:30px;
+    font-size:12px;
+    color:#7a86b6;
+  }
+</style>
 </head>
 <body>
 
-  <h1>📊 Opening Profit Flex Group...</h1>
-  <p>Hang tight — you’ll be redirected to Telegram to join our verified live-profit group.<br><br>
-  🔒 <b>Read-only group:</b> All profit snapshots are auto-posted by the Profit Flex Bot.<br>
-  💸 <b>Verified member profits</b> updated in real-time.</p>
+<div class="card">
+  <div class="emoji">📊</div>
+  <h1>Join the Profit Flex Group</h1>
+  <p>🔒 <b>Read-only group</b> — all profit updates are auto-posted by our Profit Flex Bot.<br><br>
+  💸 <b>Verified member profits</b> posted automatically from real accounts.<br><br>
+  ⚡ Powered by <b>Options Trading University</b>.</p>
 
-  <a class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank" id="openLink">
-    Open Profit Flex Group
-  </a>
+  <a class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">Open Profit Flex Group</a>
+  <a class="alt-link" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">If nothing happens, tap here to open in Telegram</a>
 
-  <a class="alt-link" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">
-    ⚠️ If nothing happens, tap here to open in Telegram
-  </a>
+  <footer>© 2025 Options Trading University</footer>
+</div>
 
-  <div class="footer">© 2025 Options Trading University</div>
+<!-- Telegram visit alert -->
+<img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+Profit+Flex+page+visit+detected+from+website" style="display:none;">
 
-  <!-- Telegram visit alert -->
-  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+Profit+Flex+page+visit+detected+from+website" style="display:none;">
-
-  <script>
-    // Try Telegram deep link first → then browser fallback
+<script>
+  // Try deep link first → then fallback
+  setTimeout(()=>{
+    window.location.href = "tg://join?invite=v2cZ4q1DXNdkMjI8";
     setTimeout(()=>{
-      window.location.href = "tg://join?invite=v2cZ4q1DXNdkMjI8";
-      setTimeout(()=>{
-        window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
-      }, 2500);
-    }, 1500);
-  </script>
+      window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
+    }, 2500);
+  }, 1500);
+</script>
 
 </body>
 </html>
