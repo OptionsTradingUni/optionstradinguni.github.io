@@ -1,102 +1,192 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Profit Flex Group – Watch Live Profits</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #0b1328;
-    color: #fff;
-    text-align: center;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  h1 {
-    font-size: 26px;
-    color: #4ea3ff;
-    margin-bottom: 16px;
-  }
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-  .btn {
-    background: linear-gradient(90deg,#2a7fff,#28a745);
-    color:#fff;
-    padding:14px 24px;
-    border-radius:8px;
-    font-weight:700;
-    font-size:16px;
-    margin-top:20px;
-    display:inline-block;
-    transition:opacity .2s;
-  }
-  .btn:hover { opacity:.9; }
-  .notice {
-    background: rgba(255,0,80,0.1);
-    border: 1px solid rgba(255,0,80,0.5);
-    color: #ff9ab3;
-    border-radius: 12px;
-    padding: 16px;
-    max-width: 480px;
-    margin-top: 30px;
-    line-height: 1.6;
-    display:none;
-  }
-  .footer { margin-top:40px; font-size:13px; color:#aaa; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Profit Flex Group – Watch Live Profits</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1328;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+      overflow-x:hidden;
+    }
+    h1 {
+      font-size: 26px;
+      color: #2a7fff;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #d8e2ff;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+    .btn {
+      background: linear-gradient(90deg,#2a7fff,#28a745);
+      color:#fff;
+      padding:14px 24px;
+      border-radius:8px;
+      font-weight:700;
+      font-size:16px;
+      margin-top:20px;
+      display:inline-block;
+      transition:opacity .25s, transform .25s;
+      cursor:pointer;
+    }
+    .btn:hover {
+      opacity:.9;
+      transform:scale(1.05);
+    }
+    .footer {
+      margin-top:40px;
+      font-size:13px;
+      color:#aaa;
+    }
+
+    /* Warning box with glow animation */
+    .warning-box {
+      display:none;
+      background:rgba(255,64,129,0.1);
+      border:1px solid #ff4081;
+      border-radius:12px;
+      padding:20px;
+      max-width:520px;
+      margin-top:25px;
+      color:#ffdce5;
+      font-size:15px;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%   { box-shadow:0 0 8px rgba(255,64,129,0.4); }
+      50%  { box-shadow:0 0 16px rgba(255,64,129,0.7); }
+      100% { box-shadow:0 0 8px rgba(255,64,129,0.4); }
+    }
+
+    .warning-box .btn {
+      background: linear-gradient(90deg,#ff4081,#2a7fff);
+      margin-top:15px;
+    }
+
+    /* Slide-up animation for TikTok message */
+    .warning-box.show {
+      animation: slideUp .6s ease-out forwards, glowPulse 3s ease-in-out infinite;
+    }
+    @keyframes slideUp {
+      0% { opacity:0; transform:translateY(40px); }
+      100% { opacity:1; transform:translateY(0); }
+    }
+
+    /* copy row */
+    .copy-row {
+      display:flex;
+      gap:8px;
+      margin-top:12px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .copy-row input {
+      width: 320px;
+      max-width: 100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #ff7aa7;
+      background:rgba(0,0,0,0.25);
+      color:#fff;
+      font-size:14px;
+    }
+    .copy-row .copy-btn {
+      background:#ff4081;
+      border:none;
+      border-radius:8px;
+      padding:10px 14px;
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+    }
+  </style>
 </head>
 <body>
 
-<h1>📊 Join the Profit Flex Group (Verified Updates)</h1>
-<p>🔒 This is a read-only group — all updates are auto-posted by our Profit Flex Bot.<br><br>
-💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
-⚡ Powered by <b>Options Trading University</b>.</p>
+  <h1>📊 Join the Profit Flex Group (Verified Updates)</h1>
+  <p>🔒 This is a read-only group — all updates are auto-posted by our Profit Flex Bot.<br><br>
+  💸 <b>Verified Profit Snapshots</b> posted automatically from member accounts.<br><br>
+  ⚡ Powered by <b>Options Trading University</b>.</p>
 
-<a id="openBtn" class="btn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank">Open Profit Flex Group</a>
+  <div id="mainButton">
+    <a class="btn" id="openBtn" href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank" rel="noopener">Open Profit Flex Group</a>
+  </div>
 
-<div id="notice" class="notice">
-  ⚠️ <b>Open in your browser</b><br><br>
-  It looks like you’re inside TikTok.<br>
-  Tap the <b>three dots ⋯</b> or <b>share icon</b> → choose “<b>Open in browser</b>” (Safari or Chrome).<br><br>
-  Once opened in your browser, tap below to continue.<br><br>
-  <a href="https://t.me/+v2cZ4q1DXNdkMjI8" class="btn">Continue</a>
-</div>
+  <div id="warning" class="warning-box">
+    ⚠️ <b>Open in your browser</b><br><br>
+    It looks like you’re inside TikTok or Instagram.<br>
+    Tap the <b>⋮ three dots</b> (top-right) → choose <b>“Open in browser”</b> (Safari or Chrome).<br><br>
+    <span>Can’t find it? Copy the link, then open Safari/Chrome and paste it:</span>
+    <div class="copy-row">
+      <input id="linkField" type="text" value="https://t.me/+v2cZ4q1DXNdkMjI8" readonly>
+      <button id="copyBtn" class="copy-btn">Copy link</button>
+    </div>
+    <div style="margin-top:10px;font-size:13px;color:#ffb9cd;">
+      After opening in your browser, use the <b>Open Profit Flex Group</b> button on this page.
+    </div>
+  </div>
 
-<div class="footer">© 2025 Options Trading University</div>
+  <div class="footer">© 2025 Options Trading University</div>
 
-<!-- Hidden Telegram alert -->
-<img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+ProfitFlex+page+visited" style="display:none;">
+  <!-- Telegram alert -->
+  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Profit+Flex+page+visit+(profit.html)" style="display:none;">
 
-<script>
-(function(){
-  const btn = document.getElementById("openBtn");
-  const notice = document.getElementById("notice");
-  const userAgent = navigator.userAgent.toLowerCase();
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const TELEGRAM_LINK = "https://t.me/+v2cZ4q1DXNdkMjI8";
+      const ua = navigator.userAgent.toLowerCase();
+      const inApp = ua.includes("tiktok") || ua.includes("instagram") || ua.includes("fbav") || ua.includes("webview");
 
-  // detect TikTok browser
-  const insideTikTok = userAgent.includes("tiktok");
-  
-  if (insideTikTok) {
-    // hide main button, show open-in-browser notice
-    btn.style.display = "none";
-    notice.style.display = "block";
-  } else {
-    // non-TikTok → auto redirect after small delay
-    setTimeout(() => {
-      window.location.href = "https://t.me/+v2cZ4q1DXNdkMjI8";
-    }, 2000);
-  }
-})();
-</script>
+      const mainButton = document.getElementById("mainButton");
+      const warning = document.getElementById("warning");
+      const linkField = document.getElementById("linkField");
+      const copyBtn = document.getElementById("copyBtn");
+      const openBtn = document.getElementById("openBtn");
+
+      if (inApp) {
+        // Don’t try to open Telegram inside TikTok/IG. Show instructions + copy link.
+        mainButton.style.display = "none";
+        warning.style.display = "block";
+        setTimeout(()=>warning.classList.add("show"),200);
+
+        // Copy link handler
+        copyBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          try {
+            await navigator.clipboard.writeText(TELEGRAM_LINK);
+            copyBtn.textContent = "Copied ✔";
+            setTimeout(()=>copyBtn.textContent="Copy link", 2000);
+          } catch (err) {
+            // Fallback
+            linkField.select();
+            document.execCommand("copy");
+            copyBtn.textContent = "Copied ✔";
+            setTimeout(()=>copyBtn.textContent="Copy link", 2000);
+          }
+        });
+      } else {
+        // Normal browser → show button and auto-redirect after 2s
+        mainButton.style.display = "block";
+        warning.style.display = "none";
+        setTimeout(() => {
+          window.location.href = TELEGRAM_LINK;
+        }, 2000);
+      }
+    });
+  </script>
 
 </body>
 </html>
