@@ -11,7 +11,6 @@
     }
     a { text-decoration:none; color:inherit; }
 
-    
     /* Sidebar */
     .sidebar {
       position:fixed; top:0; left:0; bottom:0;
@@ -38,7 +37,6 @@
     }
     .sidebar-overlay.active { display:block; }
 
-    
     /* Page */
     .page { margin-left:220px; display:flex; flex-direction:column; min-height:100vh; }
     .container { max-width:900px; margin:0 auto; padding:20px; }
@@ -91,7 +89,7 @@
       100%{background-position:0% 50%;}
     }
 
-    /* Success Stories Section */
+    /* Success Stories */
     .success-stories-section {
       background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff);
       background-size:800% 800%;
@@ -112,43 +110,28 @@
       50% { border-color: rgba(255,64,129,0.6); box-shadow:0 0 14px rgba(255,64,129,0.6); }
       100% { border-color: rgba(42,127,255,0.4); box-shadow:0 0 8px rgba(42,127,255,0.4); }
     }
-    .testimonial-header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-    .testimonial-header img { width:60px; height:60px; border-radius:50%; object-fit:cover; }
-    .testimonial-author { font-weight:700; color:#2a7fff; }
-    .testimonial-profit { color:green; font-weight:700; }
-    .testimonial-proof img {
-      margin-top:12px; max-width:100%; border-radius:8px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+
+    /* Recent Logs */
+    #recent-logs {
+      background:linear-gradient(180deg,#f8fbff,#ffffff);
+      padding:30px 10px; border-radius:12px; margin-top:40px;
     }
-    .testimonial-content { margin-top:12px; font-style:italic; color:#333; }
+    .log-card {
+      background:#fff;
+      border:1px solid #d1d5db;
+      border-radius:10px;
+      padding:14px;
+      margin:10px auto;
+      max-width:600px;
+      box-shadow:0 3px 8px rgba(0,0,0,0.08);
+      text-align:left;
+    }
+    .log-card strong { color:#1e3a8a; font-size:16px; }
+    .log-card b { color:#22c55e; }
+    .log-card a { color:#3b82f6; font-weight:600; }
 
     /* Footer */
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
-
-    /* Popup */
-    .popup-backdrop { position:fixed; inset:0;
-      background:rgba(0,0,0,0.4); backdrop-filter: blur(6px);
-      display:none; align-items:flex-end; justify-content:center; z-index:3000;
-    }
-    .popup {
-      background:#fff; padding:24px; border-radius:14px 14px 0 0; max-width:420px; width:100%;
-      box-shadow:0 -6px 20px rgba(0,0,0,0.3); text-align:center; position:relative;
-      border:2px solid transparent; animation: glowPulse 4s ease-in-out infinite;
-      transform: translateY(100%); opacity:0; transition: all 0.6s ease;
-    }
-    .popup.show { transform: translateY(0); opacity:1; }
-    .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .popup p { color:#333; margin:0 0 14px; }
-    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
-    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
-
-    /* Mentor Modal */
-    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none;
-      align-items:center; justify-content:center; z-index:4000;
-    }
-    .modal { background:#fff; padding:20px; border-radius:12px; max-width:400px; width:90%; text-align:left; position:relative; }
-    .modal h3 { color:#2a7fff; margin-top:0; }
-    .modal .close { position:absolute; top:10px; right:10px; border:none; background:none; font-size:20px; cursor:pointer; }
 
     @media(max-width:768px){
       .sidebar{transform:translateX(-100%); position:fixed;}
@@ -175,10 +158,8 @@
     </nav>
   </aside>
 
-  <!-- Sidebar Overlay -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
@@ -187,41 +168,34 @@
     </header>
 
     <main class="container">
-      <!-- Hero -->
       <section class="hero">
         <h1>Learn Options with Mentorship</h1>
         <p>Learn the strategies, master the mindset, and grow alongside a community of traders who win together.</p>
         <div class="cta-row">
-  <a class="btn" href="modules.html">Start Learning</a>
-  <a class="btn ghost" href="testimonials.html">Success Stories</a>
-</div>
+          <a class="btn" href="modules.html">Start Learning</a>
+          <a class="btn ghost" href="testimonials.html">Success Stories</a>
+        </div>
 
-<!-- ✅ New button neatly below -->
-<div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
-  <a class="btn" href="profit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
-  <a class="btn ghost" href="https://logs.optionstradinguni.online/logs" target="_blank" style="background:#1e293b; border:2px solid #2a7fff; color:#fff;">
-    🔍 View Verified Trade Logs
-  </a>
-</div>
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
+          <a class="btn" href="profit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
+          <a class="btn ghost" href="https://logs.optionstradinguni.online/logs" target="_blank" style="background:#1e293b; border:2px solid #2a7fff; color:#fff;">
+            🔍 View Verified Trade Logs
+          </a>
+        </div>
       </section>
 
-      <!-- Stats -->
       <section class="stats">
         <div class="stat"><h2 data-count="2489">0+</h2><div>Total Trades</div></div>
         <div class="stat"><h2 data-count="789">0</h2><div>Avg Income $</div></div>
         <div class="stat"><h2 data-count="1300">0+</h2><div>Community Members</div></div>
       </section>
 
-      <!-- Motivation -->
       <section class="card image-card">
         <h2>Why Choose OTU?</h2>
-        <p>Every trader starts small, but with the right knowledge and mentorship you can scale with confidence. 
-        Our proven modules, real mentors, and community-driven support help you avoid rookie mistakes and 
-        focus on disciplined growth.</p>
+        <p>Every trader starts small, but with the right knowledge and mentorship you can scale with confidence.</p>
         <p style="font-weight:700;color:#ffd166">📈 Don’t trade alone. Join a network that wins together.</p>
       </section>
 
-      <!-- Success Stories Carousel -->
       <section class="success-stories-section">
         <h2>✨ Success Stories</h2>
         <div id="testimonial-slider" class="testimonial-card">Loading...</div>
@@ -229,106 +203,79 @@
           <a href="testimonials.html" class="btn ghost">Show More</a>
         </div>
       </section>
+
+      <!-- ✅ Recent Trade Logs -->
+      <section id="recent-logs">
+        <h2 style="color:#2a7fff; text-align:center;">🧾 Recent Trade Logs</h2>
+        <div id="logs-container" style="text-align:center;">Loading recent activity...</div>
+      </section>
     </main>
 
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- Discount Popup -->
-  <div class="popup-backdrop" id="discount-popup">
-    <div class="popup" id="popupBox">
-      <button class="close" onclick="dismissPopup()">✕</button>
-      <h2>🎉 20% OFF Membership</h2>
-      <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM us on TikTok to claim before spots run out!</p>
-      <button class="btn" onclick="dismissPopup()">Got it — Message Mentor</button>
-    </div>
-  </div>
-
-  <!-- Mentor Modal -->
-  <div class="modal-backdrop" id="mentor-modal">
-    <div class="modal">
-      <button class="close" onclick="closeMentorModal()">✕</button>
-      <h3>Message a Mentor</h3>
-      <p>Send us a DM on TikTok. Suggested message:</p>
-      <div style="background:#f5f9ff;padding:12px;border-radius:6px;font-family:monospace;margin-top:10px;">
-        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
-      </div>
-      <div style="text-align:right; margin-top:12px;">
-        <button class="btn ghost" onclick="closeMentorModal()">Close</button>
-      </div>
-    </div>
-  </div>
-
-<img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Home+Page+visit+detected" style="display:none;">
-  
   <script>
-    document.addEventListener("DOMContentLoaded",()=>{
-      // Sidebar toggle
-      const burger=document.getElementById("burger");
-      const sidebar=document.getElementById("sidebar");
-      const overlay=document.getElementById("sidebarOverlay");
-
-      burger.addEventListener("click",()=>{
-        sidebar.classList.add("active");
-        overlay.classList.add("active");
-      });
-      overlay.addEventListener("click",()=>{
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-      });
-
-      // Stats animation
-      document.querySelectorAll(".stat h2").forEach(el=>{
-        let target=+el.dataset.count, current=0, step=Math.ceil(target/100);
-        const interval=setInterval(()=>{
-          current+=step;
-          if(current>=target){ current=target; clearInterval(interval); }
-          el.textContent=current+(el.dataset.count.includes("%")?"%":"+");
-        },30);
-      });
-
-      // Testimonials carousel
-      const testimonials = [
-        { name:"Emma Rodriguez", profit:"$4,125 profit", photo:"faces/faces6.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
-        { name:"Liam Nguyen", profit:"$2,950 profit", photo:"faces/faces7.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
-        { name:"Sophia Kim", profit:"$3,780 profit", photo:"faces/faces8.jpeg", profitImage:"profits/profit8.jpeg", testimonial:"I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
-      ];
-      let tIndex=0;
-      function renderTestimonial(){
-        const t=testimonials[tIndex];
-        document.getElementById("testimonial-slider").innerHTML=`
-          <div>
-            <div class="testimonial-header">
-              <img src="${t.photo}" alt="${t.name}">
-              <div>
-                <div class="testimonial-author">${t.name}</div>
-                <div class="testimonial-profit">${t.profit}</div>
-              </div>
-            </div>
-            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
-            <div class="testimonial-content">"${t.testimonial}"</div>
-          </div>`;
-      }
-      renderTestimonial();
-      setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
-
-      // Show popup with slide
-      const popup=document.getElementById("discount-popup");
-      const popupBox=document.getElementById("popupBox");
-      setTimeout(()=>{
-        popup.style.display="flex";
-        requestAnimationFrame(()=>popupBox.classList.add("show"));
-      },1500);
-      window.dismissPopup=()=>{
-        popupBox.classList.remove("show");
-        setTimeout(()=>{ popup.style.display="none"; },600);
-      };
-
-      // Mentor modal
-      const mentorModal=document.getElementById("mentor-modal");
-      document.getElementById("mentorBtn").addEventListener("click",()=>{ mentorModal.style.display="flex"; });
-      window.closeMentorModal=()=>{ mentorModal.style.display="none"; };
+    // Sidebar
+    document.getElementById("burger").addEventListener("click",()=>{
+      document.getElementById("sidebar").classList.add("active");
+      document.getElementById("sidebarOverlay").classList.add("active");
     });
+    document.getElementById("sidebarOverlay").addEventListener("click",()=>{
+      document.getElementById("sidebar").classList.remove("active");
+      document.getElementById("sidebarOverlay").classList.remove("active");
+    });
+
+    // Stats Counter
+    document.querySelectorAll(".stat h2").forEach(el=>{
+      let target=+el.dataset.count, current=0, step=Math.ceil(target/100);
+      const interval=setInterval(()=>{
+        current+=step;
+        if(current>=target){ current=target; clearInterval(interval); }
+        el.textContent=current+(el.dataset.count.includes("%")?"%":"+");
+      },30);
+    });
+
+    // Testimonials Carousel
+    const testimonials=[
+      { name:"Emma Rodriguez", profit:"$4,125 profit", photo:"faces/faces6.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s mentorship helped me understand risk management. Now I’m seeing steady gains." },
+      { name:"Liam Nguyen", profit:"$2,950 profit", photo:"faces/faces7.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The trade breakdowns in OTU are a game-changer. I now spot better setups." },
+      { name:"Sophia Kim", profit:"$3,780 profit", photo:"faces/faces8.jpeg", profitImage:"profits/profit8.jpeg", testimonial:"The OTU community feedback boosted my confidence massively." }
+    ];
+    let tIndex=0;
+    function renderTestimonial(){
+      const t=testimonials[tIndex];
+      document.getElementById("testimonial-slider").innerHTML=`
+        <div>
+          <div class="testimonial-header">
+            <img src="${t.photo}" alt="${t.name}">
+            <div>
+              <div class="testimonial-author">${t.name}</div>
+              <div class="testimonial-profit">${t.profit}</div>
+            </div>
+          </div>
+          <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
+          <div class="testimonial-content">"${t.testimonial}"</div>
+        </div>`;
+    }
+    renderTestimonial();
+    setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
+
+    // ✅ Fetch Recent Logs
+    fetch("https://logs.optionstradinguni.online/api/recent")
+      .then(res=>res.json())
+      .then(data=>{
+        const container=document.getElementById("logs-container");
+        if(!Array.isArray(data)){container.innerHTML="<p>No recent trades found.</p>";return;}
+        container.innerHTML=data.map(log=>`
+          <div class="log-card">
+            <strong>${log.symbol}</strong> — ${log.broker_name}<br>
+            💰 <b>$${log.profit.toFixed(2)}</b> (${log.roi.toFixed(2)}%)<br>
+            👤 ${log.trader_name} | <small style="color:#666;">${new Date(log.posted_at).toLocaleString()}</small><br>
+            <a href="https://logs.optionstradinguni.online/log/${log.txid}" target="_blank">View Log →</a>
+          </div>
+        `).join("");
+      })
+      .catch(()=>{document.getElementById("logs-container").innerText="Unable to load logs at the moment.";});
   </script>
 </body>
 </html>
