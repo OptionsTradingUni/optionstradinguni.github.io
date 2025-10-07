@@ -5,16 +5,16 @@
   <title>Disclaimer - Options Trading University</title>
   <style>
     body { margin:0; font-family:Arial,sans-serif; background:#f0f4fb; color:#222; }
+    a { text-decoration: none; color: inherit; }
 
     /* Sidebar */
     .sidebar { position:fixed; top:0; left:0; bottom:0; width:220px; background:#0b1328; color:#fff;
       transform:translateX(-220px); transition:transform .3s ease; padding:20px; z-index:1000; }
     .sidebar.active { transform:translateX(0); }
     .sidebar .brand { font-weight:bold; font-size:18px; margin-bottom:20px; color:#ffd166; }
-    .sidebar nav a { display:block; padding:10px; color:#fff; text-decoration:none; }
+    .sidebar nav a { display:block; padding:10px; }
     .sidebar nav a:hover, .sidebar nav a.active { background:#1c2541; border-radius:4px; }
     .close-btn { background:none; border:none; color:#fff; font-size:22px; cursor:pointer; margin-bottom:10px; display:block; text-align:right; width:100%; }
-    .close-btn:hover { color:#ffd166; }
 
     /* Page */
     .page { margin-left:0; transition:margin-left .3s ease; padding:20px; }
@@ -37,55 +37,37 @@
 
     .footer { text-align:center; padding:10px; font-size:13px; color:#888; }
 
-    /* Button */
-    .btn {
-      background:#2a7fff; color:#fff; border:none; border-radius:6px;
-      padding:8px 14px; cursor:pointer; font-weight:600;
-    }
+    .btn { background:#2a7fff; color:#fff; border:none; border-radius:6px; padding:8px 14px; cursor:pointer; font-weight:600; }
     .btn:hover { background:#1e5fd9; }
 
     /* Modal */
-    .modal-backdrop {
-      position: fixed; top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.6);
-      display: none; align-items:center; justify-content:center;
-      z-index:2000;
-    }
-    .modal {
-      background:#fff; padding:20px; border-radius:10px; max-width:400px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.3); text-align:left;
-    }
-    .modal h3 { margin-top:0; color:#2a7fff; }
-    .modal .close {
-      float:right; background:none; border:none; font-size:20px;
-      cursor:pointer; color:#444;
-    }
-    .suggest {
-      background:#f5f9ff; padding:12px; border-radius:6px;
-      font-family:monospace; margin-top:10px;
-    }
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:2000;}
+    .modal{background:#fff;border-radius:10px;padding:20px;max-width:400px;width:90%;}
+    .modal .close{float:right;border:none;background:none;font-size:20px;cursor:pointer;}
+    .contact-options{display:flex;flex-direction:column;gap:10px;margin-top:15px;}
+    .contact-options .btn{display:block;text-align:center;color:#fff;padding:12px;text-decoration:none;}
+    .contact-options .btn.telegram{background:#0088cc;}
+    .contact-options .btn.tiktok{background:#25f4ee;color:#000;}
+    #tiktok-info{display:none;margin-top:15px;border-top:1px solid #eee;padding-top:15px;}
+    .suggest{background:#f5f9ff;padding:10px;border-radius:6px;font-family:monospace;}
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <button class="close-btn" id="closeSidebar">✕</button>
     <div class="brand">Options Trading University</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="modules.html">Modules</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html">Home</a><a href="modules.html">Modules</a>
+      <a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
       <a href="terms.html" class="active">Disclaimer</a>
     </nav>
   </aside>
 
-  <!-- Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
       <div>Disclaimer</div>
-      <button class="btn" onclick="openTikTokModal()">Message a Mentor</button>
+      <button class="btn" onclick="openContactModal()">Message a Mentor</button>
     </header>
 
     <main>
@@ -108,17 +90,18 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- TikTok Modal -->
-  <div class="modal-backdrop" id="tt-modal">
+  <div class="modal-backdrop" id="contact-modal">
     <div class="modal">
-      <button class="close" onclick="closeTikTokModal()">✕</button>
-      <h3>Message on TikTok</h3>
-      <p>Send us a DM directly on TikTok. Suggested message:</p>
-      <div class="suggest">
-        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+      <button class="close" onclick="closeContactModal()">✕</button>
+      <h3 style="color:#2a7fff">Contact a Mentor</h3>
+      <p>Choose your preferred platform to get in touch.</p>
+      <div class="contact-options">
+        <a href="https://t.me/thewealthprince0" target="_blank" class="btn telegram">Message on Telegram</a>
+        <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
       </div>
-      <div style="text-align:right;margin-top:12px">
-        <button class="btn" onclick="closeTikTokModal()">Close</button>
+      <div id="tiktok-info">
+        <p>Send us a DM with this message:</p>
+        <div class="suggest">Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i></div>
       </div>
     </div>
   </div>
@@ -129,6 +112,7 @@
     const closeBtn=document.getElementById("closeSidebar");
     burger.addEventListener("click",()=>{ sidebar.classList.add("active"); });
     closeBtn.addEventListener("click",()=>{ sidebar.classList.remove("active"); });
+    
     document.querySelectorAll(".accordion-header").forEach(header=>{
       header.addEventListener("click",()=>{
         const content=header.nextElementSibling;
@@ -136,12 +120,14 @@
       });
     });
 
-    // Modal
-    function openTikTokModal(){
-      document.getElementById("tt-modal").style.display="flex";
+    function openContactModal(){document.getElementById('contact-modal').style.display='flex';}
+    function closeContactModal(){
+      document.getElementById('contact-modal').style.display='none';
+      document.getElementById('tiktok-info').style.display='none';
     }
-    function closeTikTokModal(){
-      document.getElementById("tt-modal").style.display="none";
+    function toggleTikTokInfo(){
+      const info=document.getElementById('tiktok-info');
+      info.style.display=info.style.display==='block'?'none':'block';
     }
   </script>
 </body>
