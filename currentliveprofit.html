@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 Recent Trades - Options Trading University</title>
     <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon"> 
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -36,7 +35,7 @@
             max-width: 960px;
             margin: 20px auto;
             padding: 0 20px;
-            flex-grow: 1; /* Allows container to grow and push footer down */
+            flex-grow: 1;
         }
 
         header {
@@ -53,7 +52,7 @@
             background: linear-gradient(90deg, var(--primary-blue), var(--primary-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block; /* To apply gradient to text */
+            display: inline-block;
         }
         
         .subheader {
@@ -68,7 +67,13 @@
             background-color: var(--mid-bg);
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            overflow: hidden; /* For rounded corners on items */
+            overflow: hidden;
+        }
+
+        .trade-item-link { /* Style for the new link */
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
 
         .trade-item {
@@ -79,56 +84,24 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: background-color 0.3s ease;
         }
-        .trade-item:hover {
+        .trade-item-link:hover .trade-item {
             background-color: rgba(255, 255, 255, 0.05);
         }
         .trade-item:last-child {
             border-bottom: none;
         }
 
-        .trade-details {
-            flex: 1;
-        }
-        .trade-details strong {
-            font-size: 1.25em;
-            color: var(--light-text);
-            display: block;
-            margin-bottom: 2px;
-        }
-        .trade-details small {
-            color: var(--faded-text);
-            font-size: 0.85em;
-        }
+        .trade-details { flex: 1; }
+        .trade-details strong { font-size: 1.25em; color: var(--light-text); display: block; margin-bottom: 2px; }
+        .trade-details small { color: var(--faded-text); font-size: 0.85em; }
 
-        .trade-performance {
-            text-align: right;
-            min-width: 100px; /* Ensure profit/loss takes enough space */
-        }
-        .trade-profit { 
-            color: var(--success-green); 
-            font-weight: 700; 
-            font-size: 1.3em;
-        }
-        .trade-loss { 
-            color: var(--danger-red); 
-            font-weight: 700; 
-            font-size: 1.3em;
-        }
-        .trade-roi {
-            color: var(--faded-text);
-            font-size: 0.9em;
-        }
+        .trade-performance { text-align: right; min-width: 100px; }
+        .trade-profit { color: var(--success-green); font-weight: 700; font-size: 1.3em; }
+        .trade-loss { color: var(--danger-red); font-weight: 700; font-size: 1.3em; }
+        .trade-roi { color: var(--faded-text); font-size: 0.9em; }
 
-        .loading-message, .error-message, .no-trades-message {
-            padding: 30px;
-            text-align: center;
-            color: var(--faded-text);
-            font-size: 1.1em;
-        }
-        .error-message {
-            color: var(--danger-red);
-            font-weight: 500;
-        }
+        .loading-message, .error-message, .no-trades-message { padding: 30px; text-align: center; color: var(--faded-text); font-size: 1.1em; }
+        .error-message { color: var(--danger-red); font-weight: 500; }
         
         .back-home-btn {
             display: inline-block;
@@ -141,42 +114,19 @@
             font-weight: 600;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .back-home-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
+        .back-home-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
 
-        footer {
-            margin-top: auto; /* Pushes footer to the bottom */
-            background-color: var(--dark-bg);
-            color: var(--faded-text);
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9em;
-        }
+        footer { margin-top: auto; background-color: var(--dark-bg); color: var(--faded-text); text-align: center; padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9em; }
 
-        /* Responsive adjustments */
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 26px;
-            }
-            .trade-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 15px;
-            }
-            .trade-details {
-                margin-bottom: 8px;
-            }
-            .trade-performance {
-                text-align: left;
-            }
+            header h1 { font-size: 26px; }
+            .trade-item { flex-direction: column; align-items: flex-start; padding: 15px; }
+            .trade-details { margin-bottom: 8px; }
+            .trade-performance { text-align: left; }
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>100 Recent Trades</h1>
         <p class="subheader">Live-synced from Options Trading University</p>
@@ -186,7 +136,6 @@
         <div id="trades-list-github">
             <p class="loading-message">Loading the latest trades...</p>
         </div>
-        
         <div style="text-align: center; margin-top: 30px;">
             <a href="/" class="back-home-btn">← Back to Homepage</a>
         </div>
@@ -198,53 +147,61 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 
-            // ⚠️ IMPORTANT: Change this URL to your live bot server's URL!
-            //    Example: 'https://my-trading-bot-server.herokuapp.com/api/recent100'
-            //
             const apiUrl = 'https://logs.optionstradinguni.online/api/recent100'; 
-
+            const logBaseUrl = 'https://logs.optionstradinguni.online'; // The base URL for your log pages
             const tradesListElement = document.getElementById('trades-list-github');
 
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    tradesListElement.innerHTML = ''; // Clear loading message
+            function fetchTrades() {
+                console.log("Fetching latest trades...");
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        tradesListElement.innerHTML = ''; // Clear old list
 
-                    if (data && data.length > 0) {
-                        data.forEach(trade => {
-                            const profitClass = trade.profit >= 0 ? 'trade-profit' : 'trade-loss';
-                            const profitSign = trade.profit >= 0 ? '+' : '';
-                            
-                            const tradeElement = document.createElement('div');
-                            tradeElement.className = 'trade-item';
-                            tradeElement.innerHTML = `
-                                <div class="trade-details">
-                                    <strong>${trade.symbol}</strong><br>
-                                    <small>Trader: ${trade.trader_name} • ${trade.time_ago}</small>
-                                </div>
-                                <div class="trade-performance">
-                                    <div class="${profitClass}">
-                                        ${profitSign}$${trade.profit.toFixed(2)}
+                        if (data && data.length > 0) {
+                            data.forEach(trade => {
+                                const profitClass = trade.profit >= 0 ? 'trade-profit' : 'trade-loss';
+                                const profitSign = trade.profit >= 0 ? '+' : '';
+                                
+                                // Create the link element
+                                const linkElement = document.createElement('a');
+                                linkElement.className = 'trade-item-link';
+                                linkElement.href = `${logBaseUrl}/log/${trade.txid}`;
+                                linkElement.target = '_blank'; // Open in new tab
+                                linkElement.rel = 'noopener noreferrer';
+
+                                // Create the inner content for the link
+                                linkElement.innerHTML = `
+                                    <div class="trade-item">
+                                        <div class="trade-details">
+                                            <strong>${trade.symbol}</strong><br>
+                                            <small>Trader: ${trade.trader_name} • ${trade.time_ago}</small>
+                                        </div>
+                                        <div class="trade-performance">
+                                            <div class="${profitClass}">${profitSign}$${trade.profit.toFixed(2)}</div>
+                                            <div class="trade-roi">ROI: ${trade.roi.toFixed(2)}%</div>
+                                        </div>
                                     </div>
-                                    <div class="trade-roi">ROI: ${trade.roi.toFixed(2)}%</div>
-                                </div>
-                            `;
-                            tradesListElement.appendChild(tradeElement);
-                        });
-                    } else {
-                        tradesListElement.innerHTML = '<p class="no-trades-message">No recent trades to display yet. Check back soon!</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching trade data:', error);
-                    tradesListElement.innerHTML = `<p class="error-message">Failed to load trades: ${error.message}. Please try again later.</p>`;
-                });
+                                `;
+                                tradesListElement.appendChild(linkElement);
+                            });
+                        } else {
+                            tradesListElement.innerHTML = '<p class="no-trades-message">No recent trades found.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        tradesListElement.innerHTML = `<p class="error-message">Failed to load trades. Server may be down.</p>`;
+                        clearInterval(tradeInterval);
+                    });
+            }
+
+            // --- DYNAMIC UPDATES ---
+            fetchTrades(); // Fetch immediately on page load
+            const tradeInterval = setInterval(fetchTrades, 30000); // Refresh every 30 seconds
         });
     </script>
 </body>
