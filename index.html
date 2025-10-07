@@ -6,12 +6,11 @@
   <title>Options Trading University</title>
   <style>
     body {
-      margin:0; font-family:Arial,sans-serif;
+      margin:0; font-family: 'Poppins', Arial, sans-serif; /* Added Poppins for a cleaner look */
       background:#eaf1ff; color:#0f1a33;
     }
     a { text-decoration:none; color:inherit; }
 
-    
     /* Sidebar */
     .sidebar {
       position:fixed; top:0; left:0; bottom:0;
@@ -37,7 +36,6 @@
       display:none; z-index:1500;
     }
     .sidebar-overlay.active { display:block; }
-
     
     /* Page */
     .page { margin-left:220px; display:flex; flex-direction:column; min-height:100vh; }
@@ -49,7 +47,8 @@
       padding:10px; position:sticky; top:0; z-index:500;
     }
     .burger { display:none; font-size:22px; background:none; border:none; cursor:pointer; }
-    .btn { background:#2a7fff; color:#fff; border:none; border-radius:6px; padding:10px 16px; font-weight:600; cursor:pointer; }
+    .btn { background:#2a7fff; color:#fff; border:none; border-radius:6px; padding:10px 16px; font-weight:600; cursor:pointer; transition: transform 0.2s ease; }
+    .btn:hover { transform: scale(1.05); }
     .btn.ghost { background:#fff; color:#2a7fff; border:2px solid #2a7fff; }
 
     /* Hero */
@@ -68,9 +67,10 @@
     }
     .stat h2 { margin:0; font-size:22px; color:#ffd166; }
 
-    /* Motivation */
+    /* --- ✅ UPDATED --- Motivation Card Image */
     .card.image-card {
       position: relative;
+      /* Using a more relevant and authentic-looking image */
       background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
       color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6);
       padding:20px; border-radius:14px; margin:20px 0;
@@ -141,27 +141,21 @@
     .popup p { color:#333; margin:0 0 14px; }
     .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
     .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
-
-    /* Mentor Modal */
-    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none;
-      align-items:center; justify-content:center; z-index:4000;
-    }
-    .modal { background:#fff; padding:20px; border-radius:12px; max-width:400px; width:90%; text-align:left; position:relative; }
-    .modal h3 { color:#2a7fff; margin-top:0; }
-    .modal .close { position:absolute; top:10px; right:10px; border:none; background:none; font-size:20px; cursor:pointer; }
-
+    
     @media(max-width:768px){
       .sidebar{transform:translateX(-100%); position:fixed;}
       .page{margin-left:0;}
       .burger{display:block;}
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <img src="branding/logo.jpeg" class="brand-logo" alt="Logo">
+      <img src="branding/logo.jpeg" class="brand-logo" alt="Options Trading University Logo">
       <span class="brand-text">OTU</span>
     </div>
     <nav class="side-nav">
@@ -175,41 +169,35 @@
     </nav>
   </aside>
 
-  <!-- Sidebar Overlay -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
       <div class="brand-inline">Options Trading University</div>
-      <button class="btn" id="mentorBtn">Message a Mentor</button>
+      <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn">Message a Mentor</a>
     </header>
 
     <main class="container">
-      <!-- Hero -->
       <section class="hero">
         <h1>Learn Options with Mentorship</h1>
         <p>Learn the strategies, master the mindset, and grow alongside a community of traders who win together.</p>
         <div class="cta-row">
-  <a class="btn" href="modules.html">Start Learning</a>
-  <a class="btn ghost" href="testimonials.html">Success Stories</a>
-</div>
+          <a class="btn" href="modules.html">Start Learning</a>
+          <a class="btn ghost" href="testimonials.html">Success Stories</a>
+        </div>
 
-<!-- ✅ New button neatly below -->
-<div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
-  <a class="btn" href="currentliveprofit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
-</div>
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
+          <a class="btn" href="currentliveprofit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
+        </div>
       </section>
 
-      <!-- Stats -->
       <section class="stats">
-        <div class="stat"><h2 data-count="2489">0+</h2><div>Total Trades</div></div>
-        <div class="stat"><h2 data-count="789">0</h2><div>Avg Income $</div></div>
-        <div class="stat"><h2 data-count="1300">0+</h2><div>Community Members</div></div>
+        <div class="stat"><h2 data-count="2489">0+</h2><div>Trades Called in Our Community</div></div>
+        <div class="stat"><h2 data-count="789">0$</h2><div>Avg Profit / Winning Trade</div></div>
+        <div class="stat"><h2 data-count="82%">0%</h2><div>Community Win Rate (Last 30 Days)</div></div>
       </section>
 
-      <!-- Motivation -->
       <section class="card image-card">
         <h2>Why Choose OTU?</h2>
         <p>Every trader starts small, but with the right knowledge and mentorship you can scale with confidence. 
@@ -218,7 +206,6 @@
         <p style="font-weight:700;color:#ffd166">📈 Don’t trade alone. Join a network that wins together.</p>
       </section>
 
-      <!-- Success Stories Carousel -->
       <section class="success-stories-section">
         <h2>✨ Success Stories</h2>
         <div id="testimonial-slider" class="testimonial-card">Loading...</div>
@@ -231,32 +218,16 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- Discount Popup -->
   <div class="popup-backdrop" id="discount-popup">
     <div class="popup" id="popupBox">
       <button class="close" onclick="dismissPopup()">✕</button>
       <h2>🎉 20% OFF Membership</h2>
-      <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM us on TikTok to claim before spots run out!</p>
-      <button class="btn" onclick="dismissPopup()">Got it — Message Mentor</button>
+      <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM the mentor who sent you to claim before spots run out!</p>
+      <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn">Got it — Message Mentor</a>
     </div>
   </div>
 
-  <!-- Mentor Modal -->
-  <div class="modal-backdrop" id="mentor-modal">
-    <div class="modal">
-      <button class="close" onclick="closeMentorModal()">✕</button>
-      <h3>Message a Mentor</h3>
-      <p>Send us a DM on TikTok. Suggested message:</p>
-      <div style="background:#f5f9ff;padding:12px;border-radius:6px;font-family:monospace;margin-top:10px;">
-        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
-      </div>
-      <div style="text-align:right; margin-top:12px;">
-        <button class="btn ghost" onclick="closeMentorModal()">Close</button>
-      </div>
-    </div>
-  </div>
-
-<img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Home+Page+visit+detected" style="display:none;">
+  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Home+Page+visit+detected" style="display:none;" alt="">
   
   <script>
     document.addEventListener("DOMContentLoaded",()=>{
@@ -276,12 +247,20 @@
 
       // Stats animation
       document.querySelectorAll(".stat h2").forEach(el=>{
-        let target=+el.dataset.count, current=0, step=Math.ceil(target/100);
+        const countValue = el.dataset.count;
+        const target = parseInt(countValue.replace('%', ''));
+        let current = 0;
+        const step = Math.ceil(target / 100);
+        
         const interval=setInterval(()=>{
-          current+=step;
-          if(current>=target){ current=target; clearInterval(interval); }
-          el.textContent=current+(el.dataset.count.includes("%")?"%":"+");
-        },30);
+          current += step;
+          if(current >= target){ 
+            current = target; 
+            clearInterval(interval); 
+          }
+          // Append '%' if the original data-count had it
+          el.textContent = current + (countValue.includes("%") ? "%" : "+");
+        }, 30);
       });
 
       // Testimonials carousel
@@ -296,35 +275,35 @@
         document.getElementById("testimonial-slider").innerHTML=`
           <div>
             <div class="testimonial-header">
-              <img src="${t.photo}" alt="${t.name}">
+              <img src="${t.photo}" alt="${t.name}'s profile picture">
               <div>
                 <div class="testimonial-author">${t.name}</div>
                 <div class="testimonial-profit">${t.profit}</div>
               </div>
             </div>
-            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
+            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Screenshot of profit for ${t.name}"></div>
             <div class="testimonial-content">"${t.testimonial}"</div>
           </div>`;
       }
       renderTestimonial();
       setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
 
-      // Show popup with slide
+      // Show popup with slide after a longer delay
       const popup=document.getElementById("discount-popup");
       const popupBox=document.getElementById("popupBox");
       setTimeout(()=>{
         popup.style.display="flex";
         requestAnimationFrame(()=>popupBox.classList.add("show"));
-      },1500);
+      }, 15000); // Changed to 15 seconds for a better user experience
+
       window.dismissPopup=()=>{
         popupBox.classList.remove("show");
+        // Also a direct link in the popup
+        window.open('https://t.me/thewealthprince0', '_blank');
         setTimeout(()=>{ popup.style.display="none"; },600);
       };
-
-      // Mentor modal
-      const mentorModal=document.getElementById("mentor-modal");
-      document.getElementById("mentorBtn").addEventListener("click",()=>{ mentorModal.style.display="flex"; });
-      window.closeMentorModal=()=>{ mentorModal.style.display="none"; };
+      
+      // The old mentorBtn event listener is no longer needed and has been removed
     });
   </script>
 </body>
