@@ -7,7 +7,6 @@
   <style>
     body{margin:0;font-family:sans-serif;background:#f4f7ff;color:#0f1a33;}
 
-    /* 🔧 Global anchor reset */
     a, a:visited, a:hover, a:active {
       text-decoration:none !important;
       color:inherit !important;
@@ -44,11 +43,8 @@
       z-index: 2000;
     }
     .modal {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      background: #fff; padding: 20px; border-radius: 10px;
+      max-width: 400px; width: 90%; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       text-align: left;
     }
     .modal h3 { margin-top:0; color:#2a7fff; }
@@ -57,18 +53,20 @@
       font-size: 20px; cursor: pointer; color:#444;
     }
     .suggest {
-      background: #f5f9ff;
-      padding: 12px;
-      border-radius: 6px;
-      font-family: monospace;
-      margin-top: 10px;
+      background: #f5f9ff; padding: 12px; border-radius: 6px;
+      font-family: monospace; margin-top: 10px;
     }
     .btn {
       background:#2a7fff; color:#fff;
       border:none; border-radius:6px; padding:8px 14px;
-      cursor:pointer; font-weight:600;
+      cursor:pointer; font-weight:600; text-decoration: none;
     }
     .btn:hover { background:#1e5fd9; }
+    .contact-options { display:flex; flex-direction:column; gap:10px; margin-top:15px; }
+    .contact-options .btn { display:block; text-align:center; color:#fff; padding:12px; }
+    .contact-options .btn.telegram { background:#0088cc; }
+    .contact-options .btn.tiktok { background:#25f4ee; color:#000; }
+    #tiktok-info { display:none; margin-top:15px; border-top:1px solid #eee; padding-top:15px; }
   </style>
 </head>
 <body>
@@ -88,7 +86,7 @@
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
       <div class="brand-inline">Options Trading University</div>
-      <button class="btn" onclick="openTikTokModal()">Message a Mentor</button>
+      <button class="btn" onclick="openContactModal()">Message a Mentor</button>
     </header>
 
     <main class="container">
@@ -100,17 +98,22 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- TikTok Modal -->
-  <div class="modal-backdrop" id="tt-modal">
+  <div class="modal-backdrop" id="contact-modal">
     <div class="modal">
-      <button class="close" onclick="closeTikTokModal()">✕</button>
-      <h3>Message on TikTok</h3>
-      <p>Send us a DM directly on TikTok. Suggested message:</p>
-      <div class="suggest">
-        Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+      <button class="close" onclick="closeContactModal()">✕</button>
+      <h3>Contact a Mentor</h3>
+      <p>Choose your preferred platform to get in touch.</p>
+      
+      <div class="contact-options">
+        <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn telegram">Message on Telegram</a>
+        <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
       </div>
-      <div style="text-align:right;margin-top:12px">
-        <button class="btn" onclick="closeTikTokModal()">Close</button>
+
+      <div id="tiktok-info">
+        <p>Send us a DM directly on TikTok. Suggested message:</p>
+        <div class="suggest">
+          Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+        </div>
       </div>
     </div>
   </div>
@@ -120,33 +123,59 @@
   style="display:none;"
 >
 
-  <script src="config.js"></script>
   <script>
+    // Helper function to load JSON
+    async function loadJSON(url) {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Could not load ${url}`);
+      return response.json();
+    }
+
     document.addEventListener("DOMContentLoaded",async()=>{
-      const data=await loadJSON("glossary.json");
-      const list=document.getElementById("glossary-list");
-      data.forEach(t=>{
-        const card=document.createElement("div");
-        card.className="term-card";
-        card.innerHTML=`<h3>${t.term}</h3><div class="definition">${t.definition}</div>`;
-        card.querySelector("h3").onclick=()=>{
-          const d=card.querySelector(".definition");
-          d.style.display=d.style.display==="block"?"none":"block";
-        };
-        list.appendChild(card);
-      });
+      try {
+        const data=await loadJSON("glossary.json");
+        const list=document.getElementById("glossary-list");
+        data.forEach(t=>{
+          const card=document.createElement("div");
+          card.className="term-card";
+          card.innerHTML=`<h3>${t.term}</h3><div class="definition">${t.definition}</div>`;
+          card.addEventListener('click',()=>{
+            const d=card.querySelector(".definition");
+            d.style.display=d.style.display==="block"?"none":"block";
+          });
+          list.appendChild(card);
+        });
+      } catch(err) {
+        console.error(err);
+        document.getElementById("glossary-list").textContent = "Error: Could not load glossary terms.";
+      }
     });
 
-    // Sidebar toggle
-    const burger=document.getElementById('burger');const sidebar=document.getElementById('sidebar');
-    burger.addEventListener('click',()=> sidebar.style.display=sidebar.style.display==='block'?'none':'block');
+    // Sidebar toggle for mobile
+    const burger=document.getElementById('burger');
+    const sidebar=document.getElementById('sidebar');
+    burger.addEventListener('click',()=>{
+      // This is a simple toggle, a class-based one would be better for transitions
+      if (sidebar.style.display === 'block') {
+        sidebar.style.display = 'none';
+      } else {
+        sidebar.style.display = 'block';
+      }
+    });
 
-    // Modal controls
-    function openTikTokModal(){
-      document.getElementById("tt-modal").style.display="flex";
+    // Modal functions
+    function openContactModal(){ document.getElementById("contact-modal").style.display="flex"; }
+    function closeContactModal(){ 
+      document.getElementById("contact-modal").style.display="none";
+      document.getElementById("tiktok-info").style.display="none"; // Also hide tiktok info
     }
-    function closeTikTokModal(){
-      document.getElementById("tt-modal").style.display="none";
+    function toggleTikTokInfo() {
+      const infoDiv = document.getElementById("tiktok-info");
+      if(infoDiv.style.display === "block") {
+        infoDiv.style.display = "none";
+      } else {
+        infoDiv.style.display = "block";
+      }
     }
   </script>
 </body>
