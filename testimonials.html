@@ -92,6 +92,11 @@
     .contact-options .btn.telegram { background:#0088cc; }
     .contact-options .btn.tiktok { background:#25f4ee; color:#000; }
     #tiktok-info { display:none; margin-top:15px; border-top:1px solid #eee; padding-top:15px; }
+    
+    .btn[disabled] {
+        background: #aaa !important;
+        cursor: not-allowed !important;
+    }
 
     @keyframes fadeIn {
       from {opacity:0; transform:scale(0.95);}
@@ -136,7 +141,7 @@
       <p>Choose your preferred platform to get in touch.</p>
       
       <div class="contact-options">
-        <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn telegram">Message on Telegram</a>
+        <button id="telegram-link-btn" data-link="https://t.me/thewealthprince0" class="btn telegram">Message on Telegram</button>
         <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
       </div>
 
@@ -155,6 +160,21 @@
   >
   
   <script>
+    // --- ✅ NEW TIKTOK DETECTION LOGIC ---
+    const telegramLinkBtn = document.getElementById('telegram-link-btn');
+    const isTikTok = navigator.userAgent.includes("TikTok");
+
+    if (isTikTok) {
+      telegramLinkBtn.disabled = true;
+    }
+
+    telegramLinkBtn.addEventListener('click', () => {
+      if (!telegramLinkBtn.disabled) {
+        window.open(telegramLinkBtn.dataset.link, '_blank');
+      }
+    });
+    // --- END NEW LOGIC ---
+
     // Sidebar toggle
     document.getElementById("burger").addEventListener("click",()=>{
       document.getElementById("sidebar").classList.toggle("active");
@@ -219,5 +239,3 @@
   </script>
 </body>
 </html>
-
-
