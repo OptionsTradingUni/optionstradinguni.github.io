@@ -226,7 +226,7 @@
       
       function renderTestimonial(){
         if(!testimonials.length) {
-            container.innerHTML = `<p style="text-align:center; color:#888;">No testimonials loaded.</p>`;
+            container.innerHTML = `<p style="text-align:center; color:#888;">Loading testimonials...</p>`;
             return;
         }
         const t=testimonials[currentIndex];
@@ -255,7 +255,6 @@
       fetch('testimonials.json')
         .then(res => {
             if (!res.ok) {
-                // Throw an error if the HTTP response status is not 200-299
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
             return res.json();
@@ -273,7 +272,7 @@
             console.error("Error fetching testimonials.json:", err);
         });
       
-      // Telegram Popup Logic
+      // Telegram Popup Logic (RESTORED)
       const tgInfoPopup=document.getElementById("tg-info-popup");
       const closeTgPopupBtn=document.getElementById("close-tg-popup");
       const copyTgBtn=document.getElementById("copy-tg-btn");
