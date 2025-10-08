@@ -28,7 +28,7 @@
     .side-nav a:hover { background:#163067; }
     .side-nav a.active { background:#1a2b68; }
     
-    /* Sidebar Overlay (Added for better mobile UX) */
+    /* Sidebar Overlay (For mobile UX) */
     .sidebar-overlay {
       position:fixed; inset:0;
       background:rgba(0,0,0,0.4);
@@ -219,9 +219,10 @@
         overlay.classList.remove("active");
       });
 
-      // Testimonials logic
+      // Testimonials logic (RESTORING ORIGINAL FETCH LOGIC)
       let testimonials=[],currentIndex=0;
       const container=document.getElementById("testimonial-container");
+      
       function renderTestimonial(){
         if(!testimonials.length) {
             container.innerHTML = `<p style="text-align:center; color:#888;">No testimonials loaded.</p>`;
@@ -241,6 +242,7 @@
             <div class="testimonial-content">"${t.testimonial}"</div>
           </div>`;
       }
+      
       document.getElementById("prevBtn").addEventListener("click",()=>{ 
         if(currentIndex>0){currentIndex--;renderTestimonial();} 
       });
@@ -248,18 +250,27 @@
         if(currentIndex<testimonials.length-1){currentIndex++;renderTestimonial();} 
       });
       
-      // NOTE: Since the external file 'testimonials.json' cannot be accessed, 
-      // I will add placeholder data to ensure the slider works.
-      const placeholderTestimonials = [
-        { name: "Alex P.", profit: "$3,500 profit", photo: "faces/face1.jpeg", profitImage: "profits/proof1.jpeg", testimonial: "The modules are incredibly clear, and the live sessions are a game-changer. Highly recommend OTU!" },
-        { name: "Sarah M.", profit: "$2,100 profit", photo: "faces/face2.jpeg", profitImage: "profits/proof2.jpeg", testimonial: "I went from zero knowledge to making profitable trades in just a few weeks. The community support is fantastic." },
-        { name: "John D.", profit: "$5,950 profit", photo: "faces/face3.jpeg", profitImage: "profits/proof3.jpeg", testimonial: "Outstanding risk management strategies. My discipline has improved dramatically since joining." }
-      ];
-
-      // Replacing fetch with direct data load to ensure functionality
-      // fetch('testimonials.json').then(res=>res.json()).then(data=>{ testimonials=data; renderTestimonial(); });
-      testimonials = placeholderTestimonials;
-      renderTestimonial(); 
+      // *** RESTORING ORIGINAL FETCH TO testimonials.json ***
+      fetch('testimonials.json')
+        .then(res => {
+            if (!res.ok) {
+                // Throw an error if the HTTP response status is not 200-299
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            testimonials = data;
+            currentIndex = 0;
+            renderTestimonial();
+        })
+        .catch(err => {
+            document.getElementById("testimonial-container").innerHTML = 
+              `<p style="text-align:center; color:red;">
+                 ⚠️ Error loading testimonials. Please ensure <b>testimonials.json</b> is in the correct directory.
+               </p>`;
+            console.error("Error fetching testimonials.json:", err);
+        });
       
       // Telegram Popup Logic
       const tgInfoPopup=document.getElementById("tg-info-popup");
