@@ -1,217 +1,271 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Recent Trades - Options Trading University</title>
-  <style>
-    :root {
-      --blue:#2a7fff; --pink:#ff4081; --nav:#0b1328; --mid:#163067;
-      --ink:#0f1a33; --light:#eaf1ff; --faded:#9cb2ff;
-      --success:#22c55e; --danger:#ef4444;
-    }
-    *{box-sizing:border-box;}
-    body{margin:0;font-family:'Poppins',sans-serif;background:#0b1328;color:var(--light);}
-    a{text-decoration:none;color:inherit;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Recent Trades - Options Trading University</title>
+    <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2a7fff;
+            --primary-pink: #ff4081;
+            --dark-bg: #0b1328;
+            --mid-bg: #163067;
+            --light-text: #eaf1ff;
+            --faded-text: #9cb2ff;
+            --success-green: #22c55e;
+            --danger-red: #ef4444;
+        }
 
-    /* Sidebar */
-    .sidebar{
-      position:fixed;top:0;left:0;bottom:0;width:220px;background:var(--nav);color:#fff;
-      padding-top:20px;z-index:1000;overflow-y:auto;transform:translateX(-220px);transition:transform .3s ease;
-    }
-    .sidebar.active{transform:translateX(0);}
-    .brand{display:flex;align-items:center;gap:10px;padding:10px;font-weight:800;}
-    .brand-logo{width:30px;height:30px;border-radius:6px;object-fit:cover;}
-    .brand span{background:linear-gradient(90deg,var(--blue),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;}
-    .side-nav{display:flex;flex-direction:column;padding:10px;gap:6px;}
-    .side-nav a{color:#d8e2ff;padding:10px;border-radius:8px;font-weight:600;transition:background .25s;}
-    .side-nav a:hover{background:#163067;}
-    .side-nav a.active{background:#1a2b68;}
-    .close-sidebar{display:none;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;margin:10px;align-self:flex-end;}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    /* Topbar */
-    .topbar{
-      background:linear-gradient(90deg,var(--blue),var(--pink));
-      color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;
-    }
-    .burger{font-size:1.5em;background:none;border:none;color:#fff;cursor:pointer;}
-    .btn{background:#fff;color:var(--blue);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;font-weight:600;text-decoration:none;transition:.2s;}
-    .btn:hover{transform:scale(1.05);}
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex-grow: 1;
+        }
 
-    /* Content */
-    .page{margin-left:0;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:1000px;margin:30px auto;padding:20px;}
+        /* --- ✅ UPDATED HEADER STYLES --- */
+        header {
+            background-color: var(--mid-bg);
+            padding: 15px 25px;
+            border-bottom: 2px solid var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
 
-    .header-title{
-      text-align:center;font-size:2em;font-weight:800;margin-bottom:10px;
-      background:linear-gradient(90deg,var(--blue),var(--pink));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    }
-    .subheader{text-align:center;color:var(--faded);margin-bottom:20px;}
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .subheader {
+            margin: 0;
+            color: var(--faded-text);
+            font-size: 0.9em;
+        }
 
-    .join-btn{
-      display:inline-block;padding:10px 20px;
-      background:linear-gradient(90deg,var(--blue),var(--pink));
-      color:#fff;border:none;border-radius:8px;
-      font-weight:700;font-size:1em;font-family:'Poppins',sans-serif;
-      cursor:pointer;transition:transform .2s,box-shadow .2s;
-    }
-    .join-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
-    .join-btn[disabled]{background:#aaa;cursor:not-allowed;transform:none;box-shadow:none;}
+        /* --- ✅ NEW JOIN BUTTON STYLE --- */
+        .join-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-pink));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            white-space: nowrap; /* Prevents text wrapping */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none; /* Added for button reset */
+            font-family: 'Poppins', sans-serif; /* Added for button reset */
+            font-size: 1em; /* Added for button reset */
+        }
+        .join-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .join-btn[disabled] {
+            background: #aaa;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
 
-    #trades-list{
-      margin-top:30px;background:var(--mid);border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.4);overflow:hidden;
-    }
-    .trade-item-link{display:block;color:inherit;}
-    .trade-item{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:18px 25px;border-bottom:1px solid rgba(255,255,255,0.1);
-      transition:background .3s;
-    }
-    .trade-item:last-child{border-bottom:none;}
-    .trade-item-link:hover .trade-item{background:rgba(255,255,255,0.08);}
-    .trade-details{flex:1;}
-    .trade-details strong{font-size:1.2em;display:block;color:#fff;margin-bottom:3px;}
-    .trade-details small{color:var(--faded);}
-    .trade-performance{text-align:right;min-width:120px;}
-    .trade-profit{color:var(--success);font-weight:700;font-size:1.3em;}
-    .trade-loss{color:var(--danger);font-weight:700;font-size:1.3em;}
-    .trade-roi{color:var(--faded);font-size:.9em;}
-    .loading-message,.error-message,.no-trades-message{
-      text-align:center;padding:40px;color:var(--faded);font-size:1.1em;
-    }
-    .error-message{color:var(--danger);}
+        #trades-list-github {
+            margin-top: 30px;
+            background-color: var(--mid-bg);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
 
-    .back-btn{
-      display:inline-block;margin-top:30px;padding:12px 25px;
-      background:#111b3c;border:2px solid var(--blue);border-radius:8px;
-      color:#fff;font-weight:600;text-decoration:none;transition:.2s;
-    }
-    .back-btn:hover{background:var(--blue);}
+        .trade-item-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
 
-    .footer{
-      margin-top:auto;background:var(--nav);color:var(--faded);
-      text-align:center;padding:16px;border-top:1px solid rgba(255,255,255,0.1);
-      font-size:.9em;
-    }
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .trade-item-link:hover .trade-item {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .trade-item:last-child {
+            border-bottom: none;
+        }
 
-    @media(max-width:768px){
-      .sidebar{transform:translateX(-220px);}
-      .sidebar.active{transform:translateX(0);}
-      .close-sidebar{display:block;}
-      .page{margin-left:0;}
-      .burger{display:block;}
-      .trade-item{flex-direction:column;align-items:flex-start;padding:14px;}
-      .trade-performance{text-align:left;margin-top:8px;}
-    }
-  </style>
+        .trade-details { flex: 1; }
+        .trade-details strong { font-size: 1.25em; color: var(--light-text); display: block; margin-bottom: 2px; }
+        .trade-details small { color: var(--faded-text); font-size: 0.85em; }
+
+        .trade-performance { text-align: right; min-width: 100px; }
+        .trade-profit { color: var(--success-green); font-weight: 700; font-size: 1.3em; }
+        .trade-loss { color: var(--danger-red); font-weight: 700; font-size: 1.3em; }
+        .trade-roi { color: var(--faded-text); font-size: 0.9em; }
+
+        .loading-message, .error-message, .no-trades-message { padding: 30px; text-align: center; color: var(--faded-text); font-size: 1.1em; }
+        .error-message { color: var(--danger-red); font-weight: 500; }
+        
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: var(--mid-bg);
+            border: 2px solid var(--primary-blue);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .back-home-btn:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        footer { margin-top: auto; background-color: var(--dark-bg); color: var(--faded-text); text-align: center; padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9em; }
+        
+        /* --- ✅ UPDATED RESPONSIVE STYLES --- */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 26px;
+            }
+            .trade-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            .trade-details { margin-bottom: 8px; }
+            .trade-performance { text-align: left; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <button class="close-sidebar" id="closeSidebar">✕</button>
-    <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>OTU</span></div>
-    <nav class="side-nav">
-      <a href="index.html">Home</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="modules.html">Modules</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="contact.html">Contact</a>
-      <a href="recenttrades.html" class="active">Recent Trades</a>
-      <a href="terms.html">Disclaimer</a>
-    </nav>
-  </aside>
 
-  <!-- Main Page -->
-  <div class="page">
-    <header class="topbar">
-      <button class="burger" id="burger">☰</button>
-      <div>Recent Trades</div>
-      <button id="join-group-btn" data-link="https://t.me/+v2cZ4q1DXNdkMjI8" class="btn">Join Log Group</button>
+    <header>
+        <div>
+            <h1> Recent Trades</h1>
+            <p class="subheader">Live-synced from Options Trading University</p>
+        </div>
+        <button id="join-group-btn" data-link="https://t.me/+v2cZ4q1DXNdkMjI8" class="join-btn">
+            Join Log Group
+        </button>
     </header>
 
-    <main class="container">
-      <h1 class="header-title">📈 Latest Verified Trades</h1>
-      <p class="subheader">Live-synced from the OTU Trade Network</p>
+    <div class="container">
+        <div id="trades-list-github">
+            <p class="loading-message">Loading the latest trades...</p>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="back-home-btn">← Back to Homepage</a>
+        </div>
+    </div>
 
-      <div id="trades-list">
-        <p class="loading-message">Loading the latest trades...</p>
-      </div>
+    <footer>
+        &copy; 2025 Options Trading University. All rights reserved. Data provided for educational purposes.
+    </footer>
 
-      <div style="text-align:center;">
-        <a href="index.html" class="back-btn">← Back to Homepage</a>
-      </div>
-    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- ✅ NEW TIKTOK DETECTION LOGIC ---
+            const joinGroupBtn = document.getElementById('join-group-btn');
+            const isTikTok = navigator.userAgent.includes("TikTok");
 
-    <footer class="footer">© 2025 Options Trading University. All rights reserved. Data provided for educational purposes.</footer>
-  </div>
+            if (isTikTok) {
+                joinGroupBtn.disabled = true;
+            }
 
-  <!-- ✅ JS Logic -->
-  <script>
-    // Sidebar toggle
-    const burger=document.getElementById('burger');
-    const sidebar=document.getElementById('sidebar');
-    const closeSidebar=document.getElementById('closeSidebar');
-    burger.addEventListener('click',()=>{sidebar.classList.add('active');});
-    closeSidebar.addEventListener('click',()=>{sidebar.classList.remove('active');});
+            joinGroupBtn.addEventListener('click', () => {
+                if (!joinGroupBtn.disabled) {
+                    window.open(joinGroupBtn.dataset.link, '_blank', 'noopener,noreferrer');
+                }
+            });
+            // --- END NEW LOGIC ---
 
-    // TikTok restriction for Telegram links
-    const joinGroupBtn=document.getElementById('join-group-btn');
-    const isTikTok=navigator.userAgent.includes("TikTok");
-    if(isTikTok){joinGroupBtn.disabled=true;}
-    joinGroupBtn.addEventListener('click',()=>{
-      if(!joinGroupBtn.disabled){
-        window.open(joinGroupBtn.dataset.link,'_blank','noopener,noreferrer');
-      }
-    });
+            const apiUrl = 'https://logs.optionstradinguni.online/api/recent100'; 
+            const logBaseUrl = 'https://logs.optionstradinguni.online';
+            const tradesListElement = document.getElementById('trades-list-github');
 
-    // Fetch trades from API
-    const apiUrl='https://logs.optionstradinguni.online/api/recent100';
-    const logBaseUrl='https://logs.optionstradinguni.online';
-    const tradesList=document.getElementById('trades-list');
+            function fetchTrades() {
+                console.log("Fetching latest trades...");
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        tradesListElement.innerHTML = '';
 
-    async function fetchTrades(){
-      try{
-        const res=await fetch(apiUrl);
-        if(!res.ok) throw new Error(res.status);
-        const data=await res.json();
-        tradesList.innerHTML='';
-        if(data && data.length>0){
-          data.forEach(t=>{
-            const profitClass=t.profit>=0?'trade-profit':'trade-loss';
-            const profitSign=t.profit>=0?'+':'';
-            const a=document.createElement('a');
-            a.className='trade-item-link';
-            a.href=`${logBaseUrl}/log/${t.txid}`;
-            a.target='_blank';
-            a.rel='noopener noreferrer';
-            a.innerHTML=`
-              <div class="trade-item">
-                <div class="trade-details">
-                  <strong>${t.symbol}</strong>
-                  <small>Trader: ${t.trader_name} • ${t.time_ago}</small>
-                </div>
-                <div class="trade-performance">
-                  <div class="${profitClass}">${profitSign}$${t.profit.toFixed(2)}</div>
-                  <div class="trade-roi">ROI: ${t.roi.toFixed(2)}%</div>
-                </div>
-              </div>
-            `;
-            tradesList.appendChild(a);
-          });
-        } else {
-          tradesList.innerHTML='<p class="no-trades-message">No recent trades found.</p>';
-        }
-      }catch(e){
-        console.error(e);
-        tradesList.innerHTML='<p class="error-message">⚠️ Failed to load trades. Please try again later.</p>';
-        clearInterval(interval);
-      }
-    }
+                        if (data && data.length > 0) {
+                            data.forEach(trade => {
+                                const profitClass = trade.profit >= 0 ? 'trade-profit' : 'trade-loss';
+                                const profitSign = trade.profit >= 0 ? '+' : '';
+                                
+                                const linkElement = document.createElement('a');
+                                linkElement.className = 'trade-item-link';
+                                linkElement.href = `${logBaseUrl}/log/${trade.txid}`;
+                                linkElement.target = '_blank';
+                                linkElement.rel = 'noopener noreferrer';
 
-    fetchTrades();
-    const interval=setInterval(fetchTrades,30000);
-  </script>
+                                linkElement.innerHTML = `
+                                    <div class="trade-item">
+                                        <div class="trade-details">
+                                            <strong>${trade.symbol}</strong><br>
+                                            <small>Trader: ${trade.trader_name} • ${trade.time_ago}</small>
+                                        </div>
+                                        <div class="trade-performance">
+                                            <div class="${profitClass}">${profitSign}$${trade.profit.toFixed(2)}</div>
+                                            <div class="trade-roi">ROI: ${trade.roi.toFixed(2)}%</div>
+                                        </div>
+                                    </div>
+                                `;
+                                tradesListElement.appendChild(linkElement);
+                            });
+                        } else {
+                            tradesListElement.innerHTML = '<p class="no-trades-message">No recent trades found.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        tradesListElement.innerHTML = `<p class="error-message">Failed to load trades. Server may be down.</p>`;
+                        clearInterval(tradeInterval);
+                    });
+            }
+
+            fetchTrades();
+            const tradeInterval = setInterval(fetchTrades, 30000);
+        });
+    </script>
 </body>
 </html>
