@@ -131,20 +131,7 @@
 </head>
 <body>
   <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <img src="branding/logo.jpeg" class="brand-logo" alt="Logo">
-      <span>Options Trading University</span>
-    </div>
-    <nav class="side-nav">
-      <a href="index.html">Home</a>
-      <a href="modules.html" class="active">Modules</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="contact.html">Contact</a>
-      <a href="terms.html">Disclaimer</a>
-    </nav>
-  </aside>
+  <div id="sidebar-container"></div>
 
   <!-- Page -->
   <div class="page">
@@ -249,5 +236,14 @@
       nextBtn.addEventListener('click',()=>showModule(currentIndex+1));
     });
   </script>
+  <script>
+  // Load shared sidebar
+  fetch("sidebar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    })
+    .catch(err => console.error("Sidebar failed to load:", err));
+</script>
 </body>
 </html>
