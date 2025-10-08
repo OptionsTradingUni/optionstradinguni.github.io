@@ -70,7 +70,6 @@
     /* --- ✅ UPDATED --- Motivation Card Image */
     .card.image-card {
       position: relative;
-      /* Using a more relevant and authentic-looking image */
       background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
       color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6);
       padding:20px; border-radius:14px; margin:20px 0;
@@ -148,6 +147,10 @@
     }
     #tg-popup-box input[readonly] {
       cursor: text;
+    }
+    #secure-link-btn[disabled] {
+      background: #aaa;
+      cursor: not-allowed;
     }
     
     @media(max-width:768px){
@@ -242,7 +245,7 @@
       
       <div>
         <label style="font-weight:600; display:block; margin-bottom:5px; color:#333;">Option 2: Use Direct Link</label>
-        <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn" style="width:100%; box-sizing:border-box;">Open Secure Link</a>
+        <button id="secure-link-btn" data-link="https://t.me/thewealthprince0" class="btn" style="width:100%; box-sizing:border-box;">Open Secure Link</button>
       </div>
     </div>
   </div>
@@ -325,78 +328,87 @@
 
       window.dismissPopup = () => {
         discountPopupBox.classList.remove("show");
-        // NOTE: This will now trigger the new info popup as well!
-        // The original window.open is removed.
         setTimeout(() => { discountPopup.style.display = "none"; }, 600);
       };
 
-      // --- ✅ NEW TELEGRAM INFO POPUP LOGIC ---
+      // --- ✅ MODIFIED TELEGRAM INFO POPUP LOGIC ---
 
-      // 1. Get references to the new popup elements
+      // 1. Get references to the popup elements
       const tgInfoPopup = document.getElementById("tg-info-popup");
       const tgPopupBox = document.getElementById("tg-popup-box");
       const closeTgPopupBtn = document.getElementById("close-tg-popup");
       const copyTgBtn = document.getElementById("copy-tg-btn");
       const tgUsernameInput = document.getElementById("tg-username");
+      const secureLinkBtn = document.getElementById("secure-link-btn");
 
-      // 2. Function to show the Telegram info popup
+      // 2. Detect if the user is in the TikTok browser
+      const isTikTok = navigator.userAgent.includes("TikTok");
+      
+      // 3. If on TikTok, disable the secure link button
+      if (isTikTok) {
+        secureLinkBtn.disabled = true;
+      }
+
+      // 4. Function to show the Telegram info popup
       function showTgInfoPopup() {
         tgInfoPopup.style.display = "flex";
         requestAnimationFrame(() => tgPopupBox.classList.add("show"));
       }
       
-      // 3. Function to hide the Telegram info popup
+      // 5. Function to hide the Telegram info popup
       function hideTgInfoPopup() {
         tgPopupBox.classList.remove("show");
-        setTimeout(() => {
-          tgInfoPopup.style.display = "none";
-        }, 600); // Match CSS transition duration
+        setTimeout(() => { tgInfoPopup.style.display = "none"; }, 600);
       }
 
-      // 4. Find all "Message a Mentor" links and make them open our new popup
+      // 6. Find all "Message a Mentor" links and make them open our new popup
       const mentorLinks = document.querySelectorAll('a[href*="t.me/thewealthprince0"]');
       mentorLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-          event.preventDefault(); // IMPORTANT: Stops the link from trying to open
+          event.preventDefault(); // Stop the link from trying to open
           showTgInfoPopup();
         });
       });
       
-      // Also, attach it to your original popup's dismiss button's logic
+      // Also attach it to the original popup's dismiss button logic
       const originalDismissButton = document.querySelector('#discount-popup .btn');
       if(originalDismissButton) {
         originalDismissButton.addEventListener('click', (event) => {
           event.preventDefault();
-          dismissPopup(); // Close the first popup
-          showTgInfoPopup(); // Open the new info popup
+          dismissPopup();
+          showTgInfoPopup();
         });
       }
 
-      // 5. Wire up the close button for the new popup
+      // 7. Wire up the close button for the new popup
       closeTgPopupBtn.addEventListener('click', hideTgInfoPopup);
-      tgInfoPopup.addEventListener('click', (e) => { // Close when clicking the backdrop
-        if(e.target === tgInfoPopup) {
-            hideTgInfoPopup();
-        }
+      tgInfoPopup.addEventListener('click', (e) => {
+        if(e.target === tgInfoPopup) { hideTgInfoPopup(); }
       });
       
-      // 6. Add "Copy to Clipboard" functionality
+      // 8. Add "Copy to Clipboard" functionality
       copyTgBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
-          // Provide feedback to the user
           copyTgBtn.textContent = "Copied!";
           copyTgBtn.classList.add("copied");
-          tgUsernameInput.select(); // Highlight the text
+          tgUsernameInput.select();
           setTimeout(() => {
             copyTgBtn.textContent = "Copy";
             copyTgBtn.classList.remove("copied");
-          }, 2000); // Reset after 2 seconds
+          }, 2000);
         }).catch(err => {
           console.error('Failed to copy text: ', err);
         });
+      });
+      
+      // 9. Add click listener for the secure link button
+      secureLinkBtn.addEventListener('click', () => {
+        // This will only run if the button is NOT disabled
+        if (!secureLinkBtn.disabled) {
+          window.open(secureLinkBtn.dataset.link, '_blank');
+        }
       });
     });
   </script>
 </body>
 </html>
-
