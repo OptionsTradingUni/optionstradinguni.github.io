@@ -6,6 +6,7 @@
   <title>Options Trading University</title>
   <style>
     body {
+      /* Using Poppins font stack */
       margin:0; font-family: 'Poppins', Arial, sans-serif;
       background:#eaf1ff; color:#0f1a33;
     }
@@ -168,9 +169,9 @@
       </section>
 
       <section class="stats">
-        <div class="stat"><h2 data-count="2489">0+</h2><div>Trades Called</div></div>
+        <div class="stat"><h2 data-count="2489">0+</h2><div>Trades Called in Our Community</div></div>
         <div class="stat"><h2 data-count="789">0$</h2><div>Avg Profit / Win</div></div>
-        <div class="stat"><h2 data-count="82%">0%</h2><div>Win Rate (30 Days)</div></div>
+        <div class="stat"><h2 data-count="76%">0%</h2><div>Community Win Rate (30 Days)</div></div>
       </section>
 
       <section class="card image-card">
@@ -231,11 +232,11 @@
         const int=setInterval(()=>{ c+=Math.ceil(count/100); if(c>=count){c=count;clearInterval(int);} el.textContent=c+sym; },30);
       });
 
-      // Testimonials carousel
+      // Testimonials carousel (USING IMPROVED DATA)
       const testimonials = [
         { name:"Emma Rodriguez", profit:"$12,000 profit", photo:"faces/faces1.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
         { name:"Liam Nguyen", profit:"$21,076 profit", photo:"faces/faces2.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
-        { name:"Noah Sullivan", profit:"$10,336 profit", photo:"faces/faces3.jpeg", profitImage:"profits/profit11.jpeg", testimonial:"I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
+        { name:"Noah Sullivan", profit:"$10,336 profit", photo:"faces/faces6.jpeg", profitImage:"profits/profit11.jpeg", testimonial:"I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
       ];
       let tIndex=0;
       function renderTestimonial(){
