@@ -23,6 +23,14 @@
     .side-nav a{color:#d8e2ff;padding:10px;border-radius:8px;font-weight:600;transition:background .25s;}
     .side-nav a:hover{background:#163067;}
     .side-nav a.active{background:#1a2b68;}
+    
+    /* Sidebar Overlay (For mobile/tablet use) */
+    .sidebar-overlay {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.4);
+      display:none; z-index:999;
+    }
+    .sidebar-overlay.active { display:block; }
 
     /* Topbar */
     .topbar{
@@ -96,13 +104,32 @@
       .page{margin-left:0;}
       .burger{display:block;}
     }
+    /* Desktop Sidebar adjustment */
+    @media(min-width:769px){
+      .sidebar { transform:translateX(0); }
+      .page { margin-left:220px; }
+      .burger { display:none; }
+    }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <div id="sidebar-container"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="branding/logo.jpeg" class="brand-logo" alt="Options Trading University Logo">
+      <span>OTU</span>
+    </div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="watchlist.html">Watchlist</a>
+      <a href="modules.html">Modules</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html" class="active">Disclaimer</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Main Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
@@ -139,7 +166,6 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- ✅ Telegram Popup -->
   <div class="popup-backdrop" id="tg-info-popup">
     <div class="popup">
       <button class="close" id="close-tg-popup">✕</button>
@@ -159,53 +185,54 @@
     </div>
   </div>
 
-  <!-- Tracking -->
   <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Visitor+opened+Disclaimer+page+at+optionstradinguni.online" style="display:none;">
 
   <script>
-    // Sidebar toggle
-    document.getElementById("burger").addEventListener("click",()=>{
-      document.getElementById("sidebar").classList.toggle("active");
-    });
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sidebar toggle
+      const burger = document.getElementById("burger");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebarOverlay");
 
-    // Accordion
-    document.querySelectorAll(".accordion-header").forEach(header=>{
-      header.addEventListener("click",()=>{
-        header.classList.toggle("active");
+      burger.addEventListener("click",()=>{
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
       });
-    });
-
-    // ✅ Telegram Popup Logic
-    const tgInfoPopup=document.getElementById("tg-info-popup");
-    const closeTgPopupBtn=document.getElementById("close-tg-popup");
-    const copyTgBtn=document.getElementById("copy-tg-btn");
-    const tgUsernameInput=document.getElementById("tg-username");
-
-    document.querySelectorAll('.smart-tg-link').forEach(link=>{
-      link.addEventListener('click',e=>{
-        e.preventDefault();
-        tgInfoPopup.style.display='flex';
+      overlay.addEventListener("click",()=>{
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
       });
-    });
-    const closeTgPopup=()=>tgInfoPopup.style.display='none';
-    closeTgPopupBtn.addEventListener('click',closeTgPopup);
-    tgInfoPopup.addEventListener('click',e=>{if(e.target===tgInfoPopup)closeTgPopup();});
-    copyTgBtn.addEventListener('click',()=>{
-      navigator.clipboard.writeText(tgUsernameInput.value).then(()=>{
-        copyTgBtn.textContent="Copied!";
-        copyTgBtn.classList.add("copied");
-        setTimeout(()=>{copyTgBtn.textContent="Copy";copyTgBtn.classList.remove("copied");},2000);
+
+      // Accordion
+      document.querySelectorAll(".accordion-header").forEach(header=>{
+        header.addEventListener("click",()=>{
+          header.classList.toggle("active");
+        });
+      });
+
+      // ✅ Telegram Popup Logic
+      const tgInfoPopup=document.getElementById("tg-info-popup");
+      const closeTgPopupBtn=document.getElementById("close-tg-popup");
+      const copyTgBtn=document.getElementById("copy-tg-btn");
+      const tgUsernameInput=document.getElementById("tg-username");
+
+      document.querySelectorAll('.smart-tg-link').forEach(link=>{
+        link.addEventListener('click',e=>{
+          e.preventDefault();
+          tgInfoPopup.style.display='flex';
+        });
+      });
+      const closeTgPopup=()=>tgInfoPopup.style.display='none';
+      closeTgPopupBtn.addEventListener('click',closeTgPopup);
+      tgInfoPopup.addEventListener('click',e=>{if(e.target===tgInfoPopup)closeTgPopup();});
+      copyTgBtn.addEventListener('click',()=>{
+        navigator.clipboard.writeText(tgUsernameInput.value).then(()=>{
+          copyTgBtn.textContent="Copied!";
+          copyTgBtn.classList.add("copied");
+          setTimeout(()=>{copyTgBtn.textContent="Copy";copyTgBtn.classList.remove("copied");},2000);
+        });
       });
     });
   </script>
-  <script>
-  // Load shared sidebar
-  fetch("sidebar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("sidebar-container").innerHTML = html;
-    })
-    .catch(err => console.error("Sidebar failed to load:", err));
-</script>
 </body>
 </html>
