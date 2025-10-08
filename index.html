@@ -133,17 +133,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <img src="branding/logo.jpeg" class="brand-logo" alt="Options Trading University Logo">
-      <span class="brand-text">OTU</span>
-    </div>
-    <nav class="side-nav">
-      <a href="index.html" class="active">Home</a><a href="watchlist.html">Watchlist</a><a href="modules.html">Modules</a>
-      <a href="glossary.html">Glossary</a><a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
-      <a href="terms.html">Disclaimer</a>
-    </nav>
-  </aside>
+  <div id="sidebar-container"></div>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -268,5 +258,14 @@
       });
     });
   </script>
+  <script>
+  // Load shared sidebar
+  fetch("sidebar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    })
+    .catch(err => console.error("Sidebar failed to load:", err));
+</script>
 </body>
 </html>
