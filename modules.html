@@ -51,8 +51,7 @@
       background:#fff; color:#2a7fff; border:none; padding:8px 14px;
       border-radius:6px; font-weight:600; cursor:pointer; text-decoration:none; transition:.2s ease;
     }
-    /* FIX: Removed transform:scale(1.05) to stop "shaking and zooming" */
-    .btn:hover { } 
+    .btn:hover { } /* Removed transform:scale(1.05) to prevent shaking/zooming */
 
     /* Modules */
     .module-card {
@@ -67,7 +66,7 @@
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:20px; }
 
-    /* ✅ Updated Telegram Popup (screenshot-style) */
+    /* ✅ Telegram Popup */
     .popup-backdrop {
       position:fixed; inset:0; display:none;
       align-items:center; justify-content:center;
@@ -198,7 +197,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Sidebar Toggle Logic (Corrected to use inlined HTML)
+      // Sidebar Toggle Logic
       const burger = document.getElementById("burger");
       const sidebar = document.getElementById("sidebar");
       const overlay = document.getElementById("sidebarOverlay");
@@ -213,7 +212,7 @@
       });
 
 
-      // Popup Logic
+      // Popup Logic (For the 'Message a Mentor' button)
       const tgInfoPopup=document.getElementById("tg-info-popup");
       const closeTgPopupBtn=document.getElementById("close-tg-popup");
       const copyTgBtn=document.getElementById("copy-tg-btn");
@@ -237,29 +236,29 @@
         });
       });
 
-      // Modules logic
+      // Modules logic (RESTORED TO ORIGINAL FETCH)
       const container=document.getElementById('modules-container');
       const prevBtn=document.getElementById('prevBtn');
       const nextBtn=document.getElementById('nextBtn');
       let modules=[],currentIndex=0;
 
-      // NOTE: Replacing external fetch with placeholder data to ensure functionality 
-      // when running without an external modules.json file.
-      const placeholderModules = [
-        { title: "Module 1: Options Fundamentals", content: "Learn the basics of calls, puts, expiration, and strike prices. This module sets the foundation for your trading journey." },
-        { title: "Module 2: Risk Management", content: "Master techniques to protect your capital. Understand position sizing, stop-loss orders, and managing portfolio volatility." },
-        { title: "Module 3: Advanced Strategies", content: "Explore complex option strategies like spreads, iron condors, and butterflies to maximize profit potential." }
-      ];
-
-      // fetch('modules.json')
-      //   .then(res=>res.json())
-      //   .then(data=>{ modules=data; showModule(0); })
-      //   .catch(err=>{
-      //     container.textContent="Could not load modules.";
-      //     console.error(err);
-      //   });
-      modules = placeholderModules;
-      showModule(0);
+      // Restoring the original fetch call to load all modules from modules.json
+      fetch('modules.json')
+        .then(res => {
+            if (!res.ok) {
+                 // Throw an error if the HTTP response status is not 200-299
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            modules = data;
+            showModule(0);
+        })
+        .catch(err => {
+            container.textContent = "⚠️ Error loading modules. Please check if modules.json is available and correctly formatted.";
+            console.error(err);
+        });
 
 
       function showModule(index){
