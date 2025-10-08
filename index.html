@@ -192,7 +192,7 @@
     <div class="popup">
       <button class="close" id="close-tg-popup">✕</button>
       <h2>Contact a Mentor</h2>
-      <p>If the link didn't work, please use an option below:</p>
+      <p>Some platforms block direct links. Please use an option below:</p>
       <div class="modal-option">
         <label for="tg-username">Option 1: Copy Telegram Username</label>
         <div class="input-group">
@@ -201,7 +201,7 @@
         </div>
       </div>
       <div class="modal-option">
-        <label>Option 2: Try Direct Link Again</label>
+        <label>Option 2: Use Direct Link</label>
         <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
       </div>
     </div>
@@ -245,15 +245,14 @@
       setTimeout(()=>discountPopup.style.display="flex",15000);
       document.getElementById("close-discount-popup").addEventListener('click',()=>discountPopup.style.display="none");
 
-      // --- ✅ SMART FALLBACK TELEGRAM LOGIC ---
+      // --- ✅ FINAL & MOST RELIABLE TELEGRAM LOGIC ---
       const tgInfoPopup=document.getElementById("tg-info-popup"), closeTgPopupBtn=document.getElementById("close-tg-popup");
       const copyTgBtn=document.getElementById("copy-tg-btn"), tgUsernameInput=document.getElementById("tg-username");
       
       document.querySelectorAll('.smart-tg-link').forEach(link => {
         link.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.open(link.href, '_blank');
-          setTimeout(() => tgInfoPopup.style.display = 'flex', 1500);
+          e.preventDefault(); // Always prevent the default link action
+          tgInfoPopup.style.display = 'flex'; // Immediately show the helpful popup
         });
       });
       
@@ -271,4 +270,3 @@
   </script>
 </body>
 </html>
-
