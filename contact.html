@@ -1,70 +1,129 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact - Options Trading University</title>
   <style>
-    body { margin:0; font-family:Arial,sans-serif; background:#f0f4fb; color:#222; }
-    a { text-decoration: none; color: inherit; }
+    :root {
+      --blue:#2a7fff; --pink:#ff4081; --nav:#0b1328;
+      --mid:#163067; --light:#eaf1ff; --faded:#9cb2ff; --ink:#0f1a33;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:'Poppins',sans-serif;background:#f4f7ff;color:var(--ink);}
+    a{text-decoration:none;color:inherit;}
 
     /* Sidebar */
-    .sidebar { position:fixed; top:0; left:0; bottom:0; width:220px; background:#0b1328; color:#fff;
-      transform:translateX(-220px); transition:transform .3s ease; padding:20px; z-index:1000; }
-    .sidebar.active { transform:translateX(0); }
-    .sidebar .brand { font-weight:bold; font-size:18px; margin-bottom:20px; color:#ffd166; }
-    .sidebar nav a { display:block; padding:10px; }
-    .sidebar nav a:hover, .sidebar nav a.active { background:#1c2541; border-radius:4px; }
-    .close-btn { background:none; border:none; color:#fff; font-size:22px; cursor:pointer; margin-bottom:10px; display:block; text-align:right; width:100%; }
+    .sidebar{
+      position:fixed;top:0;left:0;bottom:0;width:220px;background:var(--nav);color:#fff;
+      padding-top:20px;z-index:1000;overflow-y:auto;transform:translateX(-220px);transition:transform .3s ease;
+    }
+    .sidebar.active{transform:translateX(0);}
+    .brand{display:flex;align-items:center;gap:10px;padding:10px;font-weight:800;}
+    .brand-logo{width:30px;height:30px;border-radius:6px;object-fit:cover;}
+    .brand span{background:linear-gradient(90deg,var(--blue),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;}
+    .side-nav{display:flex;flex-direction:column;padding:10px;gap:6px;}
+    .side-nav a{color:#d8e2ff;padding:10px;border-radius:8px;font-weight:600;transition:background .25s;}
+    .side-nav a:hover{background:#163067;}
+    .side-nav a.active{background:#1a2b68;}
+    .close-sidebar{display:none;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;margin:10px;align-self:flex-end;}
+
+    /* Topbar */
+    .topbar{
+      background:linear-gradient(90deg,var(--blue),var(--pink));
+      color:#fff;display:flex;justify-content:space-between;align-items:center;
+      padding:14px 20px;font-weight:700;
+    }
+    .burger{font-size:1.5em;background:none;border:none;color:#fff;cursor:pointer;}
+    .btn{
+      background:#fff;color:var(--blue);
+      border:none;border-radius:6px;padding:8px 14px;cursor:pointer;font-weight:600;text-decoration:none;transition:.2s;
+    }
+    .btn:hover{transform:scale(1.05);}
 
     /* Page */
-    .page { margin-left:0; transition:margin-left .3s ease; padding:20px; }
-    .sidebar.active ~ .page { margin-left:220px; }
-    @media(max-width:768px){ .sidebar.active ~ .page { margin-left:0; } }
+    .page{margin-left:0;min-height:100vh;display:flex;flex-direction:column;}
+    .container{max-width:850px;margin:30px auto;padding:20px;}
 
-    .topbar { display:flex; justify-content:space-between; align-items:center; background:#1c2541; color:#fff; padding:10px 20px; }
-    .burger { font-size:22px; background:none; border:none; color:#fff; cursor:pointer; animation:shake 1.5s infinite; }
-    @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-2px);} 75%{transform:translateX(2px);} }
+    .header-title{
+      font-size:2em;font-weight:800;text-align:center;
+      background:linear-gradient(90deg,var(--blue),var(--pink));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      margin-bottom:8px;
+    }
+    .subheader{text-align:center;color:#555;margin-bottom:25px;font-size:1em;}
 
-    h1 { color:#0b1328; }
+    /* Accordion */
+    .accordion{background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1);margin-top:20px;}
+    .accordion-item{border-bottom:1px solid #ddd;}
+    .accordion-header{
+      padding:15px;cursor:pointer;background:#e9f0ff;
+      font-weight:700;transition:.3s;
+    }
+    .accordion-header:hover{background:#d8e4ff;}
+    .accordion-content{
+      display:none;padding:15px;line-height:1.6;background:#fff;font-size:.95em;
+    }
 
-    .accordion { background:#fff; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,.1); margin:20px auto; max-width:700px; }
-    .accordion-item { border-bottom:1px solid #ddd; }
-    .accordion-header { padding:15px; cursor:pointer; background:#e9f0ff; font-weight:bold; }
-    .accordion-header:hover { background:#d8e4ff; }
-    .accordion-content { display:none; padding:15px; line-height:1.6; background:#fff; }
-
-    .footer { text-align:center; padding:10px; font-size:13px; color:#888; }
+    /* Footer */
+    .footer{
+      margin-top:auto;background:var(--nav);color:var(--faded);
+      text-align:center;padding:14px;border-top:1px solid rgba(255,255,255,0.1);
+      font-size:.9em;
+    }
 
     /* Modal */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:2000;}
-    .modal{background:#fff;border-radius:10px;padding:20px;max-width:400px;width:90%;}
-    .modal .close{float:right;border:none;background:none;font-size:20px;cursor:pointer;}
+    .modal-backdrop{
+      position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.55);backdrop-filter:blur(5px);z-index:2000;
+    }
+    .modal{
+      background:#fff;padding:24px;border-radius:14px;max-width:400px;width:90%;
+      box-shadow:0 4px 18px rgba(0,0,0,0.25);
+      text-align:left;position:relative;
+    }
+    .modal h3{
+      margin:0 0 12px;background:linear-gradient(90deg,var(--blue),var(--pink));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      font-weight:800;font-size:1.2em;
+    }
+    .modal .close{
+      position:absolute;top:10px;right:14px;background:none;border:none;
+      font-size:20px;cursor:pointer;color:#444;
+    }
     .contact-options{display:flex;flex-direction:column;gap:10px;margin-top:15px;}
-    .contact-options .btn{display:block;text-align:center;color:#fff;padding:12px;text-decoration:none;}
+    .contact-options .btn{display:block;text-align:center;color:#fff;padding:12px;text-decoration:none;font-weight:700;}
     .contact-options .btn.telegram{background:#0088cc;}
     .contact-options .btn.tiktok{background:#25f4ee;color:#000;}
     #tiktok-info{display:none;margin-top:15px;border-top:1px solid #eee;padding-top:15px;}
-    .suggest{background:#f5f9ff;padding:10px;border-radius:6px;font-family:monospace;}
+    .suggest{background:#f5f9ff;padding:10px;border-radius:6px;font-family:monospace;font-size:.9em;}
+    .btn[disabled]{background:#aaa!important;cursor:not-allowed!important;}
 
-    .btn { background:#2a7fff; color:#fff; border:none; border-radius:6px; padding:8px 14px; cursor:pointer; font-weight:600; }
-    .btn:hover { background:#1e5fd9; }
-    .btn[disabled] {
-        background: #aaa !important;
-        cursor: not-allowed !important;
+    @media(max-width:768px){
+      .sidebar{transform:translateX(-220px);}
+      .sidebar.active{transform:translateX(0);}
+      .close-sidebar{display:block;}
+      .page{margin-left:0;}
+      .burger{display:block;}
     }
   </style>
 </head>
 <body>
+  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
-    <button class="close-btn" id="closeSidebar">✕</button>
-    <div class="brand">Options Trading University</div>
-    <nav>
-      <a href="index.html">Home</a><a href="modules.html">Modules</a>
-      <a href="testimonials.html">Testimonials</a><a href="contact.html" class="active">Contact</a>
+    <button class="close-sidebar" id="closeSidebar">✕</button>
+    <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>OTU</span></div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="modules.html">Modules</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html" class="active">Contact</a>
       <a href="terms.html">Disclaimer</a>
     </nav>
   </aside>
 
+  <!-- Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
@@ -72,69 +131,61 @@
       <button class="btn" onclick="openContactModal()">Message a Mentor</button>
     </header>
 
-    <main>
-      <h1>Get in Touch</h1>
+    <main class="container">
+      <h1 class="header-title">📩 Get in Touch</h1>
+      <p class="subheader">Reach out to us directly via email, TikTok, or Telegram. We typically respond within 24 hours.</p>
+
       <div class="accordion">
         <div class="accordion-item">
           <div class="accordion-header">📧 Official Email</div>
-          <div class="accordion-content">You can reach us at <b>eddyward863@gmail.com</b>. We reply within 24 hours.</div>
+          <div class="accordion-content">You can reach us at <b>eddyward863@gmail.com</b>. Our support team replies within 24 hours.</div>
         </div>
         <div class="accordion-item">
           <div class="accordion-header">📱 TikTok DM</div>
-          <div class="accordion-content">Message us on TikTok at <b>@thewealthking0</b>. A mentor will respond directly.</div>
+          <div class="accordion-content">Message us on TikTok at <b>@thewealthking0</b>. A mentor will reply to guide you through your next step.</div>
         </div>
         <div class="accordion-item">
           <div class="accordion-header">💬 Community Access</div>
-          <div class="accordion-content">After joining, you’ll be invited to our private trading group where you can ask live questions.</div>
+          <div class="accordion-content">Once onboarded, you'll be added to our private Telegram group for live updates, discussions, and support.</div>
         </div>
       </div>
     </main>
-    <footer class="footer">© 2025 Options Trading University</footer>
+
+    <footer class="footer">© 2025 Options Trading University. All rights reserved.</footer>
   </div>
 
+  <!-- Contact Modal -->
   <div class="modal-backdrop" id="contact-modal">
     <div class="modal">
       <button class="close" onclick="closeContactModal()">✕</button>
-      <h3 style="color:#2a7fff">Contact a Mentor</h3>
+      <h3>Contact a Mentor</h3>
       <p>Choose your preferred platform to get in touch.</p>
       <div class="contact-options">
         <button id="telegram-link-btn" data-link="https://t.me/thewealthprince0" class="btn telegram">Message on Telegram</button>
         <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
       </div>
       <div id="tiktok-info">
-        <p>Send us a DM with this message:</p>
+        <p>Send this message:</p>
         <div class="suggest">Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i></div>
       </div>
     </div>
   </div>
 
+  <!-- Visitor Tracking -->
   <img 
-  src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Contact+page+at+optionstradinguni.online"
-  style="display:none;"
->
+    src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Contact+page+at+optionstradinguni.online"
+    style="display:none;"
+  >
 
   <script>
-    // --- ✅ NEW TIKTOK DETECTION LOGIC ---
-    const telegramLinkBtn = document.getElementById('telegram-link-btn');
-    const isTikTok = navigator.userAgent.includes("TikTok");
-
-    if (isTikTok) {
-      telegramLinkBtn.disabled = true;
-    }
-
-    telegramLinkBtn.addEventListener('click', () => {
-      if (!telegramLinkBtn.disabled) {
-        window.open(telegramLinkBtn.dataset.link, '_blank');
-      }
-    });
-    // --- END NEW LOGIC ---
-
+    // Sidebar toggle
     const burger=document.getElementById("burger");
     const sidebar=document.getElementById("sidebar");
-    const closeBtn=document.getElementById("closeSidebar");
-    burger.addEventListener("click",()=>{ sidebar.classList.add("active"); });
-    closeBtn.addEventListener("click",()=>{ sidebar.classList.remove("active"); });
+    const closeSidebar=document.getElementById("closeSidebar");
+    burger.addEventListener("click",()=>sidebar.classList.add("active"));
+    closeSidebar.addEventListener("click",()=>sidebar.classList.remove("active"));
 
+    // Accordion toggle
     document.querySelectorAll(".accordion-header").forEach(header=>{
       header.addEventListener("click",()=>{
         const content=header.nextElementSibling;
@@ -142,16 +193,26 @@
       });
     });
 
-    function openContactModal(){document.getElementById('contact-modal').style.display='flex';}
+    // Contact Modal logic
+    function openContactModal(){document.getElementById("contact-modal").style.display="flex";}
     function closeContactModal(){
-      document.getElementById('contact-modal').style.display='none';
-      document.getElementById('tiktok-info').style.display='none';
+      document.getElementById("contact-modal").style.display="none";
+      document.getElementById("tiktok-info").style.display="none";
     }
     function toggleTikTokInfo(){
-      const info=document.getElementById('tiktok-info');
-      info.style.display=info.style.display==='block'?'none':'block';
+      const info=document.getElementById("tiktok-info");
+      info.style.display=info.style.display==="block"?"none":"block";
     }
+
+    // TikTok detection logic
+    const telegramLinkBtn=document.getElementById('telegram-link-btn');
+    const isTikTok=navigator.userAgent.includes("TikTok");
+    if(isTikTok){telegramLinkBtn.disabled=true;}
+    telegramLinkBtn.addEventListener('click',()=>{
+      if(!telegramLinkBtn.disabled){
+        window.open(telegramLinkBtn.dataset.link,'_blank');
+      }
+    });
   </script>
 </body>
 </html>
-
