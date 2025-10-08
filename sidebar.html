@@ -1,0 +1,53 @@
+<!-- sidebar.html -->
+<style>
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: 220px; background: #0b1328; color: #fff;
+    padding-top: 20px; z-index: 1000; overflow-y: auto;
+    transform: translateX(-220px); transition: transform 0.3s ease;
+  }
+  .sidebar.active { transform: translateX(0); }
+  .close-sidebar {
+    display:none; background:none; border:none; color:#fff;
+    font-size:20px; cursor:pointer; margin:10px;
+  }
+  .brand { display:flex; align-items:center; gap:10px; padding:10px; font-weight:800; }
+  .brand-logo { width:30px; height:30px; border-radius:6px; object-fit:cover; }
+  .brand span {
+    background:linear-gradient(90deg,#2a7fff,#ff4081);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900;
+  }
+  .side-nav { display:flex; flex-direction:column; padding:10px; gap:6px; }
+  .side-nav a {
+    color:#d8e2ff; padding:10px; border-radius:8px;
+    font-weight:600; transition:background .25s;
+  }
+  .side-nav a:hover { background:#163067; }
+  .side-nav a.active { background:#1a2b68; }
+  @media(max-width:768px){ .close-sidebar{display:block;} }
+</style>
+
+<aside class="sidebar" id="sidebar">
+  <button class="close-sidebar" id="closeSidebar">✕</button>
+  <div class="brand">
+    <img src="branding/logo.jpeg" class="brand-logo">
+    <span>Options Trading Uni</span>
+  </div>
+  <nav class="side-nav">
+    <a href="index.html">Home</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="modules.html">Modules</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
+    <a href="terms.html">Disclaimer</a>
+  </nav>
+</aside>
+
+<script>
+  const burger = document.getElementById("burger");
+  const sidebar = document.getElementById("sidebar");
+  const closeSidebar = document.getElementById("closeSidebar");
+
+  burger?.addEventListener("click", () => sidebar.classList.add("active"));
+  closeSidebar?.addEventListener("click", () => sidebar.classList.remove("active"));
+</script>
