@@ -66,38 +66,26 @@
     /* Footer */
     .footer { margin-top:40px; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
 
-    /* Modal */
-    .modal-backdrop {
-      position: fixed; inset:0; display:none;
-      align-items:center; justify-content:center;
-      background: rgba(0,0,0,0.55); z-index:2000;
-    }
-    .modal {
-      background:#fff; padding:20px; border-radius:10px;
-      max-width:400px; width:90%; box-shadow:0 4px 20px rgba(0,0,0,0.3);
-      position:relative;
+    /* --- ✅ NEW POPUP STYLES --- */
+    .popup-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+      display:none; align-items:center; justify-content:center; z-index:3000; }
+    .popup {
+      background:#fff; padding:24px; border-radius:12px; max-width:420px; width:90%;
+      box-shadow:0 5px 20px rgba(0,0,0,0.3); text-align:center; position:relative;
       animation:fadeIn .3s ease;
     }
-    .modal h3 { margin-top:0; color:#2a7fff; }
-    .modal .close {
-      position:absolute; top:10px; right:10px;
-      background:none; border:none; font-size:20px; cursor:pointer; color:#444;
-    }
-    .suggest {
-      background:#f5f9ff; padding:12px; border-radius:6px;
-      font-family:monospace; margin:10px 0;
-    }
-    .contact-options { display:flex; flex-direction:column; gap:10px; margin-top:15px; }
-    .contact-options .btn { display:block; text-align:center; color:#fff; padding:12px; }
-    .contact-options .btn.telegram { background:#0088cc; }
-    .contact-options .btn.tiktok { background:#25f4ee; color:#000; }
-    #tiktok-info { display:none; margin-top:15px; border-top:1px solid #eee; padding-top:15px; }
+    .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .popup p { color:#333; margin:0 0 14px; }
+    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#aaa; }
+    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; width:100%; box-sizing:border-box; padding:12px; }
     
-    .btn[disabled] {
-        background: #aaa !important;
-        cursor: not-allowed !important;
-    }
-
+    #tg-info-popup .modal-option { margin-bottom: 15px; text-align: left; }
+    #tg-info-popup .modal-option label { font-weight: 600; display: block; margin-bottom: 5px; color: #333; }
+    #tg-info-popup .input-group { display: flex; gap: 8px; }
+    #tg-info-popup .input-group input { flex-grow: 1; border: 1px solid #ccc; border-radius: 6px; padding: 10px 12px; font-family:monospace; background: #f0f4f8; }
+    #tg-info-popup .btn.copy { background: #ff4081; padding: 10px 14px; width: auto; font-size: 14px; }
+    #tg-info-popup .btn.copy.copied { background: #28a745; }
+    
     @keyframes fadeIn {
       from {opacity:0; transform:scale(0.95);}
       to {opacity:1; transform:scale(1);}
@@ -119,7 +107,7 @@
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
       <div>Testimonials</div>
-      <button class="btn" onclick="openContactModal()">Message a Mentor</button>
+      <a href="#" class="btn smart-tg-link">Message a Mentor</a>
     </header>
 
     <main>
@@ -134,22 +122,21 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <div class="modal-backdrop" id="contact-modal">
-    <div class="modal">
-      <button class="close" onclick="closeContactModal()">✕</button>
-      <h3>Contact a Mentor</h3>
-      <p>Choose your preferred platform to get in touch.</p>
-      
-      <div class="contact-options">
-        <button id="telegram-link-btn" data-link="https://t.me/thewealthprince0" class="btn telegram">Message on Telegram</button>
-        <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
-      </div>
-
-      <div id="tiktok-info">
-        <p>Send us a quick DM on TikTok. Suggested message:</p>
-        <div class="suggest">
-          Hi — I found OTU. I'd like to connect with a mentor and get started. — <i>Your name</i>
+  <div class="popup-backdrop" id="tg-info-popup">
+    <div class="popup">
+      <button class="close" id="close-tg-popup">✕</button>
+      <h2>Contact a Mentor</h2>
+      <p>Some platforms block direct links. Please use an option below:</p>
+      <div class="modal-option">
+        <label for="tg-username">Option 1: Copy Telegram Username</label>
+        <div class="input-group">
+          <input type="text" id="tg-username" value="@thewealthprince0" readonly>
+          <button class="btn copy" id="copy-tg-btn">Copy</button>
         </div>
+      </div>
+      <div class="modal-option">
+        <label>Option 2: Use Direct Link</label>
+        <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
       </div>
     </div>
   </div>
@@ -160,21 +147,6 @@
   >
   
   <script>
-    // --- ✅ NEW TIKTOK DETECTION LOGIC ---
-    const telegramLinkBtn = document.getElementById('telegram-link-btn');
-    const isTikTok = navigator.userAgent.includes("TikTok");
-
-    if (isTikTok) {
-      telegramLinkBtn.disabled = true;
-    }
-
-    telegramLinkBtn.addEventListener('click', () => {
-      if (!telegramLinkBtn.disabled) {
-        window.open(telegramLinkBtn.dataset.link, '_blank');
-      }
-    });
-    // --- END NEW LOGIC ---
-
     // Sidebar toggle
     document.getElementById("burger").addEventListener("click",()=>{
       document.getElementById("sidebar").classList.toggle("active");
@@ -222,21 +194,27 @@
         console.error(err);
       });
 
-    // Modal functions
-    function openContactModal(){ document.getElementById("contact-modal").style.display="flex"; }
-    function closeContactModal(){ 
-      document.getElementById("contact-modal").style.display="none";
-      document.getElementById("tiktok-info").style.display="none"; // Also hide tiktok info
-    }
-    function toggleTikTokInfo() {
-      const infoDiv = document.getElementById("tiktok-info");
-      if(infoDiv.style.display === "block") {
-        infoDiv.style.display = "none";
-      } else {
-        infoDiv.style.display = "block";
-      }
-    }
+    // --- ✅ NEW TELEGRAM POPUP LOGIC ---
+    const tgInfoPopup=document.getElementById("tg-info-popup"), closeTgPopupBtn=document.getElementById("close-tg-popup");
+    const copyTgBtn=document.getElementById("copy-tg-btn"), tgUsernameInput=document.getElementById("tg-username");
+    
+    document.querySelectorAll('.smart-tg-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // Always prevent the default link action
+        tgInfoPopup.style.display = 'flex'; // Immediately show the helpful popup
+      });
+    });
+    
+    const closeTgPopup = () => tgInfoPopup.style.display = 'none';
+    closeTgPopupBtn.addEventListener('click', closeTgPopup);
+    tgInfoPopup.addEventListener('click', e => { if(e.target === tgInfoPopup) closeTgPopup(); });
+    
+    copyTgBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
+        copyTgBtn.textContent="Copied!"; copyTgBtn.classList.add("copied");
+        setTimeout(() => { copyTgBtn.textContent="Copy"; copyTgBtn.classList.remove("copied"); }, 2000);
+      });
+    });
   </script>
 </body>
 </html>
-
