@@ -3,15 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Glossary - OTU</title>
+  <title>Options Trading University</title>
   <style>
     body{margin:0;font-family:sans-serif;background:#f4f7ff;color:#0f1a33;}
 
-    a, a:visited, a:hover, a:active {
-      text-decoration:none !important;
-      color:inherit !important;
-      outline:none;
-    }
+    a,a:visited,a:hover,a:active{text-decoration:none!important;color:inherit!important;outline:none;}
 
     .sidebar{position:fixed;top:0;left:0;bottom:0;width:220px;background:#0b1328;color:#fff;padding-top:10px;}
     .brand{display:flex;align-items:center;gap:10px;padding:10px;font-weight:800;}
@@ -22,63 +18,61 @@
     .side-nav a.active{background:#163067;}
 
     .page{margin-left:220px;min-height:100vh;display:flex;flex-direction:column;}
-    .container{max-width:900px;margin:0 auto;padding:20px;}
     .topbar{background:#fff;border-bottom:1px solid #e3e9f2;display:flex;justify-content:space-between;align-items:center;padding:10px;}
+    .brand-inline{font-weight:900;background:linear-gradient(90deg,#2a7fff,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
     .burger{display:none;font-size:20px;background:none;border:none;cursor:pointer;animation:shake 2s infinite;}
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-2px);}40%{transform:translateX(2px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
-    .brand-inline{font-weight:900;background:linear-gradient(90deg,#2a7fff,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
-    .term-card{background:#fff;border:1px solid #e3e9f2;border-radius:10px;padding:14px;margin:12px 0;cursor:pointer;transition:0.3s;}
-    .term-card h3{margin:0;color:#ff4081;font-size:18px;}
-    .definition{display:none;margin-top:10px;line-height:1.7;background:#f9fbff;padding:12px;border-radius:8px;color:#333;box-shadow:inset 0 1px 4px rgba(0,0,0,.05);}
+    .hero{padding:60px 20px;text-align:center;background:#fff;}
+    .hero h1{font-size:2.2em;background:linear-gradient(90deg,#2a7fff,#ff4081);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero p{max-width:600px;margin:20px auto;color:#444;line-height:1.6;}
+    .btn-primary{background:#2a7fff;color:#fff;border:none;border-radius:6px;padding:12px 20px;cursor:pointer;font-weight:600;text-decoration:none;transition:.2s;}
+    .btn-primary:hover{background:#1e5fd9;}
 
     .footer{margin-top:auto;background:#0b1328;color:#9cb2ff;text-align:center;padding:12px;}
     @media(max-width:768px){.sidebar{display:none;}.page{margin-left:0;}.burger{display:block;}}
 
-    /* Modal */
+    /* ✅ MODAL STYLES (same as Glossary) */
     .modal-backdrop {
-      position: fixed; top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.6);
-      display: none; align-items: center; justify-content: center;
-      z-index: 2000;
+      position:fixed;top:0;left:0;right:0;bottom:0;
+      background:rgba(0,0,0,0.6);
+      display:none;align-items:center;justify-content:center;
+      z-index:2000;
     }
     .modal {
-      background: #fff; padding: 20px; border-radius: 10px;
-      max-width: 400px; width: 90%; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      text-align: left;
+      background:#fff;padding:20px;border-radius:10px;
+      max-width:400px;width:90%;
+      box-shadow:0 2px 10px rgba(0,0,0,0.3);
+      text-align:left;
     }
-    .modal h3 { margin-top:0; color:#2a7fff; }
-    .modal .close {
-      float: right; background: none; border: none;
-      font-size: 20px; cursor: pointer; color:#444;
+    .modal h3{margin-top:0;color:#2a7fff;}
+    .modal .close{
+      float:right;background:none;border:none;
+      font-size:20px;cursor:pointer;color:#444;
     }
-    .suggest {
-      background: #f5f9ff; padding: 12px; border-radius: 6px;
-      font-family: monospace; margin-top: 10px;
+    .suggest{
+      background:#f5f9ff;padding:12px;border-radius:6px;
+      font-family:monospace;margin-top:10px;
     }
-    .btn {
-      background:#2a7fff; color:#fff;
-      border:none; border-radius:6px; padding:8px 14px;
-      cursor:pointer; font-weight:600; text-decoration: none;
+    .btn{
+      background:#2a7fff;color:#fff;border:none;border-radius:6px;
+      padding:8px 14px;cursor:pointer;font-weight:600;text-decoration:none;
     }
-    .btn:hover { background:#1e5fd9; }
-    .contact-options { display:flex; flex-direction:column; gap:10px; margin-top:15px; }
-    .contact-options .btn { display:block; text-align:center; color:#fff; padding:12px; }
-    .contact-options .btn.telegram { background:#0088cc; }
-    .contact-options .btn.tiktok { background:#25f4ee; color:#000; }
-    #tiktok-info { display:none; margin-top:15px; border-top:1px solid #eee; padding-top:15px; }
-    .btn[disabled] {
-      background: #aaa !important;
-      cursor: not-allowed !important;
-    }
+    .btn:hover{background:#1e5fd9;}
+    .contact-options{display:flex;flex-direction:column;gap:10px;margin-top:15px;}
+    .contact-options .btn{display:block;text-align:center;color:#fff;padding:12px;}
+    .contact-options .btn.telegram{background:#0088cc;}
+    .contact-options .btn.tiktok{background:#25f4ee;color:#000;}
+    #tiktok-info{display:none;margin-top:15px;border-top:1px solid #eee;padding-top:15px;}
+    .btn[disabled]{background:#aaa!important;cursor:not-allowed!important;}
   </style>
 </head>
 <body>
   <aside class="sidebar" id="sidebar">
     <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>OTU</span></div>
     <nav class="side-nav">
-      <a href="index.html">Home</a>
-      <a href="glossary.html" class="active">Glossary</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="glossary.html">Glossary</a>
       <a href="modules.html">Modules</a>
       <a href="testimonials.html">Testimonials</a>
       <a href="contact.html">Contact</a>
@@ -93,15 +87,17 @@
       <button class="btn" onclick="openContactModal()">Message a Mentor</button>
     </header>
 
-    <main class="container">
-      <h1 style="color:#ff4081">📖 Glossary of Terms</h1>
-      <p style="color:#555;margin-bottom:20px;">Tap a term to expand its explanation. Each entry is styled for clear, easy reading.</p>
-      <div id="glossary-list"></div>
+    <main class="hero">
+      <h1>Welcome to Options Trading University</h1>
+      <p>Master options trading, understand risk management, and gain real insights from top-performing traders.  
+      Explore modules, learn glossary terms, and access verified trade insights in one platform.</p>
+      <a href="modules.html" class="btn-primary">Start Learning</a>
     </main>
 
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
+  <!-- ✅ CONTACT POPUP (same as Glossary) -->
   <div class="modal-backdrop" id="contact-modal">
     <div class="modal">
       <button class="close" onclick="closeContactModal()">✕</button>
@@ -122,79 +118,41 @@
     </div>
   </div>
 
+  <!-- Telegram tracking -->
   <img 
-  src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Glossary+page+at+optionstradinguni.online"
-  style="display:none;"
->
+    src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Visitor+opened+Home+Page+at+optionstradinguni.online"
+    style="display:none;"
+  >
 
   <script>
-    // Helper function to load JSON
-    async function loadJSON(url) {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Could not load ${url}`);
-      return response.json();
-    }
+    // Sidebar toggle
+    const burger=document.getElementById('burger');
+    const sidebar=document.getElementById('sidebar');
+    burger.addEventListener('click',()=>{
+      sidebar.style.display=(sidebar.style.display==='block')?'none':'block';
+    });
 
-    document.addEventListener("DOMContentLoaded",async()=>{
-      // --- ✅ NEW TIKTOK DETECTION LOGIC ---
-      const telegramLinkBtn = document.getElementById('telegram-link-btn');
-      const isTikTok = navigator.userAgent.includes("TikTok");
-
-      if (isTikTok) {
-        telegramLinkBtn.disabled = true;
-      }
-
-      telegramLinkBtn.addEventListener('click', () => {
-        if (!telegramLinkBtn.disabled) {
-          window.open(telegramLinkBtn.dataset.link, '_blank');
-        }
-      });
-      // --- END NEW LOGIC ---
-
-      try {
-        const data=await loadJSON("glossary.json");
-        const list=document.getElementById("glossary-list");
-        data.forEach(t=>{
-          const card=document.createElement("div");
-          card.className="term-card";
-          card.innerHTML=`<h3>${t.term}</h3><div class="definition">${t.definition}</div>`;
-          card.addEventListener('click',()=>{
-            const d=card.querySelector(".definition");
-            d.style.display=d.style.display==="block"?"none":"block";
-          });
-          list.appendChild(card);
-        });
-      } catch(err) {
-        console.error(err);
-        document.getElementById("glossary-list").textContent = "Error: Could not load glossary terms.";
-      }
-
-      // Sidebar toggle for mobile
-      const burger=document.getElementById('burger');
-      const sidebar=document.getElementById('sidebar');
-      burger.addEventListener('click',()=>{
-        // This is a simple toggle, a class-based one would be better for transitions
-        if (sidebar.style.display === 'block') {
-          sidebar.style.display = 'none';
-        } else {
-          sidebar.style.display = 'block';
+    // ✅ TikTok detection logic (same as Glossary)
+    document.addEventListener("DOMContentLoaded",()=>{
+      const telegramLinkBtn=document.getElementById('telegram-link-btn');
+      const isTikTok=navigator.userAgent.includes("TikTok");
+      if(isTikTok){telegramLinkBtn.disabled=true;}
+      telegramLinkBtn.addEventListener('click',()=>{
+        if(!telegramLinkBtn.disabled){
+          window.open(telegramLinkBtn.dataset.link,'_blank');
         }
       });
     });
 
     // Modal functions
-    function openContactModal(){ document.getElementById("contact-modal").style.display="flex"; }
-    function closeContactModal(){ 
+    function openContactModal(){document.getElementById("contact-modal").style.display="flex";}
+    function closeContactModal(){
       document.getElementById("contact-modal").style.display="none";
-      document.getElementById("tiktok-info").style.display="none"; // Also hide tiktok info
+      document.getElementById("tiktok-info").style.display="none";
     }
-    function toggleTikTokInfo() {
-      const infoDiv = document.getElementById("tiktok-info");
-      if(infoDiv.style.display === "block") {
-        infoDiv.style.display = "none";
-      } else {
-        infoDiv.style.display = "block";
-      }
+    function toggleTikTokInfo(){
+      const info=document.getElementById("tiktok-info");
+      info.style.display=(info.style.display==="block")?"none":"block";
     }
   </script>
 </body>
