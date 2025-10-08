@@ -231,14 +231,30 @@
         const int=setInterval(()=>{ c+=Math.ceil(count/100); if(c>=count){c=count;clearInterval(int);} el.textContent=c+sym; },30);
       });
 
-      // Testimonials
-      const testimonials=[{name:"Emma R.",profit:"$4,125 profit",photo:"faces/faces6.jpeg",profitImage:"profits/profit6.jpeg",testimonial:"OTU’s step-by-step approach helped me understand risk management better."}, {name:"Liam N.",profit:"$2,950 profit",photo:"faces/faces7.jpeg",profitImage:"profits/profit7.jpeg",testimonial:"The real-time trade breakdowns are a game-changer. I learned how to spot high-probability setups."}];
-      let tIdx=0;
+      // Testimonials carousel
+      const testimonials = [
+        { name:"Emma Rodriguez", profit:"$4,125 profit", photo:"faces/faces6.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
+        { name:"Liam Nguyen", profit:"$2,950 profit", photo:"faces/faces7.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
+        { name:"Sophia Kim", profit:"$3,780 profit", photo:"faces/faces8.jpeg", profitImage:"profits/profit8.jpeg", testimonial:"I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
+      ];
+      let tIndex=0;
       function renderTestimonial(){
-        const t=testimonials[tIdx];
-        document.getElementById("testimonial-slider").innerHTML=`<div class="testimonial-header"><img src="${t.photo}" alt="${t.name}"><div style="text-align:left;"><div class="testimonial-author">${t.name}</div><div class="testimonial-profit">${t.profit}</div></div></div><div class="testimonial-proof"><img src="${t.profitImage}" alt="Proof"></div><div class="testimonial-content">"${t.testimonial}"</div>`;
+        const t=testimonials[tIndex];
+        document.getElementById("testimonial-slider").innerHTML=`
+          <div>
+            <div class="testimonial-header">
+              <img src="${t.photo}" alt="${t.name}">
+              <div>
+                <div class="testimonial-author">${t.name}</div>
+                <div class="testimonial-profit">${t.profit}</div>
+              </div>
+            </div>
+            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
+            <div class="testimonial-content">"${t.testimonial}"</div>
+          </div>`;
       }
-      renderTestimonial(); setInterval(()=>{ tIdx=(tIdx+1)%testimonials.length; renderTestimonial(); },5000);
+      renderTestimonial();
+      setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
 
       // Discount Popup
       const discountPopup=document.getElementById("discount-popup");
