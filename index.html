@@ -6,7 +6,7 @@
   <title>Options Trading University</title>
   <style>
     body {
-      margin:0; font-family: 'Poppins', Arial, sans-serif; /* Added Poppins for a cleaner look */
+      margin:0; font-family: 'Poppins', Arial, sans-serif;
       background:#eaf1ff; color:#0f1a33;
     }
     a { text-decoration:none; color:inherit; }
@@ -67,44 +67,28 @@
     }
     .stat h2 { margin:0; font-size:22px; color:#ffd166; }
 
-    /* --- ✅ UPDATED --- Motivation Card Image */
     .card.image-card {
-      position: relative;
-      background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
+      position: relative; background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
       color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6);
       padding:20px; border-radius:14px; margin:20px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.25);
-      overflow: hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25); overflow: hidden;
     }
     .card.image-card::before {
       content:""; position:absolute; inset:0;
       background:linear-gradient(270deg,rgba(42,127,255,0.7),rgba(255,64,129,0.6),rgba(255,209,102,0.5));
-      background-size:600% 600%;
-      animation: gradientShift 25s ease infinite;
-      z-index:0;
+      background-size:600% 600%; animation: gradientShift 25s ease infinite; z-index:0;
     }
     .card.image-card > * { position:relative; z-index:1; }
-    @keyframes gradientShift {
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
-    }
+    @keyframes gradientShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
 
-    /* Success Stories Section */
     .success-stories-section {
-      background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff);
-      background-size:800% 800%;
-      animation: gradientShift 20s ease infinite;
-      border-radius:14px; padding:32px; margin:30px 0;
-      color:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.2);
-      text-align:center;
+      background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff); background-size:800% 800%;
+      animation: gradientShift 20s ease infinite; border-radius:14px; padding:32px; margin:30px 0;
+      color:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.2); text-align:center;
     }
     .testimonial-card {
-      background:#fff; border-radius:10px; padding:20px;
-      box-shadow:0 3px 8px rgba(0,0,0,.1);
-      margin:0 auto; max-width:600px;
-      border:2px solid transparent;
-      animation: glowPulse 4s ease-in-out infinite;
+      background:#fff; border-radius:10px; padding:20px; box-shadow:0 3px 8px rgba(0,0,0,.1);
+      margin:0 auto; max-width:600px; border:2px solid transparent; animation: glowPulse 4s ease-in-out infinite;
     }
     @keyframes glowPulse {
       0% { border-color: rgba(42,127,255,0.4); box-shadow:0 0 8px rgba(42,127,255,0.4); }
@@ -115,49 +99,34 @@
     .testimonial-header img { width:60px; height:60px; border-radius:50%; object-fit:cover; }
     .testimonial-author { font-weight:700; color:#2a7fff; }
     .testimonial-profit { color:green; font-weight:700; }
-    .testimonial-proof img {
-      margin-top:12px; max-width:100%; border-radius:8px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
-    }
+    .testimonial-proof img { margin-top:12px; max-width:100%; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
     .testimonial-content { margin-top:12px; font-style:italic; color:#333; }
 
-    /* Footer */
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
 
-    /* Popup */
-    .popup-backdrop { position:fixed; inset:0;
-      background:rgba(0,0,0,0.4); backdrop-filter: blur(6px);
-      display:none; align-items:flex-end; justify-content:center; z-index:3000;
-    }
+    /* Popups */
+    .popup-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+      display:none; align-items:center; justify-content:center; z-index:3000; }
+    #discount-popup { align-items:flex-end; } /* Specific alignment for discount popup */
     .popup {
-      background:#fff; padding:24px; border-radius:14px 14px 0 0; max-width:420px; width:100%;
-      box-shadow:0 -6px 20px rgba(0,0,0,0.3); text-align:center; position:relative;
-      border:2px solid transparent; animation: glowPulse 4s ease-in-out infinite;
-      transform: translateY(100%); opacity:0; transition: all 0.6s ease;
+      background:#fff; padding:24px; border-radius:12px; max-width:420px; width:90%;
+      box-shadow:0 5px 20px rgba(0,0,0,0.3); text-align:center; position:relative;
     }
-    .popup.show { transform: translateY(0); opacity:1; }
+    #discount-popup .popup { border-radius:14px 14px 0 0; }
     .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     .popup p { color:#333; margin:0 0 14px; }
-    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
-    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
+    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#aaa; }
+    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; width:100%; box-sizing:border-box; padding:12px; }
     
-    /* --- Styles for Telegram Info Popup --- */
-    #tg-popup-box .btn#copy-tg-btn.copied {
-      background: #28a745; /* Green color for success */
-    }
-    #tg-popup-box input[readonly] {
-      cursor: text;
-    }
-    #secure-link-btn[disabled] {
-      background: #aaa;
-      cursor: not-allowed;
-    }
+    /* Fallback Popup Specifics */
+    #tg-info-popup .modal-option { margin-bottom: 15px; text-align: left; }
+    #tg-info-popup .modal-option label { font-weight: 600; display: block; margin-bottom: 5px; color: #333; }
+    #tg-info-popup .input-group { display: flex; gap: 8px; }
+    #tg-info-popup .input-group input { flex-grow: 1; border: 1px solid #ccc; border-radius: 6px; padding: 10px 12px; font-family:monospace; background: #f0f4f8; }
+    #tg-info-popup .btn.copy { background: #ff4081; padding: 10px 14px; width: auto; font-size: 14px; }
+    #tg-info-popup .btn.copy.copied { background: #28a745; }
     
-    @media(max-width:768px){
-      .sidebar{transform:translateX(-100%); position:fixed;}
-      .page{margin-left:0;}
-      .burger{display:block;}
-    }
+    @media(max-width:768px){ .sidebar{transform:translateX(-100%);} .page{margin-left:0;} .burger{display:block;} }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -170,12 +139,8 @@
       <span class="brand-text">OTU</span>
     </div>
     <nav class="side-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="watchlist.html">Watchlist</a>
-      <a href="modules.html">Modules</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="active">Home</a><a href="watchlist.html">Watchlist</a><a href="modules.html">Modules</a>
+      <a href="glossary.html">Glossary</a><a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
       <a href="terms.html">Disclaimer</a>
     </nav>
   </aside>
@@ -186,7 +151,7 @@
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
       <div class="brand-inline">Options Trading University</div>
-      <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn">Message a Mentor</a>
+      <a href="https://t.me/thewealthprince0" class="btn smart-tg-link">Message a Mentor</a>
     </header>
 
     <main class="container">
@@ -197,64 +162,57 @@
           <a class="btn" href="modules.html">Start Learning</a>
           <a class="btn ghost" href="testimonials.html">Success Stories</a>
         </div>
-
         <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
           <a class="btn" href="currentliveprofit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
         </div>
       </section>
 
       <section class="stats">
-        <div class="stat"><h2 data-count="2489">0+</h2><div>Trades Called in Our Community</div></div>
-        <div class="stat"><h2 data-count="789">0$</h2><div>Avg Profit / Winning Trade</div></div>
-        <div class="stat"><h2 data-count="82%">0%</h2><div>Community Win Rate (Last 30 Days)</div></div>
+        <div class="stat"><h2 data-count="2489">0+</h2><div>Trades Called</div></div>
+        <div class="stat"><h2 data-count="789">0$</h2><div>Avg Profit / Win</div></div>
+        <div class="stat"><h2 data-count="82%">0%</h2><div>Win Rate (30 Days)</div></div>
       </section>
 
       <section class="card image-card">
         <h2>Why Choose OTU?</h2>
-        <p>Every trader starts small, but with the right knowledge and mentorship you can scale with confidence. 
-        Our proven modules, real mentors, and community-driven support help you avoid rookie mistakes and 
-        focus on disciplined growth.</p>
-        <p style="font-weight:700;color:#ffd166">📈 Don’t trade alone. Join a network that wins together.</p>
+        <p>With our proven modules and real mentors, you'll avoid rookie mistakes and focus on disciplined growth. Don’t trade alone. Join a network that wins together.</p>
       </section>
 
       <section class="success-stories-section">
         <h2>✨ Success Stories</h2>
-        <div id="testimonial-slider" class="testimonial-card">Loading...</div>
-        <div style="margin-top:16px;">
-          <a href="testimonials.html" class="btn ghost">Show More</a>
-        </div>
+        <div id="testimonial-slider" class="testimonial-card"></div>
+        <div style="margin-top:16px;"><a href="testimonials.html" class="btn ghost">Show More</a></div>
       </section>
     </main>
 
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <div class="popup-backdrop" id="tg-info-popup" style="align-items:center;">
-    <div class="popup" id="tg-popup-box">
+  <div class="popup-backdrop" id="tg-info-popup">
+    <div class="popup">
       <button class="close" id="close-tg-popup">✕</button>
       <h2>Contact a Mentor</h2>
-      <p style="color:#555; margin-bottom: 20px;">Some platforms like TikTok may block direct links. Please use one of the options below:</p>
-      
-      <div style="margin-bottom: 15px;">
-        <label for="tg-username" style="font-weight:600; display:block; margin-bottom:5px; color:#333;">Option 1: Copy Telegram Username</label>
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="tg-username" value="@thewealthprince0" readonly style="flex-grow:1; border:1px solid #ccc; border-radius:6px; padding:8px 12px; font-family:'Poppins',sans-serif; background:#f0f4f8;">
-          <button class="btn" id="copy-tg-btn" style="padding:8px 14px;">Copy</button>
+      <p>If the link didn't work, please use an option below:</p>
+      <div class="modal-option">
+        <label for="tg-username">Option 1: Copy Telegram Username</label>
+        <div class="input-group">
+          <input type="text" id="tg-username" value="@thewealthprince0" readonly>
+          <button class="btn copy" id="copy-tg-btn">Copy</button>
         </div>
       </div>
-      
-      <div>
-        <label style="font-weight:600; display:block; margin-bottom:5px; color:#333;">Option 2: Use Direct Link</label>
-        <button id="secure-link-btn" data-link="https://t.me/thewealthprince0" class="btn" style="width:100%; box-sizing:border-box;">Open Secure Link</button>
+      <div class="modal-option">
+        <label>Option 2: Try Direct Link Again</label>
+        <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
       </div>
     </div>
   </div>
+  
   <div class="popup-backdrop" id="discount-popup">
-    <div class="popup" id="popupBox">
-      <button class="close" onclick="dismissPopup()">✕</button>
+    <div class="popup">
+      <button class="close" id="close-discount-popup">✕</button>
       <h2>🎉 20% OFF Membership</h2>
-      <p>Limited time offer! Join our private signals & calls group with <b>20% discount</b>.<br>DM the mentor who sent you to claim before spots run out!</p>
-      <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn">Got it — Message Mentor</a>
+      <p>Limited time! Join our private signals group with a <b>20% discount</b>. DM the mentor to claim!</p>
+      <a href="https://t.me/thewealthprince0" class="btn smart-tg-link">Got it — Message Mentor</a>
     </div>
   </div>
 
@@ -262,154 +220,54 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // --- EXISTING SIDEBAR CODE (NO CHANGES) ---
-      const burger = document.getElementById("burger");
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("sidebarOverlay");
+      // Sidebar
+      const burger=document.getElementById("burger"), sidebar=document.getElementById("sidebar"), overlay=document.getElementById("sidebarOverlay");
+      burger.addEventListener("click",()=>{ sidebar.classList.add("active"); overlay.classList.add("active"); });
+      overlay.addEventListener("click",()=>{ sidebar.classList.remove("active"); overlay.classList.remove("active"); });
 
-      burger.addEventListener("click", () => {
-        sidebar.classList.add("active");
-        overlay.classList.add("active");
-      });
-      overlay.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
+      // Stats animation
+      document.querySelectorAll(".stat h2").forEach(el=>{
+        const count=parseInt(el.dataset.count.replace('%','')), sym=el.dataset.count.includes('%')?'%':'+'; let c=0;
+        const int=setInterval(()=>{ c+=Math.ceil(count/100); if(c>=count){c=count;clearInterval(int);} el.textContent=c+sym; },30);
       });
 
-      // --- EXISTING STATS ANIMATION CODE (NO CHANGES) ---
-      document.querySelectorAll(".stat h2").forEach(el => {
-        const countValue = el.dataset.count;
-        const target = parseInt(countValue.replace('%', ''));
-        let current = 0;
-        const step = Math.ceil(target / 100);
-
-        const interval = setInterval(() => {
-          current += step;
-          if (current >= target) {
-            current = target;
-            clearInterval(interval);
-          }
-          el.textContent = current + (countValue.includes("%") ? "%" : "+");
-        }, 30);
-      });
-
-      // --- EXISTING TESTIMONIALS CAROUSEL CODE (NO CHANGES) ---
-      const testimonials = [
-        { name: "Emma Rodriguez", profit: "$4,125 profit", photo: "faces/faces6.jpeg", profitImage: "profits/profit6.jpeg", testimonial: "OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
-        { name: "Liam Nguyen", profit: "$2,950 profit", photo: "faces/faces7.jpeg", profitImage: "profits/profit7.jpeg", testimonial: "The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
-        { name: "Sophia Kim", profit: "$3,780 profit", photo: "faces/faces8.jpeg", profitImage: "profits/profit8.jpeg", testimonial: "I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
-      ];
-      let tIndex = 0;
-      function renderTestimonial() {
-        const t = testimonials[tIndex];
-        document.getElementById("testimonial-slider").innerHTML = `
-          <div>
-            <div class="testimonial-header">
-              <img src="${t.photo}" alt="${t.name}'s profile picture">
-              <div>
-                <div class="testimonial-author">${t.name}</div>
-                <div class="testimonial-profit">${t.profit}</div>
-              </div>
-            </div>
-            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Screenshot of profit for ${t.name}"></div>
-            <div class="testimonial-content">"${t.testimonial}"</div>
-          </div>`;
+      // Testimonials
+      const testimonials=[{name:"Emma R.",profit:"$4,125 profit",photo:"faces/faces6.jpeg",profitImage:"profits/profit6.jpeg",testimonial:"OTU’s step-by-step approach helped me understand risk management better."}, {name:"Liam N.",profit:"$2,950 profit",photo:"faces/faces7.jpeg",profitImage:"profits/profit7.jpeg",testimonial:"The real-time trade breakdowns are a game-changer. I learned how to spot high-probability setups."}];
+      let tIdx=0;
+      function renderTestimonial(){
+        const t=testimonials[tIdx];
+        document.getElementById("testimonial-slider").innerHTML=`<div class="testimonial-header"><img src="${t.photo}" alt="${t.name}"><div style="text-align:left;"><div class="testimonial-author">${t.name}</div><div class="testimonial-profit">${t.profit}</div></div></div><div class="testimonial-proof"><img src="${t.profitImage}" alt="Proof"></div><div class="testimonial-content">"${t.testimonial}"</div>`;
       }
-      renderTestimonial();
-      setInterval(() => { tIndex = (tIndex + 1) % testimonials.length; renderTestimonial(); }, 5000);
+      renderTestimonial(); setInterval(()=>{ tIdx=(tIdx+1)%testimonials.length; renderTestimonial(); },5000);
 
-      // --- EXISTING DISCOUNT POPUP CODE (NO CHANGES) ---
-      const discountPopup = document.getElementById("discount-popup");
-      const discountPopupBox = document.getElementById("popupBox");
-      setTimeout(() => {
-        discountPopup.style.display = "flex";
-        requestAnimationFrame(() => discountPopupBox.classList.add("show"));
-      }, 15000);
+      // Discount Popup
+      const discountPopup=document.getElementById("discount-popup");
+      setTimeout(()=>discountPopup.style.display="flex",15000);
+      document.getElementById("close-discount-popup").addEventListener('click',()=>discountPopup.style.display="none");
 
-      window.dismissPopup = () => {
-        discountPopupBox.classList.remove("show");
-        setTimeout(() => { discountPopup.style.display = "none"; }, 600);
-      };
-
-      // --- ✅ MODIFIED TELEGRAM INFO POPUP LOGIC ---
-
-      // 1. Get references to the popup elements
-      const tgInfoPopup = document.getElementById("tg-info-popup");
-      const tgPopupBox = document.getElementById("tg-popup-box");
-      const closeTgPopupBtn = document.getElementById("close-tg-popup");
-      const copyTgBtn = document.getElementById("copy-tg-btn");
-      const tgUsernameInput = document.getElementById("tg-username");
-      const secureLinkBtn = document.getElementById("secure-link-btn");
-
-      // 2. Detect if the user is in the TikTok browser
-      const isTikTok = navigator.userAgent.includes("TikTok");
+      // --- ✅ SMART FALLBACK TELEGRAM LOGIC ---
+      const tgInfoPopup=document.getElementById("tg-info-popup"), closeTgPopupBtn=document.getElementById("close-tg-popup");
+      const copyTgBtn=document.getElementById("copy-tg-btn"), tgUsernameInput=document.getElementById("tg-username");
       
-      // 3. If on TikTok, disable the secure link button
-      if (isTikTok) {
-        secureLinkBtn.disabled = true;
-      }
-
-      // 4. Function to show the Telegram info popup
-      function showTgInfoPopup() {
-        tgInfoPopup.style.display = "flex";
-        requestAnimationFrame(() => tgPopupBox.classList.add("show"));
-      }
-      
-      // 5. Function to hide the Telegram info popup
-      function hideTgInfoPopup() {
-        tgPopupBox.classList.remove("show");
-        setTimeout(() => { tgInfoPopup.style.display = "none"; }, 600);
-      }
-
-      // 6. Find all "Message a Mentor" links and make them open our new popup
-      const mentorLinks = document.querySelectorAll('a[href*="t.me/thewealthprince0"]');
-      mentorLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault(); // Stop the link from trying to open
-          showTgInfoPopup();
+      document.querySelectorAll('.smart-tg-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.open(link.href, '_blank');
+          setTimeout(() => tgInfoPopup.style.display = 'flex', 1500);
         });
       });
       
-      // Also attach it to the original popup's dismiss button logic
-      const originalDismissButton = document.querySelector('#discount-popup .btn');
-      if(originalDismissButton) {
-        originalDismissButton.addEventListener('click', (event) => {
-          event.preventDefault();
-          dismissPopup();
-          showTgInfoPopup();
-        });
-      }
-
-      // 7. Wire up the close button for the new popup
-      closeTgPopupBtn.addEventListener('click', hideTgInfoPopup);
-      tgInfoPopup.addEventListener('click', (e) => {
-        if(e.target === tgInfoPopup) { hideTgInfoPopup(); }
-      });
+      const closeTgPopup = () => tgInfoPopup.style.display = 'none';
+      closeTgPopupBtn.addEventListener('click', closeTgPopup);
+      tgInfoPopup.addEventListener('click', e => { if(e.target === tgInfoPopup) closeTgPopup(); });
       
-      // 8. Add "Copy to Clipboard" functionality
       copyTgBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
-          copyTgBtn.textContent = "Copied!";
-          copyTgBtn.classList.add("copied");
-          tgUsernameInput.select();
-          setTimeout(() => {
-            copyTgBtn.textContent = "Copy";
-            copyTgBtn.classList.remove("copied");
-          }, 2000);
-        }).catch(err => {
-          console.error('Failed to copy text: ', err);
+          copyTgBtn.textContent="Copied!"; copyTgBtn.classList.add("copied");
+          setTimeout(() => { copyTgBtn.textContent="Copy"; copyTgBtn.classList.remove("copied"); }, 2000);
         });
-      });
-      
-      // 9. Add click listener for the secure link button
-      secureLinkBtn.addEventListener('click', () => {
-        // This will only run if the button is NOT disabled
-        if (!secureLinkBtn.disabled) {
-          window.open(secureLinkBtn.dataset.link, '_blank');
-        }
       });
     });
   </script>
 </body>
 </html>
-
