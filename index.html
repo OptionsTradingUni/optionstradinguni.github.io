@@ -4,21 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Options Trading University</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     body {
-      margin:0; font-family:'Poppins',sans-serif;
+      margin:0; font-family: 'Poppins', Arial, sans-serif;
       background:#eaf1ff; color:#0f1a33;
     }
     a { text-decoration:none; color:inherit; }
-
-    /* ✅ SIDEBAR */
+ 
+    /* Sidebar */
     .sidebar {
       position:fixed; top:0; left:0; bottom:0;
       width:220px; background:#0b1328; color:#fff;
-      transform:translateX(-100%);
-      transition:transform 0.3s ease-in-out;
-      z-index:2000; padding-top:10px;
+      padding:10px; transform:translateX(-100%);
+      transition:transform 0.3s ease; z-index:2000;
     }
     .sidebar.active { transform:translateX(0); }
     .brand { display:flex; align-items:center; gap:10px; padding:10px; font-weight:800; }
@@ -27,123 +25,128 @@
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       font-weight:900; font-size:18px;
     }
-    .side-nav { display:flex; flex-direction:column; gap:8px; padding:10px; }
+    .side-nav { display:flex; flex-direction:column; gap:10px; padding:10px; }
     .side-nav a { color:#d8e2ff; padding:8px; border-radius:6px; font-weight:600; }
-    .side-nav a:hover { background:#162c58; }
     .side-nav a.active { background:#163067; }
 
-    /* Overlay */
+    /* Sidebar Overlay */
     .sidebar-overlay {
-      position:fixed; inset:0; background:rgba(0,0,0,0.4);
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.4);
       display:none; z-index:1500;
     }
     .sidebar-overlay.active { display:block; }
-
-    /* ✅ PAGE */
-    .page { display:flex; flex-direction:column; min-height:100vh; }
+    
+    /* Page */
+    .page { margin-left:220px; display:flex; flex-direction:column; min-height:100vh; }
     .container { max-width:900px; margin:0 auto; padding:20px; }
 
-    /* ✅ TOPBAR */
+    /* Topbar */
     .topbar { background:#fff; border-bottom:1px solid #e3e9f2;
       display:flex; justify-content:space-between; align-items:center;
-      padding:10px 20px; position:sticky; top:0; z-index:100;
+      padding:10px; position:sticky; top:0; z-index:500;
     }
-    .burger {
-      font-size:22px; background:none; border:none; cursor:pointer;
-      color:#0b1328; display:block;
-    }
-
-    .btn {
-      background:#2a7fff; color:#fff; border:none; border-radius:6px;
-      padding:10px 16px; font-weight:600; cursor:pointer;
-      transition:transform 0.2s ease;
-    }
-    .btn:hover { transform:scale(1.05); }
+    .burger { display:none; font-size:22px; background:none; border:none; cursor:pointer; }
+    .btn { background:#2a7fff; color:#fff; border:none; border-radius:6px; padding:10px 16px; font-weight:600; cursor:pointer; transition: transform 0.2s ease; }
+    .btn:hover { transform: scale(1.05); }
     .btn.ghost { background:#fff; color:#2a7fff; border:2px solid #2a7fff; }
 
-    /* ✅ HERO SECTION */
+    /* Hero */
     .hero { background:linear-gradient(180deg,#2a7fff20,#eaf1ff);
       padding:40px 20px; border-radius:12px; text-align:center; margin-bottom:20px;
     }
     .hero h1 { color:#2a7fff; font-size:28px; margin:0; }
     .hero p { color:#444; font-size:16px; margin:10px 0 20px; }
-    .cta-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .cta-row { display:flex; justify-content:center; gap:12px; }
 
-    /* ✅ STATS */
+    /* Stats */
     .stats { display:flex; justify-content:center; gap:20px; margin:20px 0; flex-wrap:wrap; }
     .stat { text-align:center; background:linear-gradient(135deg,#2a7fff,#ff4081);
-      padding:16px; border-radius:10px; color:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.15); min-width:150px;
+      padding:16px; border-radius:10px; color:#fff;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15); min-width:150px;
     }
     .stat h2 { margin:0; font-size:22px; color:#ffd166; }
 
-    /* ✅ IMAGE CARD */
     .card.image-card {
-      position:relative; background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
+      position: relative; background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
       color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6);
-      padding:20px; border-radius:14px; margin:20px 0; overflow:hidden;
-      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      padding:20px; border-radius:14px; margin:20px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25); overflow: hidden;
     }
     .card.image-card::before {
       content:""; position:absolute; inset:0;
       background:linear-gradient(270deg,rgba(42,127,255,0.7),rgba(255,64,129,0.6),rgba(255,209,102,0.5));
-      background-size:600% 600%; animation:gradientShift 25s ease infinite; z-index:0;
+      background-size:600% 600%; animation: gradientShift 25s ease infinite; z-index:0;
     }
-    .card.image-card>*{position:relative;z-index:1;}
-    @keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    .card.image-card > * { position:relative; z-index:1; }
+    @keyframes gradientShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
 
-    /* ✅ SUCCESS STORIES */
     .success-stories-section {
-      background:linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff);
-      background-size:800% 800%; animation:gradientShift 20s ease infinite;
-      border-radius:14px; padding:32px; margin:30px 0; color:#fff; text-align:center;
+      background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff); background-size:800% 800%;
+      animation: gradientShift 20s ease infinite; border-radius:14px; padding:32px; margin:30px 0;
+      color:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.2); text-align:center;
     }
     .testimonial-card {
-      background:#fff; border-radius:10px; padding:20px;
-      max-width:600px; margin:0 auto;
-      border:2px solid transparent; animation:glowPulse 4s ease-in-out infinite;
-      color:#222;
+      background:#fff; border-radius:10px; padding:20px; box-shadow:0 3px 8px rgba(0,0,0,.1);
+      margin:0 auto; max-width:600px; border:2px solid transparent; animation: glowPulse 4s ease-in-out infinite;
     }
-    @keyframes glowPulse{
-      0%{border-color:rgba(42,127,255,0.4);}
-      50%{border-color:rgba(255,64,129,0.6);}
-      100%{border-color:rgba(42,127,255,0.4);}
+    @keyframes glowPulse {
+      0% { border-color: rgba(42,127,255,0.4); box-shadow:0 0 8px rgba(42,127,255,0.4); }
+      50% { border-color: rgba(255,64,129,0.6); box-shadow:0 0 14px rgba(255,64,129,0.6); }
+      100% { border-color: rgba(42,127,255,0.4); box-shadow:0 0 8px rgba(42,127,255,0.4); }
     }
-    .testimonial-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-    .testimonial-header img{width:60px;height:60px;border-radius:50%;object-fit:cover;}
-    .testimonial-author{font-weight:700;color:#2a7fff;}
-    .testimonial-profit{color:green;font-weight:700;}
-    .testimonial-proof img{margin-top:12px;max-width:100%;border-radius:8px;}
-    .testimonial-content{margin-top:12px;font-style:italic;}
+    .testimonial-header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    .testimonial-header img { width:60px; height:60px; border-radius:50%; object-fit:cover; }
+    .testimonial-author { font-weight:700; color:#2a7fff; }
+    .testimonial-profit { color:green; font-weight:700; }
+    .testimonial-proof img { margin-top:12px; max-width:100%; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+    .testimonial-content { margin-top:12px; font-style:italic; color:#333; }
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:12px; }
 
-    @media(max-width:768px){
-      .page{margin-left:0;}
-      .burger{display:block;}
+    /* Popups */
+    .popup-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+      display:none; align-items:center; justify-content:center; z-index:3000; }
+    #discount-popup { align-items:flex-end; } /* Specific alignment for discount popup */
+    .popup {
+      background:#fff; padding:24px; border-radius:12px; max-width:420px; width:90%;
+      box-shadow:0 5px 20px rgba(0,0,0,0.3); text-align:center; position:relative;
     }
+    #discount-popup .popup { border-radius:14px 14px 0 0; }
+    .popup h2 { margin:0 0 12px; font-size:24px; background:linear-gradient(90deg,#2a7fff,#ff4081); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .popup p { color:#333; margin:0 0 14px; }
+    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#aaa; }
+    .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; width:100%; box-sizing:border-box; padding:12px; }
+    
+    /* Fallback Popup Specifics */
+    #tg-info-popup .modal-option { margin-bottom: 15px; text-align: left; }
+    #tg-info-popup .modal-option label { font-weight: 600; display: block; margin-bottom: 5px; color: #333; }
+    #tg-info-popup .input-group { display: flex; gap: 8px; }
+    #tg-info-popup .input-group input { flex-grow: 1; border: 1px solid #ccc; border-radius: 6px; padding: 10px 12px; font-family:monospace; background: #f0f4f8; }
+    #tg-info-popup .btn.copy { background: #ff4081; padding: 10px 14px; width: auto; font-size: 14px; }
+    #tg-info-popup .btn.copy.copied { background: #28a745; }
+    
+    @media(max-width:768px){ .sidebar{transform:translateX(-100%);} .page{margin-left:0;} .burger{display:block;} }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <!-- ✅ Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <img src="branding/logo.jpeg" class="brand-logo" alt="Logo">
+      <img src="branding/logo.jpeg" class="brand-logo" alt="Options Trading University Logo">
       <span class="brand-text">OTU</span>
     </div>
     <nav class="side-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="watchlist.html">Watchlist</a>
-      <a href="modules.html">Modules</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="active">Home</a><a href="watchlist.html">Watchlist</a><a href="modules.html">Modules</a>
+      <a href="glossary.html">Glossary</a><a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
       <a href="terms.html">Disclaimer</a>
     </nav>
   </aside>
+
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- ✅ Main Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
@@ -154,12 +157,12 @@
     <main class="container">
       <section class="hero">
         <h1>Learn Options with Mentorship</h1>
-        <p>Learn strategies, master the mindset, and grow alongside a winning community of traders.</p>
+        <p>Learn the strategies, master the mindset, and grow alongside a community of traders who win together.</p>
         <div class="cta-row">
           <a class="btn" href="modules.html">Start Learning</a>
           <a class="btn ghost" href="testimonials.html">Success Stories</a>
         </div>
-        <div style="margin-top:16px;">
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
           <a class="btn" href="currentliveprofit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
         </div>
       </section>
@@ -172,7 +175,7 @@
 
       <section class="card image-card">
         <h2>Why Choose OTU?</h2>
-        <p>With real mentors and proven modules, you'll skip rookie mistakes and focus on consistent, disciplined growth.</p>
+        <p>With our proven modules and real mentors, you'll avoid rookie mistakes and focus on disciplined growth. Don’t trade alone. Join a network that wins together.</p>
       </section>
 
       <section class="success-stories-section">
@@ -185,38 +188,85 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <script>
-    // ✅ Sidebar Toggle
-    const burger=document.getElementById("burger"),
-          sidebar=document.getElementById("sidebar"),
-          overlay=document.getElementById("sidebarOverlay");
-
-    burger.addEventListener("click",()=>{sidebar.classList.add("active");overlay.classList.add("active");});
-    overlay.addEventListener("click",()=>{sidebar.classList.remove("active");overlay.classList.remove("active");});
-
-    // ✅ Stats Animation
-    document.querySelectorAll(".stat h2").forEach(el=>{
-      const count=parseInt(el.dataset.count.replace('%','')),sym=el.dataset.count.includes('%')?'%':'+';
-      let c=0;const int=setInterval(()=>{c+=Math.ceil(count/100);
-      if(c>=count){c=count;clearInterval(int);}el.textContent=c+sym;},30);
-    });
-
-    // ✅ Testimonials Slider
-    const testimonials=[
-      {name:"Emma R.",profit:"$4,125 profit",photo:"faces/faces6.jpeg",profitImage:"profits/profit6.jpeg",testimonial:"OTU’s strategy changed my risk management approach completely."},
-      {name:"Liam N.",profit:"$2,950 profit",photo:"faces/faces7.jpeg",profitImage:"profits/profit7.jpeg",testimonial:"The real-time trade breakdowns are game-changing. I finally trade with confidence."}
-    ];
-    let tIdx=0;
-    function renderTestimonial(){
-      const t=testimonials[tIdx];
-      document.getElementById("testimonial-slider").innerHTML=
-      `<div class="testimonial-header"><img src="${t.photo}" alt="${t.name}">
-        <div><div class="testimonial-author">${t.name}</div><div class="testimonial-profit">${t.profit}</div></div>
+  <div class="popup-backdrop" id="tg-info-popup">
+    <div class="popup">
+      <button class="close" id="close-tg-popup">✕</button>
+      <h2>Contact a Mentor</h2>
+      <p>Some platforms block direct links. Please use an option below:</p>
+      <div class="modal-option">
+        <label for="tg-username">Option 1: Copy Telegram Username</label>
+        <div class="input-group">
+          <input type="text" id="tg-username" value="@thewealthprince0" readonly>
+          <button class="btn copy" id="copy-tg-btn">Copy</button>
+        </div>
       </div>
-      <div class="testimonial-proof"><img src="${t.profitImage}" alt="Proof"></div>
-      <div class="testimonial-content">"${t.testimonial}"</div>`;
-    }
-    renderTestimonial(); setInterval(()=>{tIdx=(tIdx+1)%testimonials.length;renderTestimonial();},5000);
+      <div class="modal-option">
+        <label>Option 2: Use Direct Link</label>
+        <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="popup-backdrop" id="discount-popup">
+    <div class="popup">
+      <button class="close" id="close-discount-popup">✕</button>
+      <h2>🎉 20% OFF Membership</h2>
+      <p>Limited time! Join our private signals group with a <b>20% discount</b>. DM the mentor to claim!</p>
+      <a href="https://t.me/thewealthprince0" class="btn smart-tg-link">Got it — Message Mentor</a>
+    </div>
+  </div>
+
+  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Home+Page+visit+detected" style="display:none;" alt="">
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sidebar
+      const burger=document.getElementById("burger"), sidebar=document.getElementById("sidebar"), overlay=document.getElementById("sidebarOverlay");
+      burger.addEventListener("click",()=>{ sidebar.classList.add("active"); overlay.classList.add("active"); });
+      overlay.addEventListener("click",()=>{ sidebar.classList.remove("active"); overlay.classList.remove("active"); });
+
+      // Stats animation
+      document.querySelectorAll(".stat h2").forEach(el=>{
+        const count=parseInt(el.dataset.count.replace('%','')), sym=el.dataset.count.includes('%')?'%':'+'; let c=0;
+        const int=setInterval(()=>{ c+=Math.ceil(count/100); if(c>=count){c=count;clearInterval(int);} el.textContent=c+sym; },30);
+      });
+
+      // Testimonials
+      const testimonials=[{name:"Emma R.",profit:"$4,125 profit",photo:"faces/faces6.jpeg",profitImage:"profits/profit6.jpeg",testimonial:"OTU’s step-by-step approach helped me understand risk management better."}, {name:"Liam N.",profit:"$2,950 profit",photo:"faces/faces7.jpeg",profitImage:"profits/profit7.jpeg",testimonial:"The real-time trade breakdowns are a game-changer. I learned how to spot high-probability setups."}];
+      let tIdx=0;
+      function renderTestimonial(){
+        const t=testimonials[tIdx];
+        document.getElementById("testimonial-slider").innerHTML=`<div class="testimonial-header"><img src="${t.photo}" alt="${t.name}"><div style="text-align:left;"><div class="testimonial-author">${t.name}</div><div class="testimonial-profit">${t.profit}</div></div></div><div class="testimonial-proof"><img src="${t.profitImage}" alt="Proof"></div><div class="testimonial-content">"${t.testimonial}"</div>`;
+      }
+      renderTestimonial(); setInterval(()=>{ tIdx=(tIdx+1)%testimonials.length; renderTestimonial(); },5000);
+
+      // Discount Popup
+      const discountPopup=document.getElementById("discount-popup");
+      setTimeout(()=>discountPopup.style.display="flex",15000);
+      document.getElementById("close-discount-popup").addEventListener('click',()=>discountPopup.style.display="none");
+
+      // --- ✅ FINAL & MOST RELIABLE TELEGRAM LOGIC ---
+      const tgInfoPopup=document.getElementById("tg-info-popup"), closeTgPopupBtn=document.getElementById("close-tg-popup");
+      const copyTgBtn=document.getElementById("copy-tg-btn"), tgUsernameInput=document.getElementById("tg-username");
+      
+      document.querySelectorAll('.smart-tg-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault(); // Always prevent the default link action
+          tgInfoPopup.style.display = 'flex'; // Immediately show the helpful popup
+        });
+      });
+      
+      const closeTgPopup = () => tgInfoPopup.style.display = 'none';
+      closeTgPopupBtn.addEventListener('click', closeTgPopup);
+      tgInfoPopup.addEventListener('click', e => { if(e.target === tgInfoPopup) closeTgPopup(); });
+      
+      copyTgBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
+          copyTgBtn.textContent="Copied!"; copyTgBtn.classList.add("copied");
+          setTimeout(() => { copyTgBtn.textContent="Copy"; copyTgBtn.classList.remove("copied"); }, 2000);
+        });
+      });
+    });
   </script>
 </body>
 </html>
