@@ -103,18 +103,7 @@
 </head>
 <body>
   <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand"><img src="branding/logo.jpeg" class="brand-logo"><span>OTU</span></div>
-    <nav class="side-nav">
-      <a href="index.html">Home</a>
-      <a href="watchlist.html" class="active">Watchlist</a>
-      <a href="modules.html">Modules</a>
-      <a href="glossary.html">Glossary</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="contact.html">Contact</a>
-      <a href="terms.html">Disclaimer</a>
-    </nav>
-  </aside>
+  <div id="sidebar-container"></div>
 
   <!-- Main Page -->
   <div class="page">
@@ -230,5 +219,14 @@
     }
     loadAll();
   </script>
+  <script>
+  // Load shared sidebar
+  fetch("sidebar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    })
+    .catch(err => console.error("Sidebar failed to load:", err));
+</script>
 </body>
 </html>
