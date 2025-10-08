@@ -58,37 +58,64 @@
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:20px; }
 
-    /* Telegram Popup */
+    /* ✅ Updated Telegram Popup (screenshot-style) */
     .popup-backdrop {
       position:fixed; inset:0; display:none;
       align-items:center; justify-content:center;
       background:rgba(0,0,0,0.55);
-      backdrop-filter:blur(5px);
+      backdrop-filter:blur(6px);
       z-index:2000;
     }
     .popup {
-      background:#fff; padding:24px; border-radius:12px;
-      max-width:420px; width:90%; box-shadow:0 4px 20px rgba(0,0,0,0.3);
-      text-align:center; position:relative;
+      background:#fff; padding:26px; border-radius:16px;
+      max-width:430px; width:90%;
+      box-shadow:0 8px 24px rgba(0,0,0,0.25);
+      text-align:left; position:relative;
       animation:fadeIn .3s ease;
     }
     .popup h2 {
-      margin:0 0 12px; font-size:22px;
+      text-align:center;
+      margin:0 0 16px;
+      font-size:22px;
+      font-weight:800;
       background:linear-gradient(90deg,#2a7fff,#ff4081);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
-    .popup p { color:#333; margin-bottom:14px; }
-    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; color:#666; cursor:pointer; }
-    .popup .btn { width:100%; box-sizing:border-box; padding:12px; margin-top:8px; font-weight:700; }
-    .modal-option { text-align:left; margin-top:14px; }
-    .input-group { display:flex; gap:8px; margin-top:6px; }
+    .popup p { color:#444; margin-bottom:16px; text-align:center; line-height:1.4; font-size:15px; }
+    .popup .close {
+      position:absolute; top:14px; right:14px;
+      background:none; border:none; font-size:22px;
+      color:#666; cursor:pointer;
+    }
+    .modal-option { margin-top:20px; }
+    .modal-option label {
+      display:block; font-weight:700; color:#222;
+      margin-bottom:6px;
+    }
+    .input-group { display:flex; gap:8px; }
     .input-group input {
       flex:1; padding:10px 12px; border:1px solid #ccc;
       border-radius:6px; font-family:monospace;
-      background:#f0f4f8;
+      background:#f8fafc; font-size:15px;
     }
-    .btn.copy { background:#ff4081; width:auto; padding:10px 14px; font-size:14px; }
-    .btn.copy.copied { background:#28a745; }
+    .btn.copy {
+      background:#ff4081; width:auto;
+      padding:10px 14px; font-size:14px;
+      color:#fff; font-weight:700; border:none; border-radius:6px;
+      transition:background 0.3s;
+    }
+    .btn.copy:hover { background:#ff629d; }
+    .btn.copy.copied { background:#28a745 !important; }
+    .btn.tg {
+      display:block; width:100%; text-align:center;
+      background:linear-gradient(90deg,#2a7fff,#ff4081);
+      color:#fff; font-weight:700; border:none;
+      border-radius:8px; padding:12px;
+      margin-top:10px; font-size:15px;
+      transition:opacity 0.3s ease;
+    }
+    .btn.tg:hover { opacity:0.9; }
 
     @keyframes fadeIn {
       from{opacity:0; transform:scale(0.95);}
@@ -137,22 +164,24 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- ✅ Universal Telegram Popup -->
+  <!-- ✅ Modern Popup -->
   <div class="popup-backdrop" id="tg-info-popup">
     <div class="popup">
       <button class="close" id="close-tg-popup">✕</button>
       <h2>Contact a Mentor</h2>
-      <p>Some platforms may have broken pages or block Telegram links.<br>Please use an option below:</p>
+      <p>Some platforms block direct links. Please use an option below:</p>
+
       <div class="modal-option">
-        <label for="tg-username">Option 1: Copy Telegram Username</label>
+        <label>Option 1: Copy Telegram Username</label>
         <div class="input-group">
           <input type="text" id="tg-username" value="@thewealthprince0" readonly>
           <button class="btn copy" id="copy-tg-btn">Copy</button>
         </div>
       </div>
+
       <div class="modal-option">
-        <label>Option 2: Try Direct Link</label>
-        <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
+        <label>Option 2: Use Direct Link</label>
+        <a href="https://t.me/thewealthprince0" target="_blank" class="btn tg">Open on Telegram</a>
       </div>
     </div>
   </div>
@@ -167,7 +196,7 @@
         document.getElementById('sidebar').classList.toggle('active');
       });
 
-      // ✅ Telegram Popup Logic
+      // Popup Logic
       const tgInfoPopup=document.getElementById("tg-info-popup");
       const closeTgPopupBtn=document.getElementById("close-tg-popup");
       const copyTgBtn=document.getElementById("copy-tg-btn");
@@ -182,6 +211,7 @@
       const closeTgPopup=()=>tgInfoPopup.style.display='none';
       closeTgPopupBtn.addEventListener('click',closeTgPopup);
       tgInfoPopup.addEventListener('click',e=>{if(e.target===tgInfoPopup)closeTgPopup();});
+
       copyTgBtn.addEventListener('click',()=>{
         navigator.clipboard.writeText(tgUsernameInput.value).then(()=>{
           copyTgBtn.textContent="Copied!";
