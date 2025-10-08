@@ -142,6 +142,14 @@
     .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#444; }
     .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; }
     
+    /* --- Styles for Telegram Info Popup --- */
+    #tg-popup-box .btn#copy-tg-btn.copied {
+      background: #28a745; /* Green color for success */
+    }
+    #tg-popup-box input[readonly] {
+      cursor: text;
+    }
+    
     @media(max-width:768px){
       .sidebar{transform:translateX(-100%); position:fixed;}
       .page{margin-left:0;}
@@ -218,6 +226,26 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
+  <div class="popup-backdrop" id="tg-info-popup" style="align-items:center;">
+    <div class="popup" id="tg-popup-box">
+      <button class="close" id="close-tg-popup">✕</button>
+      <h2>Contact a Mentor</h2>
+      <p style="color:#555; margin-bottom: 20px;">Some platforms like TikTok may block direct links. Please use one of the options below:</p>
+      
+      <div style="margin-bottom: 15px;">
+        <label for="tg-username" style="font-weight:600; display:block; margin-bottom:5px; color:#333;">Option 1: Copy Username</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="tg-username" value="@thewealthprince0" readonly style="flex-grow:1; border:1px solid #ccc; border-radius:6px; padding:8px 12px; font-family:'Poppins',sans-serif; background:#f0f4f8;">
+          <button class="btn" id="copy-tg-btn" style="padding:8px 14px;">Copy</button>
+        </div>
+      </div>
+      
+      <div>
+        <label style="font-weight:600; display:block; margin-bottom:5px; color:#333;">Option 2: Use Direct Link</label>
+        <a href="https://tr.ee/f_ciiWnl7k" target="_blank" rel="noopener noreferrer" class="btn" style="width:100%; box-sizing:border-box;">Open Secure Link</a>
+      </div>
+    </div>
+  </div>
   <div class="popup-backdrop" id="discount-popup">
     <div class="popup" id="popupBox">
       <button class="close" onclick="dismissPopup()">✕</button>
@@ -230,49 +258,48 @@
   <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Home+Page+visit+detected" style="display:none;" alt="">
   
   <script>
-    document.addEventListener("DOMContentLoaded",()=>{
-      // Sidebar toggle
-      const burger=document.getElementById("burger");
-      const sidebar=document.getElementById("sidebar");
-      const overlay=document.getElementById("sidebarOverlay");
+    document.addEventListener("DOMContentLoaded", () => {
+      // --- EXISTING SIDEBAR CODE (NO CHANGES) ---
+      const burger = document.getElementById("burger");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebarOverlay");
 
-      burger.addEventListener("click",()=>{
+      burger.addEventListener("click", () => {
         sidebar.classList.add("active");
         overlay.classList.add("active");
       });
-      overlay.addEventListener("click",()=>{
+      overlay.addEventListener("click", () => {
         sidebar.classList.remove("active");
         overlay.classList.remove("active");
       });
 
-      // Stats animation
-      document.querySelectorAll(".stat h2").forEach(el=>{
+      // --- EXISTING STATS ANIMATION CODE (NO CHANGES) ---
+      document.querySelectorAll(".stat h2").forEach(el => {
         const countValue = el.dataset.count;
         const target = parseInt(countValue.replace('%', ''));
         let current = 0;
         const step = Math.ceil(target / 100);
-        
-        const interval=setInterval(()=>{
+
+        const interval = setInterval(() => {
           current += step;
-          if(current >= target){ 
-            current = target; 
-            clearInterval(interval); 
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
           }
-          // Append '%' if the original data-count had it
           el.textContent = current + (countValue.includes("%") ? "%" : "+");
         }, 30);
       });
 
-      // Testimonials carousel
+      // --- EXISTING TESTIMONIALS CAROUSEL CODE (NO CHANGES) ---
       const testimonials = [
-        { name:"Emma Rodriguez", profit:"$4,125 profit", photo:"faces/faces6.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
-        { name:"Liam Nguyen", profit:"$2,950 profit", photo:"faces/faces7.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
-        { name:"Sophia Kim", profit:"$3,780 profit", photo:"faces/faces8.jpeg", profitImage:"profits/profit8.jpeg", testimonial:"I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
+        { name: "Emma Rodriguez", profit: "$4,125 profit", photo: "faces/faces6.jpeg", profitImage: "profits/profit6.jpeg", testimonial: "OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
+        { name: "Liam Nguyen", profit: "$2,950 profit", photo: "faces/faces7.jpeg", profitImage: "profits/profit7.jpeg", testimonial: "The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
+        { name: "Sophia Kim", profit: "$3,780 profit", photo: "faces/faces8.jpeg", profitImage: "profits/profit8.jpeg", testimonial: "I was skeptical at first, but the community support in OTU is unreal. I got feedback on my trades within hours, which boosted my confidence." }
       ];
-      let tIndex=0;
-      function renderTestimonial(){
-        const t=testimonials[tIndex];
-        document.getElementById("testimonial-slider").innerHTML=`
+      let tIndex = 0;
+      function renderTestimonial() {
+        const t = testimonials[tIndex];
+        document.getElementById("testimonial-slider").innerHTML = `
           <div>
             <div class="testimonial-header">
               <img src="${t.photo}" alt="${t.name}'s profile picture">
@@ -286,24 +313,88 @@
           </div>`;
       }
       renderTestimonial();
-      setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
+      setInterval(() => { tIndex = (tIndex + 1) % testimonials.length; renderTestimonial(); }, 5000);
 
-      // Show popup with slide after a longer delay
-      const popup=document.getElementById("discount-popup");
-      const popupBox=document.getElementById("popupBox");
-      setTimeout(()=>{
-        popup.style.display="flex";
-        requestAnimationFrame(()=>popupBox.classList.add("show"));
-      }, 15000); // Changed to 15 seconds for a better user experience
+      // --- EXISTING DISCOUNT POPUP CODE (NO CHANGES) ---
+      const discountPopup = document.getElementById("discount-popup");
+      const discountPopupBox = document.getElementById("popupBox");
+      setTimeout(() => {
+        discountPopup.style.display = "flex";
+        requestAnimationFrame(() => discountPopupBox.classList.add("show"));
+      }, 15000);
 
-      window.dismissPopup=()=>{
-        popupBox.classList.remove("show");
-        // Also a direct link in the popup
-        window.open('https://t.me/thewealthprince0', '_blank');
-        setTimeout(()=>{ popup.style.display="none"; },600);
+      window.dismissPopup = () => {
+        discountPopupBox.classList.remove("show");
+        // NOTE: This will now trigger the new info popup as well!
+        // The original window.open is removed.
+        setTimeout(() => { discountPopup.style.display = "none"; }, 600);
       };
+
+      // --- ✅ NEW TELEGRAM INFO POPUP LOGIC ---
+
+      // 1. Get references to the new popup elements
+      const tgInfoPopup = document.getElementById("tg-info-popup");
+      const tgPopupBox = document.getElementById("tg-popup-box");
+      const closeTgPopupBtn = document.getElementById("close-tg-popup");
+      const copyTgBtn = document.getElementById("copy-tg-btn");
+      const tgUsernameInput = document.getElementById("tg-username");
+
+      // 2. Function to show the Telegram info popup
+      function showTgInfoPopup() {
+        tgInfoPopup.style.display = "flex";
+        requestAnimationFrame(() => tgPopupBox.classList.add("show"));
+      }
       
-      // The old mentorBtn event listener is no longer needed and has been removed
+      // 3. Function to hide the Telegram info popup
+      function hideTgInfoPopup() {
+        tgPopupBox.classList.remove("show");
+        setTimeout(() => {
+          tgInfoPopup.style.display = "none";
+        }, 600); // Match CSS transition duration
+      }
+
+      // 4. Find all "Message a Mentor" links and make them open our new popup
+      const mentorLinks = document.querySelectorAll('a[href*="t.me/thewealthprince0"]');
+      mentorLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault(); // IMPORTANT: Stops the link from trying to open
+          showTgInfoPopup();
+        });
+      });
+      
+      // Also, attach it to your original popup's dismiss button's logic
+      const originalDismissButton = document.querySelector('#discount-popup .btn');
+      if(originalDismissButton) {
+        originalDismissButton.addEventListener('click', (event) => {
+          event.preventDefault();
+          dismissPopup(); // Close the first popup
+          showTgInfoPopup(); // Open the new info popup
+        });
+      }
+
+      // 5. Wire up the close button for the new popup
+      closeTgPopupBtn.addEventListener('click', hideTgInfoPopup);
+      tgInfoPopup.addEventListener('click', (e) => { // Close when clicking the backdrop
+        if(e.target === tgInfoPopup) {
+            hideTgInfoPopup();
+        }
+      });
+      
+      // 6. Add "Copy to Clipboard" functionality
+      copyTgBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
+          // Provide feedback to the user
+          copyTgBtn.textContent = "Copied!";
+          copyTgBtn.classList.add("copied");
+          tgUsernameInput.select(); // Highlight the text
+          setTimeout(() => {
+            copyTgBtn.textContent = "Copy";
+            copyTgBtn.classList.remove("copied");
+          }, 2000); // Reset after 2 seconds
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
+      });
     });
   </script>
 </body>
