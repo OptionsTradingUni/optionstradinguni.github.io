@@ -28,6 +28,15 @@
     .side-nav a.active{background:#1a2b68;}
     .close-sidebar{display:none;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;margin:10px;align-self:flex-end;}
 
+    /* Sidebar Overlay (Needed for mobile UX) */
+    .sidebar-overlay {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.4);
+      display:none; z-index:999;
+    }
+    .sidebar-overlay.active { display:block; }
+
+
     /* Topbar */
     .topbar{
       background:linear-gradient(90deg,var(--blue),var(--pink));
@@ -110,13 +119,32 @@
       .page{margin-left:0;}
       .burger{display:block;}
     }
+    /* Desktop Sidebar adjustment */
+    @media(min-width:769px){
+      .sidebar { transform:translateX(0); }
+      .page { margin-left:220px; }
+      .burger { display:none; }
+    }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
- <div id="sidebar-container"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="branding/logo.jpeg" class="brand-logo" alt="Options Trading University Logo">
+      <span>OTU</span>
+    </div>
+    <nav class="side-nav">
+      <a href="index.html">Home</a>
+      <a href="watchlist.html">Watchlist</a>
+      <a href="modules.html">Modules</a>
+      <a href="glossary.html" class="active">Glossary</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Disclaimer</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-  <!-- Page -->
   <div class="page">
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
@@ -127,13 +155,12 @@
     <main class="container">
       <h1 class="header-title">📘 Glossary of Trading Terms</h1>
       <p class="subheader">Tap a term to expand its explanation. Each entry is clearly defined for fast learning and retention.</p>
-      <div id="glossary-list"></div>
+      <div id="glossary-list">Loading glossary...</div>
     </main>
 
     <footer class="footer">© 2025 Options Trading University. All rights reserved.</footer>
   </div>
 
-  <!-- Mentor Modal -->
   <div class="modal-backdrop" id="mentor-modal">
     <div class="modal">
       <button class="close" onclick="closeMentorModal()">✕</button>
@@ -146,56 +173,70 @@
     </div>
   </div>
 
-  <!-- Telegram Pixel Tracking -->
   <img 
     src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Glossary+page+at+optionstradinguni.online"
     style="display:none;"
   >
 
+  <script src="config.js"></script>
   <script>
-    // Sidebar toggle
-    const burger=document.getElementById('burger');
-    const sidebar=document.getElementById('sidebar');
-    const closeSidebar=document.getElementById('closeSidebar');
-    burger.addEventListener('click',()=>sidebar.classList.add('active'));
-    closeSidebar.addEventListener('click',()=>sidebar.classList.remove('active'));
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Sidebar toggle
+      const burger = document.getElementById('burger');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
 
-    // Load glossary data dynamically
-    async function loadGlossary(){
-      try{
-        const res=await fetch("glossary.json");
-        const data=await res.json();
-        const list=document.getElementById("glossary-list");
-        data.forEach(term=>{
-          const card=document.createElement("div");
-          card.className="term-card";
-          card.innerHTML=`<h3>${term.term}</h3><div class="definition">${term.definition}</div>`;
-          const def=card.querySelector(".definition");
-          card.querySelector("h3").onclick=()=>def.style.display=def.style.display==="block"?"none":"block";
-          list.appendChild(card);
-        });
-      }catch(e){
-        console.error("Error loading glossary:",e);
+      burger.addEventListener('click',()=> {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+      });
+      overlay.addEventListener('click',()=> {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+
+      // Glossary Logic (REVERTED TO ORIGINAL FILE-DEPENDENT LOGIC)
+      // This requires the external script 'config.js' (containing loadJSON) and 'glossary.json' to work.
+      try {
+          const list = document.getElementById("glossary-list");
+          // NOTE: Relying on loadJSON being defined in config.js
+          const data = await loadJSON("glossary.json"); 
+          
+          list.innerHTML = ''; // Clear 'Loading glossary...'
+          
+          data.forEach(t => {
+            const card = document.createElement("div");
+            card.className = "term-card";
+            card.innerHTML = `<h3>${t.term}</h3><div class="definition">${t.definition}</div>`;
+            
+            const definitionDiv = card.querySelector(".definition");
+
+            // Attach click handler to the entire card or just the header
+            card.addEventListener('click', () => {
+              // Toggle display of the definition
+              definitionDiv.style.display = definitionDiv.style.display === "block" ? "none" : "block";
+            });
+            
+            list.appendChild(card);
+          });
+          
+      } catch(e) {
+          console.error("Error loading glossary data from external files:", e);
+          document.getElementById("glossary-list").innerHTML = '<p style="color:red; text-align:center;">⚠️ Error loading glossary. Check if config.js and glossary.json are available.</p>';
       }
-    }
-    document.addEventListener("DOMContentLoaded",loadGlossary);
 
-    // Mentor Modal Controls
-    function openMentorModal(){
-      document.getElementById("mentor-modal").style.display="flex";
-    }
-    function closeMentorModal(){
-      document.getElementById("mentor-modal").style.display="none";
-    }
+      // Mentor Modal Controls
+      function openMentorModal(){
+        document.getElementById("mentor-modal").style.display="flex";
+      }
+      function closeMentorModal(){
+        document.getElementById("mentor-modal").style.display="none";
+      }
+
+      // Expose modal functions globally for the buttons to work
+      window.openMentorModal = openMentorModal;
+      window.closeMentorModal = closeMentorModal;
+    });
   </script>
-  <script>
-  // Load shared sidebar
-  fetch("sidebar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("sidebar-container").innerHTML = html;
-    })
-    .catch(err => console.error("Sidebar failed to load:", err));
-</script>
 </body>
 </html>
