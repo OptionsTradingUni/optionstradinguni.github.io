@@ -55,6 +55,11 @@
     #tiktok-info{display:none;margin-top:15px;border-top:1px solid #eee;padding-top:15px;}
     .suggest{background:#f5f9ff;padding:10px;border-radius:6px;font-family:monospace;}
 
+    .btn[disabled] {
+        background: #aaa !important;
+        cursor: not-allowed !important;
+    }
+
     @media(max-width:768px){.sidebar{display:none;}.page{margin-left:0;}.burger{display:block;}}
   </style>
 </head>
@@ -91,7 +96,7 @@
       <h3 style="color:var(--blue)">Contact a Mentor</h3>
       <p>Choose your preferred platform to get in touch.</p>
       <div class="contact-options">
-        <a href="https://t.me/thewealthprince0" target="_blank" class="btn telegram">Message on Telegram</a>
+        <button id="telegram-link-btn" data-link="https://t.me/thewealthprince0" class="btn telegram">Message on Telegram</button>
         <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
       </div>
       <div id="tiktok-info">
@@ -102,6 +107,21 @@
   </div>
 
   <script>
+    // --- ✅ NEW TIKTOK DETECTION LOGIC ---
+    const telegramLinkBtn = document.getElementById('telegram-link-btn');
+    const isTikTok = navigator.userAgent.includes("TikTok");
+
+    if (isTikTok) {
+      telegramLinkBtn.disabled = true;
+    }
+
+    telegramLinkBtn.addEventListener('click', () => {
+      if (!telegramLinkBtn.disabled) {
+        window.open(telegramLinkBtn.dataset.link, '_blank');
+      }
+    });
+    // --- END NEW LOGIC ---
+
     // Sidebar and Modal controls
     const burger=document.getElementById('burger');
     const sidebar=document.getElementById('sidebar');
