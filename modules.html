@@ -84,6 +84,12 @@
     .contact-options .btn.telegram { background:#0088cc; }
     .contact-options .btn.tiktok { background:#25f4ee; color:#000; }
     #tiktok-info { display:none; margin-top:15px; border-top:1px solid #eee; padding-top:15px; }
+    
+    /* Style for disabled buttons */
+    .btn[disabled] {
+      background: #aaa !important;
+      cursor: not-allowed !important;
+    }
 
     @media(min-width:769px){
       .sidebar { transform:translateX(0); }
@@ -131,7 +137,7 @@
       <p>Choose your preferred platform to get in touch.</p>
       
       <div class="contact-options">
-        <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn telegram">Message on Telegram</a>
+        <button id="telegram-link-btn" data-link="https://t.me/thewealthprince0" class="btn telegram">Message on Telegram</button>
         <button class="btn tiktok" onclick="toggleTikTokInfo()">Message on TikTok</button>
       </div>
 
@@ -150,54 +156,71 @@
 >
   
   <script>
-    const container = document.getElementById('modules-container');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let modules = [];
-    let currentIndex = 0;
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('modules-container');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let modules = [];
+      let currentIndex = 0;
 
-    // Sidebar toggle
-    document.getElementById('burger').addEventListener('click',()=>{
-      document.getElementById('sidebar').classList.toggle('active');
-    });
-
-    // Load modules.json
-    fetch('modules.json')
-      .then(res => res.json())
-      .then(data => {
-        modules = data;
-        showModule(0);
-      })
-      .catch(err => {
-        container.textContent = "Could not load modules.";
-        console.error(err);
+      // Sidebar toggle
+      document.getElementById('burger').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.toggle('active');
       });
 
-    function showModule(index){
-      if(index < 0 || index >= modules.length) return;
-      currentIndex = index;
-      container.innerHTML = `
-        <div class="module-card">
-          <div class="module-title">${modules[index].title}</div>
-          <div class="module-content">${modules[index].content}</div>
-        </div>
-      `;
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === modules.length - 1;
-    }
+      // --- ✅ NEW TIKTOK DETECTION LOGIC ---
+      const telegramLinkBtn = document.getElementById('telegram-link-btn');
+      const isTikTok = navigator.userAgent.includes("TikTok");
 
-    prevBtn.addEventListener('click', ()=> showModule(currentIndex-1));
-    nextBtn.addEventListener('click', ()=> showModule(currentIndex+1));
+      if (isTikTok) {
+        telegramLinkBtn.disabled = true;
+      }
 
-    // Modal functions
-    function openContactModal(){ document.getElementById("contact-modal").style.display="flex"; }
-    function closeContactModal(){ 
-      document.getElementById("contact-modal").style.display="none";
-      document.getElementById("tiktok-info").style.display="none"; // Also hide tiktok info
+      telegramLinkBtn.addEventListener('click', () => {
+        if (!telegramLinkBtn.disabled) {
+          window.open(telegramLinkBtn.dataset.link, '_blank');
+        }
+      });
+      // --- END NEW LOGIC ---
+
+      // Load modules.json
+      fetch('modules.json')
+        .then(res => res.json())
+        .then(data => {
+          modules = data;
+          showModule(0);
+        })
+        .catch(err => {
+          container.textContent = "Could not load modules.";
+          console.error(err);
+        });
+
+      function showModule(index) {
+        if (index < 0 || index >= modules.length) return;
+        currentIndex = index;
+        container.innerHTML = `
+          <div class="module-card">
+            <div class="module-title">${modules[index].title}</div>
+            <div class="module-content">${modules[index].content}</div>
+          </div>
+        `;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === modules.length - 1;
+      }
+
+      prevBtn.addEventListener('click', () => showModule(currentIndex - 1));
+      nextBtn.addEventListener('click', () => showModule(currentIndex + 1));
+    });
+
+    // Modal functions (kept outside DOMContentLoaded as they are called by onclick attributes)
+    function openContactModal() { document.getElementById("contact-modal").style.display = "flex"; }
+    function closeContactModal() {
+      document.getElementById("contact-modal").style.display = "none";
+      document.getElementById("tiktok-info").style.display = "none"; // Also hide tiktok info
     }
     function toggleTikTokInfo() {
       const infoDiv = document.getElementById("tiktok-info");
-      if(infoDiv.style.display === "block") {
+      if (infoDiv.style.display === "block") {
         infoDiv.style.display = "none";
       } else {
         infoDiv.style.display = "block";
