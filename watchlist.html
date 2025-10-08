@@ -25,14 +25,14 @@
     .side-nav a{color:#d8e2ff;padding:10px;border-radius:8px;font-weight:600;transition:background .25s;}
     .side-nav a:hover{background:#163067;}
     .side-nav a.active{background:#1a2b68;}
-
-    /* Sidebar Overlay (Added for better mobile experience) */
+    
+    /* Sidebar Overlay (For mobile/tablet use) */
     .sidebar-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.4);
-      display: none; z-index: 999;
+      position:fixed; inset:0;
+      background:rgba(0,0,0,0.4);
+      display:none; z-index:999;
     }
-    .sidebar-overlay.active { display: block; }
+    .sidebar-overlay.active { display:block; }
 
     /* Page */
     .page{margin-left:0;min-height:100vh;display:flex;flex-direction:column;}
@@ -107,6 +107,12 @@
       .page{margin-left:0;}
       .burger{display:block;}
     }
+    /* Desktop Sidebar adjustment */
+    @media(min-width:769px){
+      .sidebar { transform:translateX(0); }
+      .page { margin-left:220px; }
+      .burger { display:none; }
+    }
   </style>
 </head>
 <body>
@@ -126,7 +132,6 @@
     </nav>
   </aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
 
   <div class="page">
     <header class="topbar">
@@ -167,7 +172,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Sidebar Toggle Logic (Necessary since the external fetch script was removed)
+      // Sidebar toggle
       const burger = document.getElementById('burger');
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebarOverlay');
@@ -176,7 +181,6 @@
         sidebar.classList.add('active');
         overlay.classList.add('active');
       });
-
       overlay.addEventListener('click', () => {
         sidebar.classList.remove('active');
         overlay.classList.remove('active');
@@ -205,11 +209,10 @@
         });
       });
 
-      // Watchlist logic
+      // Watchlist logic (REVERTED TO ORIGINAL API CALLS)
       const symbols=["AAPL","TSLA","MSFT","AMZN","NVDA"];
-      // NOTE: Using a placeholder key for the Finnhub API as the provided key is invalid. 
-      // Replace with a valid key for production.
-      const FINNHUB_KEY="YOUR_VALID_FINNHUB_KEY"; 
+      // NOTE: Using the key you provided. If this key is invalid or rate-limited, the watchlist will show an error.
+      const FINNHUB_KEY="d38hegpr01qlbdj5i6h0d38hegpr01qlbdj5i6hg";
       const list=document.getElementById("watchlist");
       const error=document.getElementById("error");
 
@@ -220,29 +223,6 @@
       }
 
       async function loadSymbol(sym){
-        // Only load if a valid key is available
-        if (FINNHUB_KEY === "YOUR_VALID_FINNHUB_KEY") {
-             // Fallback/Placeholder Card if API key is invalid
-            const card=document.createElement("div");
-            card.className="stock-card";
-            card.innerHTML=`
-              <div class="stock-header">
-                <img src="branding/logo.jpeg" class="logo" alt="${sym} logo">
-                <div style="text-align:right">
-                  <div class="symbol">${sym} (Demo)</div>
-                  <div class="price">$150.00</div>
-                  <div class="change up">+1.50%</div>
-                </div>
-              </div>
-              <div class="news">
-                <a href="#">Simulated News Headline 1</a>
-                <a href="#">Simulated News Headline 2</a>
-              </div>
-            `;
-            list.appendChild(card);
-            return; 
-        }
-
         try{
           const [quote,profile,news]=await Promise.all([
             getJson(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_KEY}`),
