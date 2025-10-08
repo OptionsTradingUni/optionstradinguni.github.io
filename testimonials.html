@@ -123,12 +123,12 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <!-- ✅ Telegram Popup (same as homepage) -->
+  <!-- ✅ Updated Telegram Popup -->
   <div class="popup-backdrop" id="tg-info-popup">
     <div class="popup">
       <button class="close" id="close-tg-popup">✕</button>
       <h2>Contact a Mentor</h2>
-      <p>Some platforms block direct links. Please use an option below:</p>
+      <p>Some platforms may have broken pages or block Telegram links.<br>Please use an option below:</p>
       <div class="modal-option">
         <label for="tg-username">Option 1: Copy Telegram Username</label>
         <div class="input-group">
@@ -137,16 +137,17 @@
         </div>
       </div>
       <div class="modal-option">
-        <label>Option 2: Use Direct Link</label>
+        <label>Option 2: Try Direct Link</label>
         <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
       </div>
     </div>
   </div>
 
+  <!-- Tracking -->
   <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Visitor+opened+Testimonials+page" style="display:none;">
 
   <script>
-    // Sidebar
+    // Sidebar toggle
     document.getElementById("burger").addEventListener("click",()=>{
       document.getElementById("sidebar").classList.toggle("active");
     });
@@ -168,7 +169,6 @@
     }
     document.getElementById("prevBtn").addEventListener("click",()=>{ if(currentIndex>0){currentIndex--;renderTestimonial();} });
     document.getElementById("nextBtn").addEventListener("click",()=>{ if(currentIndex<testimonials.length-1){currentIndex++;renderTestimonial();} });
-
     fetch('testimonials.json').then(res=>res.json()).then(data=>{ testimonials=data; renderTestimonial(); });
 
     // ✅ Telegram Popup Logic
