@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Training Modules</title>
+  <title>Training Modules - Options Trading University</title>
   <style>
-    body { margin:0; font-family:'Segoe UI',Tahoma,sans-serif; background:#f7f9ff; color:#0f1a33; }
+    body { margin:0; font-family:'Poppins',sans-serif; background:#f7f9ff; color:#0f1a33; }
     a { text-decoration:none; color:inherit; }
 
     /* Sidebar */
@@ -34,20 +34,20 @@
     .container { padding:30px; max-width:900px; margin:0 auto; }
     .topbar {
       background:linear-gradient(90deg,#2a7fff,#ff4081);
-      color:#fff; padding:20px; 
+      color:#fff; padding:20px;
       display:flex; justify-content:space-between; align-items:center;
     }
     .topbar h1 { margin:0; font-size:1.5em; font-weight:800; }
     .burger { font-size:1.5em; background:none; border:none; color:#fff; cursor:pointer; }
     .btn {
       background:#fff; color:#2a7fff; border:none; padding:8px 14px;
-      border-radius:6px; font-weight:600; cursor:pointer; text-decoration: none;
+      border-radius:6px; font-weight:600; cursor:pointer; text-decoration:none; transition:.2s ease;
     }
-    .btn:hover { background:#eaf1ff; }
+    .btn:hover { transform:scale(1.05); }
 
-    /* Module */
+    /* Modules */
     .module-card {
-      background:#ffffff; border-radius:10px; margin:20px 0; padding:20px;
+      background:#fff; border-radius:10px; margin:20px 0; padding:20px;
       box-shadow:0 4px 12px rgba(0,0,0,0.05);
     }
     .module-title { font-size:1.4em; font-weight:700; color:#1749d4; margin-bottom:10px; }
@@ -58,34 +58,42 @@
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:20px; }
 
-    /* Modal */
-    .modal-backdrop {
-      position: fixed; top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(5px);
-      display: none; align-items: center; justify-content: center;
-      z-index: 2000;
+    /* Telegram Popup */
+    .popup-backdrop {
+      position:fixed; inset:0; display:none;
+      align-items:center; justify-content:center;
+      background:rgba(0,0,0,0.55);
+      backdrop-filter:blur(5px);
+      z-index:2000;
     }
-    .modal {
-      background: #fff; padding: 24px; border-radius: 12px;
-      max-width: 420px; width: 90%; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      text-align: left;
-      position: relative;
+    .popup {
+      background:#fff; padding:24px; border-radius:12px;
+      max-width:420px; width:90%; box-shadow:0 4px 20px rgba(0,0,0,0.3);
+      text-align:center; position:relative;
+      animation:fadeIn .3s ease;
     }
-    .modal h3 { margin-top:0; font-size: 22px; color:#2a7fff; }
-    .modal p { color: #555; }
-    .modal .close {
-      position: absolute; top: 10px; right: 10px;
-      background: none; border: none; font-size: 24px;
-      cursor: pointer; color:#aaa;
+    .popup h2 {
+      margin:0 0 12px; font-size:22px;
+      background:linear-gradient(90deg,#2a7fff,#ff4081);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
-    .modal-option { margin-bottom: 15px; }
-    .modal-option label { font-weight: 600; display: block; margin-bottom: 5px; color: #333; }
-    .input-group { display: flex; gap: 8px; }
-    .input-group input { flex-grow: 1; border: 1px solid #ccc; border-radius: 6px; padding: 10px 12px; font-family:'Segoe UI',monospace; background: #f0f4f8; }
-    .modal .btn { width: 100%; box-sizing: border-box; padding: 12px; font-size: 16px; background: #0088cc; color: #fff;}
-    .modal .btn.copy { background: #ff4081; padding: 10px 14px; width: auto; font-size: 14px; }
-    .modal .btn.copy.copied { background: #22c55e; }
+    .popup p { color:#333; margin-bottom:14px; }
+    .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; color:#666; cursor:pointer; }
+    .popup .btn { width:100%; box-sizing:border-box; padding:12px; margin-top:8px; font-weight:700; }
+    .modal-option { text-align:left; margin-top:14px; }
+    .input-group { display:flex; gap:8px; margin-top:6px; }
+    .input-group input {
+      flex:1; padding:10px 12px; border:1px solid #ccc;
+      border-radius:6px; font-family:monospace;
+      background:#f0f4f8;
+    }
+    .btn.copy { background:#ff4081; width:auto; padding:10px 14px; font-size:14px; }
+    .btn.copy.copied { background:#28a745; }
+
+    @keyframes fadeIn {
+      from{opacity:0; transform:scale(0.95);}
+      to{opacity:1; transform:scale(1);}
+    }
 
     @media(min-width:769px){
       .sidebar { transform:translateX(0); }
@@ -114,8 +122,9 @@
     <header class="topbar">
       <button class="burger" id="burger">☰</button>
       <h1>Training Modules</h1>
-      <button id="message-mentor-btn" class="btn">Message a Mentor</button>
+      <a href="https://t.me/thewealthprince0" class="btn smart-tg-link">Message a Mentor</a>
     </header>
+
     <main class="container">
       <div id="modules-container">Loading module...</div>
       <div class="controls">
@@ -126,12 +135,12 @@
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
 
-  <div class="modal-backdrop" id="contact-modal">
-    <div class="modal">
-      <button class="close" id="close-contact-modal">✕</button>
-      <h3>Contact a Mentor</h3>
-      <p>If the link didn't work, please use an option below:</p>
-      
+  <!-- ✅ Telegram Popup -->
+  <div class="popup-backdrop" id="tg-info-popup">
+    <div class="popup">
+      <button class="close" id="close-tg-popup">✕</button>
+      <h2>Contact a Mentor</h2>
+      <p>Some platforms block direct links. Please use an option below:</p>
       <div class="modal-option">
         <label for="tg-username">Option 1: Copy Telegram Username</label>
         <div class="input-group">
@@ -139,98 +148,72 @@
           <button class="btn copy" id="copy-tg-btn">Copy</button>
         </div>
       </div>
-      
       <div class="modal-option">
-        <label>Option 2: Try Direct Link Again</label>
-        <a href="https://t.me/thewealthprince0" target="_blank" rel="noopener noreferrer" class="btn">Open on Telegram</a>
+        <label>Option 2: Use Direct Link</label>
+        <a href="https://t.me/thewealthprince0" target="_blank" class="btn">Open on Telegram</a>
       </div>
     </div>
   </div>
 
   <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Modules+page+at+optionstradinguni.online" style="display:none;">
-  
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // --- ✅ NEW HYBRID "SMART FALLBACK" LOGIC ---
-      const contactModal = document.getElementById('contact-modal');
-      const messageMentorBtn = document.getElementById('message-mentor-btn');
-      const closeContactModalBtn = document.getElementById('close-contact-modal');
-      const copyTgBtn = document.getElementById('copy-tg-btn');
-      const tgUsernameInput = document.getElementById('tg-username');
-      
-      messageMentorBtn.addEventListener('click', () => {
-        // First, immediately try to open the direct link.
-        // This will work instantly for most users.
-        window.open('https://t.me/thewealthprince0', '_blank');
-        
-        // Then, set a timer. If the link fails (like on TikTok),
-        // this popup will appear as a helpful fallback.
-        setTimeout(() => {
-            contactModal.style.display = 'flex';
-        }, 1500); // 1.5-second delay
-      });
-
-      closeContactModalBtn.addEventListener('click', () => {
-        contactModal.style.display = 'none';
-      });
-      
-      contactModal.addEventListener('click', (e) => { // Close when clicking backdrop
-          if(e.target === contactModal) {
-              contactModal.style.display = 'none';
-          }
-      });
-      
-      copyTgBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
-          copyTgBtn.textContent = "Copied!";
-          copyTgBtn.classList.add("copied");
-          tgUsernameInput.select();
-          setTimeout(() => {
-            copyTgBtn.textContent = "Copy";
-            copyTgBtn.classList.remove("copied");
-          }, 2000);
-        });
-      });
-      // --- END NEW LOGIC ---
-
-      const container = document.getElementById('modules-container');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      let modules = [];
-      let currentIndex = 0;
-
-      // Sidebar toggle
+      // Sidebar
       document.getElementById('burger').addEventListener('click', () => {
         document.getElementById('sidebar').classList.toggle('active');
       });
 
-      // Load modules.json
+      // ✅ Telegram Popup Logic
+      const tgInfoPopup=document.getElementById("tg-info-popup");
+      const closeTgPopupBtn=document.getElementById("close-tg-popup");
+      const copyTgBtn=document.getElementById("copy-tg-btn");
+      const tgUsernameInput=document.getElementById("tg-username");
+
+      document.querySelectorAll('.smart-tg-link').forEach(link=>{
+        link.addEventListener('click',e=>{
+          e.preventDefault();
+          tgInfoPopup.style.display='flex';
+        });
+      });
+      const closeTgPopup=()=>tgInfoPopup.style.display='none';
+      closeTgPopupBtn.addEventListener('click',closeTgPopup);
+      tgInfoPopup.addEventListener('click',e=>{if(e.target===tgInfoPopup)closeTgPopup();});
+      copyTgBtn.addEventListener('click',()=>{
+        navigator.clipboard.writeText(tgUsernameInput.value).then(()=>{
+          copyTgBtn.textContent="Copied!";
+          copyTgBtn.classList.add("copied");
+          setTimeout(()=>{copyTgBtn.textContent="Copy";copyTgBtn.classList.remove("copied");},2000);
+        });
+      });
+
+      // Modules logic
+      const container=document.getElementById('modules-container');
+      const prevBtn=document.getElementById('prevBtn');
+      const nextBtn=document.getElementById('nextBtn');
+      let modules=[],currentIndex=0;
+
       fetch('modules.json')
-        .then(res => res.json())
-        .then(data => {
-          modules = data;
-          showModule(0);
-        })
-        .catch(err => {
-          container.textContent = "Could not load modules.";
+        .then(res=>res.json())
+        .then(data=>{ modules=data; showModule(0); })
+        .catch(err=>{
+          container.textContent="Could not load modules.";
           console.error(err);
         });
 
-      function showModule(index) {
-        if (index < 0 || index >= modules.length) return;
-        currentIndex = index;
-        container.innerHTML = `
+      function showModule(index){
+        if(index<0||index>=modules.length) return;
+        currentIndex=index;
+        container.innerHTML=`
           <div class="module-card">
             <div class="module-title">${modules[index].title}</div>
             <div class="module-content">${modules[index].content}</div>
-          </div>
-        `;
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index === modules.length - 1;
+          </div>`;
+        prevBtn.disabled=index===0;
+        nextBtn.disabled=index===modules.length-1;
       }
-
-      prevBtn.addEventListener('click', () => showModule(currentIndex - 1));
-      nextBtn.addEventListener('click', () => showModule(currentIndex + 1));
+      prevBtn.addEventListener('click',()=>showModule(currentIndex-1));
+      nextBtn.addEventListener('click',()=>showModule(currentIndex+1));
     });
   </script>
 </body>
