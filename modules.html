@@ -131,7 +131,8 @@
 </head>
 <body>
   <!-- Sidebar -->
-  <div id="sidebar-container"></div>
+   <div id="sidebar-container"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <!-- Page -->
   <div class="page">
@@ -139,6 +140,7 @@
       <button class="burger" id="burger">☰</button>
       <h1>Training Modules</h1>
       <a href="https://t.me/thewealthprince0" class="btn smart-tg-link">Message a Mentor</a>
+      <button class="burger" id="burger">☰</button>
     </header>
 
     <main class="container">
@@ -237,11 +239,26 @@
     });
   </script>
   <script>
-  // Load shared sidebar
+  // Load sidebar dynamically
   fetch("sidebar.html")
     .then(res => res.text())
     .then(html => {
       document.getElementById("sidebar-container").innerHTML = html;
+
+      // ✅ Wait until sidebar loads, then wire up toggle
+      const burger = document.getElementById("burger");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebarOverlay");
+
+      burger.addEventListener("click", () => {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      });
     })
     .catch(err => console.error("Sidebar failed to load:", err));
 </script>
