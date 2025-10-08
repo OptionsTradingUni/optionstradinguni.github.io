@@ -76,10 +76,19 @@
             font-weight: 600;
             white-space: nowrap; /* Prevents text wrapping */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none; /* Added for button reset */
+            font-family: 'Poppins', sans-serif; /* Added for button reset */
+            font-size: 1em; /* Added for button reset */
         }
         .join-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .join-btn[disabled] {
+            background: #aaa;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         #trades-list-github {
@@ -169,9 +178,9 @@
             <h1> Recent Trades</h1>
             <p class="subheader">Live-synced from Options Trading University</p>
         </div>
-        <a href="https://t.me/+v2cZ4q1DXNdkMjI8" target="_blank" rel="noopener noreferrer" class="join-btn">
+        <button id="join-group-btn" data-link="https://t.me/+v2cZ4q1DXNdkMjI8" class="join-btn">
             Join Log Group
-        </a>
+        </button>
     </header>
 
     <div class="container">
@@ -189,6 +198,21 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- ✅ NEW TIKTOK DETECTION LOGIC ---
+            const joinGroupBtn = document.getElementById('join-group-btn');
+            const isTikTok = navigator.userAgent.includes("TikTok");
+
+            if (isTikTok) {
+                joinGroupBtn.disabled = true;
+            }
+
+            joinGroupBtn.addEventListener('click', () => {
+                if (!joinGroupBtn.disabled) {
+                    window.open(joinGroupBtn.dataset.link, '_blank', 'noopener,noreferrer');
+                }
+            });
+            // --- END NEW LOGIC ---
+
             const apiUrl = 'https://logs.optionstradinguni.online/api/recent100'; 
             const logBaseUrl = 'https://logs.optionstradinguni.online';
             const tradesListElement = document.getElementById('trades-list-github');
