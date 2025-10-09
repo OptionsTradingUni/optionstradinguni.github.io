@@ -233,7 +233,6 @@
       const copyTgBtn = document.getElementById("copy-tg-btn");
       const tgUsernameInput = document.getElementById("tg-username");
       
-      // When any link with the class 'smart-tg-link' is clicked, show the main info popup
       document.querySelectorAll('.smart-tg-link').forEach(link => {
         link.addEventListener('click', e => {
           e.preventDefault();
@@ -241,12 +240,10 @@
         });
       });
       
-      // Logic to close the main info popup
       const closeTgPopup = () => tgInfoPopup.style.display = 'none';
       closeTgPopupBtn.addEventListener('click', closeTgPopup);
       tgInfoPopup.addEventListener('click', e => { if (e.target === tgInfoPopup) closeTgPopup(); });
 
-      // Logic for the copy button
       copyTgBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
           copyTgBtn.textContent = "Copied!";
@@ -255,16 +252,15 @@
         });
       });
       
-      // --- ✅ NEW Mentor Popup Logic (Timed) ---
+      // --- Mentor Popup Logic (Timed) ---
       const mentorPopup = document.getElementById('mentor-popup');
       const closeMentorPopupBtn = document.getElementById('close-mentor-popup');
       
-      // Show the popup after 10 seconds (10000 milliseconds)
+      // ✅ Show the popup after 5 seconds (5000 milliseconds)
       setTimeout(() => {
         mentorPopup.style.display = 'flex';
-      }, 10000);
+      }, 5000);
       
-      // Logic to close the new mentor popup
       const closeMentorPopup = () => mentorPopup.style.display = 'none';
       closeMentorPopupBtn.addEventListener('click', closeMentorPopup);
       mentorPopup.addEventListener('click', e => { if (e.target === mentorPopup) closeMentorPopup(); });
