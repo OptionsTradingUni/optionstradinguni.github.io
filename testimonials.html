@@ -72,7 +72,7 @@
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:14px; }
 
-    /* ✅ Telegram Popup */
+    /* ✅ Popups (Shared Styles) */
     .popup-backdrop {
       position:fixed; inset:0; display:none;
       align-items:center; justify-content:center;
@@ -131,6 +131,12 @@
     }
     .btn.tg:hover { opacity:0.9; }
 
+    /* ✅ NEW styles for the popup buttons */
+    .popup .button-row { display: flex; gap: 10px; margin-top: 20px; }
+    .popup .button-row .btn { flex: 1; padding: 12px; font-size: 15px; font-weight: 700; color: #fff; background: linear-gradient(90deg,#2a7fff,#ff4081); }
+    .popup .button-row .btn.ghost { background: #fff; color: #2a7fff; border: 2px solid #2a7fff; }
+
+
     @keyframes fadeIn {
       from{opacity:0; transform:scale(0.95);}
       to{opacity:1; transform:scale(1);}
@@ -185,7 +191,6 @@
       <button class="close" id="close-tg-popup">✕</button>
       <h2>Contact a Mentor</h2>
       <p>Some platforms block direct links. Please use an option below:</p>
-
       <div class="modal-option">
         <label>Option 1: Copy Telegram Username</label>
         <div class="input-group">
@@ -193,11 +198,22 @@
           <button class="btn copy" id="copy-tg-btn">Copy</button>
         </div>
       </div>
-
       <div class="modal-option">
         <label>Option 2: Use Direct Link</label>
         <a href="https://t.me/thewealthprince0" target="_blank" class="btn tg">Open on Telegram</a>
       </div>
+    </div>
+  </div>
+
+  <div class="popup-backdrop" id="success-popup">
+    <div class="popup">
+        <button class="close" id="close-success-popup">✕</button>
+        <h2>Ready to Be Our Next Success Story?</h2>
+        <p>You've seen the results. Now it's your turn. Get the same mentorship and strategies that helped these members earn more and trade smarter.</p>
+        <div class="button-row">
+            <a href="#" class="btn smart-tg-link">Start My Journey</a>
+            <a href="#" class="btn ghost smart-tg-link">Ask a Question</a>
+        </div>
     </div>
   </div>
 
@@ -220,7 +236,7 @@
         overlay.classList.remove("active");
       });
 
-      // Testimonials logic (RESTORING ORIGINAL FETCH LOGIC)
+      // Testimonials logic
       let testimonials=[],currentIndex=0;
       const container=document.getElementById("testimonial-container");
       
@@ -251,12 +267,9 @@
         if(currentIndex<testimonials.length-1){currentIndex++;renderTestimonial();} 
       });
       
-      // *** RESTORING ORIGINAL FETCH TO testimonials.json ***
       fetch('testimonials.json')
         .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
+            if (!res.ok) { throw new Error(`HTTP error! status: ${res.status}`); }
             return res.json();
         })
         .then(data => {
@@ -272,7 +285,7 @@
             console.error("Error fetching testimonials.json:", err);
         });
       
-      // Telegram Popup Logic (RESTORED)
+      // Universal Telegram Popup Logic
       const tgInfoPopup=document.getElementById("tg-info-popup");
       const closeTgPopupBtn=document.getElementById("close-tg-popup");
       const copyTgBtn=document.getElementById("copy-tg-btn");
@@ -293,6 +306,22 @@
           copyTgBtn.classList.add("copied");
           setTimeout(()=>{copyTgBtn.textContent="Copy";copyTgBtn.classList.remove("copied");},2000);
         });
+      });
+
+      // ✅ NEW Success Popup Logic (Timed)
+      const successPopup = document.getElementById('success-popup');
+      const closeSuccessPopupBtn = document.getElementById('close-success-popup');
+
+      // Show the popup after 5 seconds
+      setTimeout(() => {
+          successPopup.style.display = 'flex';
+      }, 5000);
+
+      // Logic to close the new success popup
+      const closeSuccessPopup = () => successPopup.style.display = 'none';
+      closeSuccessPopupBtn.addEventListener('click', closeSuccessPopup);
+      successPopup.addEventListener('click', (e) => {
+          if (e.target === successPopup) closeSuccessPopup();
       });
     });
   </script>
