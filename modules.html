@@ -66,7 +66,7 @@
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:20px; }
 
-    /* ✅ Telegram Popup */
+    /* ✅ Popups (Shared Styles) */
     .popup-backdrop {
       position:fixed; inset:0; display:none;
       align-items:center; justify-content:center;
@@ -124,6 +124,11 @@
       transition:opacity 0.3s ease;
     }
     .btn.tg:hover { opacity:0.9; }
+    
+    /* Styles for the new mentor popup buttons */
+    .popup .button-row { display: flex; gap: 10px; margin-top: 20px; }
+    .popup .button-row .btn { flex: 1; padding: 12px; font-size: 15px; font-weight: 700; }
+    .popup .button-row .btn.ghost { background: #fff; color: #2a7fff; border: 2px solid #2a7fff; }
 
     @keyframes fadeIn {
       from{opacity:0; transform:scale(0.95);}
@@ -177,7 +182,6 @@
       <button class="close" id="close-tg-popup">✕</button>
       <h2>Contact a Mentor</h2>
       <p>Some platforms block direct links. Please use an option below:</p>
-
       <div class="modal-option">
         <label>Option 1: Copy Telegram Username</label>
         <div class="input-group">
@@ -185,13 +189,25 @@
           <button class="btn copy" id="copy-tg-btn">Copy</button>
         </div>
       </div>
-
       <div class="modal-option">
         <label>Option 2: Use Direct Link</label>
         <a href="https://t.me/thewealthprince0" target="_blank" class="btn tg">Open on Telegram</a>
       </div>
     </div>
   </div>
+
+  <div class="popup-backdrop" id="mentor-popup">
+    <div class="popup">
+      <button class="close" id="close-mentor-popup">✕</button>
+      <h2>🚀 Accelerate Your Learning</h2>
+      <p>Get <b>direct mentor guidance</b> and unlock advanced premium materials for free. Join our private community to master the markets together.</p>
+      <div class="button-row">
+        <a href="#" class="btn smart-tg-link">Message Mentor</a>
+        <a href="#" class="btn ghost smart-tg-link">Join Community</a>
+      </div>
+    </div>
+  </div>
+
 
   <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+New+visitor+on+Modules+page+at+optionstradinguni.online" style="display:none;">
 
@@ -211,42 +227,57 @@
         overlay.classList.remove("active");
       });
 
-
-      // Popup Logic (For the 'Message a Mentor' button)
-      const tgInfoPopup=document.getElementById("tg-info-popup");
-      const closeTgPopupBtn=document.getElementById("close-tg-popup");
-      const copyTgBtn=document.getElementById("copy-tg-btn");
-      const tgUsernameInput=document.getElementById("tg-username");
-
-      document.querySelectorAll('.smart-tg-link').forEach(link=>{
-        link.addEventListener('click',e=>{
+      // --- Universal Popup Logic ---
+      const tgInfoPopup = document.getElementById("tg-info-popup");
+      const closeTgPopupBtn = document.getElementById("close-tg-popup");
+      const copyTgBtn = document.getElementById("copy-tg-btn");
+      const tgUsernameInput = document.getElementById("tg-username");
+      
+      // When any link with the class 'smart-tg-link' is clicked, show the main info popup
+      document.querySelectorAll('.smart-tg-link').forEach(link => {
+        link.addEventListener('click', e => {
           e.preventDefault();
-          tgInfoPopup.style.display='flex';
+          tgInfoPopup.style.display = 'flex';
         });
       });
-      const closeTgPopup=()=>tgInfoPopup.style.display='none';
-      closeTgPopupBtn.addEventListener('click',closeTgPopup);
-      tgInfoPopup.addEventListener('click',e=>{if(e.target===tgInfoPopup)closeTgPopup();});
+      
+      // Logic to close the main info popup
+      const closeTgPopup = () => tgInfoPopup.style.display = 'none';
+      closeTgPopupBtn.addEventListener('click', closeTgPopup);
+      tgInfoPopup.addEventListener('click', e => { if (e.target === tgInfoPopup) closeTgPopup(); });
 
-      copyTgBtn.addEventListener('click',()=>{
-        navigator.clipboard.writeText(tgUsernameInput.value).then(()=>{
-          copyTgBtn.textContent="Copied!";
+      // Logic for the copy button
+      copyTgBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(tgUsernameInput.value).then(() => {
+          copyTgBtn.textContent = "Copied!";
           copyTgBtn.classList.add("copied");
-          setTimeout(()=>{copyTgBtn.textContent="Copy";copyTgBtn.classList.remove("copied");},2000);
+          setTimeout(() => { copyTgBtn.textContent = "Copy"; copyTgBtn.classList.remove("copied"); }, 2000);
         });
       });
+      
+      // --- ✅ NEW Mentor Popup Logic (Timed) ---
+      const mentorPopup = document.getElementById('mentor-popup');
+      const closeMentorPopupBtn = document.getElementById('close-mentor-popup');
+      
+      // Show the popup after 10 seconds (10000 milliseconds)
+      setTimeout(() => {
+        mentorPopup.style.display = 'flex';
+      }, 10000);
+      
+      // Logic to close the new mentor popup
+      const closeMentorPopup = () => mentorPopup.style.display = 'none';
+      closeMentorPopupBtn.addEventListener('click', closeMentorPopup);
+      mentorPopup.addEventListener('click', e => { if (e.target === mentorPopup) closeMentorPopup(); });
 
-      // Modules logic (RESTORED TO ORIGINAL FETCH)
+      // Modules logic
       const container=document.getElementById('modules-container');
       const prevBtn=document.getElementById('prevBtn');
       const nextBtn=document.getElementById('nextBtn');
       let modules=[],currentIndex=0;
 
-      // Restoring the original fetch call to load all modules from modules.json
       fetch('modules.json')
         .then(res => {
             if (!res.ok) {
-                 // Throw an error if the HTTP response status is not 200-299
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
             return res.json();
@@ -259,7 +290,6 @@
             container.textContent = "⚠️ Error loading modules. Please check if modules.json is available and correctly formatted.";
             console.error(err);
         });
-
 
       function showModule(index){
         if(index<0||index>=modules.length) return;
