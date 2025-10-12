@@ -57,30 +57,37 @@
       padding:40px 20px; border-radius:12px; text-align:center; margin-bottom:20px;
     }
     .hero h1 { color:#2a7fff; font-size:28px; margin:0; }
-    .hero p { color:#444; font-size:16px; margin:10px 0 20px; }
+    .hero p { color:#444; font-size:16px; margin:10px 0 20px; max-width: 650px; margin-left: auto; margin-right: auto;}
     .cta-row { display:flex; justify-content:center; gap:12px; }
 
     /* Stats */
     .stats { display:flex; justify-content:center; gap:20px; margin:20px 0; flex-wrap:wrap; }
     .stat { text-align:center; background:linear-gradient(135deg,#2a7fff,#ff4081);
       padding:16px; border-radius:10px; color:#fff;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15); min-width:150px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15); min-width:180px;
     }
     .stat h2 { margin:0; font-size:22px; color:#ffd166; }
 
-    .card.image-card {
-      position: relative; background:url('Lifestyle/life1.jpeg') center/cover no-repeat;
-      color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6);
-      padding:20px; border-radius:14px; margin:20px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.25); overflow: hidden;
+    /* Card */
+    .card {
+        background: #fff; color: #333; text-shadow: none;
+        padding: 24px; border-radius: 14px; margin: 20px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .card.image-card::before {
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(270deg,rgba(42,127,255,0.7),rgba(255,64,129,0.6),rgba(255,209,102,0.5));
-      background-size:600% 600%; animation: gradientShift 25s ease infinite; z-index:0;
+    .card h2 { color: #2a7fff; }
+
+    /* Charity Card */
+    .charity-card {
+        background: #2a7fff; color: #fff; text-align: center;
     }
-    .card.image-card > * { position:relative; z-index:1; }
-    @keyframes gradientShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+    .charity-card p { font-size: 1.1rem; line-height: 1.6; }
+
+    /* Membership Card */
+    .membership-card ul { list-style: none; padding: 0; }
+    .membership-card li { padding: 8px 0 8px 25px; position: relative; }
+    .membership-card li::before {
+        content: '✓'; color: #2a7fff; position: absolute; left: 0; font-weight: bold;
+    }
 
     .success-stories-section {
       background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff); background-size:800% 800%;
@@ -91,6 +98,7 @@
       background:#fff; border-radius:10px; padding:20px; box-shadow:0 3px 8px rgba(0,0,0,.1);
       margin:0 auto; max-width:600px; border:2px solid transparent; animation: glowPulse 4s ease-in-out infinite;
     }
+    @keyframes gradientShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
     @keyframes glowPulse {
       0% { border-color: rgba(42,127,255,0.4); box-shadow:0 0 8px rgba(42,127,255,0.4); }
       50% { border-color: rgba(255,64,129,0.6); box-shadow:0 0 14px rgba(255,64,129,0.6); }
@@ -119,7 +127,6 @@
     .popup .close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#aaa; }
     .popup .btn { background:linear-gradient(90deg,#2a7fff,#ff4081); color:#fff; font-weight:700; width:100%; box-sizing:border-box; padding:12px; }
     
-    /* Fallback Popup Specifics */
     #tg-info-popup .modal-option { margin-bottom: 15px; text-align: left; }
     #tg-info-popup .modal-option label { font-weight: 600; display: block; margin-bottom: 5px; color: #333; }
     #tg-info-popup .input-group { display: flex; gap: 8px; }
@@ -142,7 +149,6 @@
     <nav class="side-nav">
       <a href="index.html" class="active">Home</a><a href="watchlist.html">Watchlist</a><a href="modules.html">Modules</a>
       <a href="glossary.html">Glossary</a><a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
-      <a href="terms.html">Disclaimer</a>
     </nav>
   </aside>
 
@@ -158,29 +164,57 @@
     <main class="container">
       <section class="hero">
         <h1>Learn Options with Mentorship</h1>
-        <p>Learn the strategies, master the mindset, and grow alongside a community of traders who win together.</p>
+        <p>Are you serious about taking your stock trading to the next level? Learn the strategies, master the mindset, and grow with a community of traders who win together.</p>
         <div class="cta-row">
-          <a class="btn" href="modules.html">Start Learning</a>
+          <a class="btn" href="#services">Become a Member</a>
           <a class="btn ghost" href="testimonials.html">Success Stories</a>
-        </div>
-        <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; align-items:center;">
-          <a class="btn" href="currentliveprofit.html" target="_blank" style="background:#28a745;">📊 Watch Live Profits</a>
         </div>
       </section>
 
       <section class="stats">
         <div class="stat"><h2 data-count="2489">0+</h2><div>Trades Called in Our Community</div></div>
-        <div class="stat"><h2 data-count="789">0$</h2><div>Avg Profit / Win</div></div>
+        <div class="stat"><h2 data-count="789">$</h2><div>Avg Profit / Win</div></div>
         <div class="stat"><h2 data-count="76%">0%</h2><div>Community Win Rate (30 Days)</div></div>
       </section>
+      
+      <section class="card" id="about">
+        <h2>Tired of Chasing Stocks? Experience Matters.</h2>
+        <p>Like most beginners, it’s easy to chase stocks hyped on social media. That's not a sustainable path to growth. With over 11 years of combined experience, our mentors provide a proven track record of success. All of our services include detailed trading plans for Swings and Day Trades, so you know exactly when to enter and when to secure profits.</p>
+      </section>
 
-      <section class="card image-card">
-        <h2>Why Choose OTU?</h2>
-        <p>With our proven modules and real mentors, you'll avoid rookie mistakes and focus on disciplined growth. Don’t trade alone. Join a network that wins together.</p>
+       <section class="card" id="edge">
+        <h2>Technical Analysis is Your Edge</h2>
+        <p>You will get access to past training videos and future educational content on technical trading. Topics include support/resistances, Elliott Wave Theory, and Oscillators. Our goal is to equip you with a system and an edge in your trading so you can outperform most indices.</p>
+      </section>
+      
+      <section class="card membership-card" id="services">
+        <h2>OTU Short Term Options Trading</h2>
+        <p>Great for new and advanced traders looking for insight, support, and quick day trades. You'll receive:</p>
+        <ul>
+            <li>Access to our Private Day Trade Room (Telegram) where we post day trades, entries, profit targets, and stop losses (3-9 Trades Per Week).</li>
+            <li>A Premarket Hitlist each morning.</li>
+            <li>Private VIP Support (Telegram) where you can chat directly with a mentor during normal business hours.</li>
+            <li>Live tutorials, trainings, and a library of recorded technical video series.</li>
+            <li>Live Streaming + Day Trading Premarket Preps.</li>
+            <li>Option Puts/Calls Ideas, Daily Educational Videos & MORE.</li>
+        </ul>
+      </section>
+      
+      <section class="card" id="community">
+          <h2>A Supportive Community of Over 1500 Members</h2>
+          <p>Depending on your plan, you’ll gain access to an online chat board with over 1500 members to learn from and share trade ideas. You also get direct access to our mentors during trading hours for Q&A and can instantly watch pre-recorded technical training videos.</p>
+      </section>
+
+      <section class="card charity-card" id="charity">
+        <h2>A Mission Beyond Trading</h2>
+        <p>For each membership purchased, OTU will donate $100 to local and international Christian-based organizations feeding the poor and supporting children's orphanages in Vietnam, Uganda, Honduras, and Mongolia.</p>
+        <div class="cta-row" style="margin-top: 20px;">
+             <a class="btn ghost" href="#services">Become a Member</a>
+        </div>
       </section>
 
       <section class="success-stories-section">
-        <h2>✨ Success Stories</h2>
+        <h2>✨ Success Stories from Our Members</h2>
         <div id="testimonial-slider" class="testimonial-card"></div>
         <div style="margin-top:16px;"><a href="testimonials.html" class="btn ghost">Show More</a></div>
       </section>
@@ -216,8 +250,6 @@
       <a href="https://t.me/thewealthprince0" class="btn smart-tg-link">Got it — Message Mentor</a>
     </div>
   </div>
-
-  <img src="https://api.telegram.org/bot8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20/sendMessage?chat_id=8083574070&text=👀+Home+Page+visit+detected" style="display:none;" alt="">
   
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -228,11 +260,17 @@
 
       // Stats animation
       document.querySelectorAll(".stat h2").forEach(el=>{
-        const count=parseInt(el.dataset.count.replace('%','')), sym=el.dataset.count.includes('%')?'%':'+'; let c=0;
-        const int=setInterval(()=>{ c+=Math.ceil(count/100); if(c>=count){c=count;clearInterval(int);} el.textContent=c+sym; },30);
+        const isMoney = el.dataset.count.includes('$');
+        const count=parseInt(el.dataset.count.replace(/[%$]/g, '')), sym=el.dataset.count.includes('%')?'%':(isMoney?'$':'+');
+        let c=0;
+        const int=setInterval(()=>{
+            c+=Math.ceil(count/100);
+            if(c>=count){ c=count; clearInterval(int); }
+            el.textContent = (sym==='$'?'$':'') + c + (sym==='%'?'%':(sym==='+'?'+':''));
+        }, 30);
       });
 
-      // Testimonials carousel (USING IMPROVED DATA)
+      // Testimonials carousel
       const testimonials = [
         { name:"Emma Rodriguez", profit:"$12,000 profit", photo:"faces/faces1.jpeg", profitImage:"profits/profit6.jpeg", testimonial:"OTU’s step-by-step approach helped me understand risk management better. I used to overtrade, but now I’m focused and seeing steady gains." },
         { name:"Liam Nguyen", profit:"$21,076 profit", photo:"faces/faces2.jpeg", profitImage:"profits/profit7.jpeg", testimonial:"The real-time trade breakdowns in OTU are a game-changer. I learned how to spot high-probability setups and avoid bad trades." },
