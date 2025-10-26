@@ -69,10 +69,107 @@
     .nav-buttons { text-align:center; margin-top:25px; }
     .nav-buttons .btn { background:#2a7fff; color:#fff; margin:0 8px; }
     .nav-buttons .btn:hover { background:#1e5fd9; transform:none; }
+    
+    /* --- MODIFIED CSS FOR TEXT REVIEWS --- */
+    .section-title {
+        text-align: center;
+        color: #2a7fff;
+        font-size: 1.6em;
+        margin: 40px 0 20px 0;
+        border-top: 1px solid #e0e6ed;
+        padding-top: 30px;
+    }
+    .trust-review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 20px;
+        max-width: 1100px;
+        margin: 0 auto 30px auto;
+        padding: 0 20px;
+    }
+    .trust-review-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #e0e6ed;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      /* ✅ NEW: Use flex for avatar layout */
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    /* ✅ NEW: Avatar styles */
+    .trust-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; 
+    }
+    /* ✅ NEW: Wrapper for text content */
+    .trust-review-content {
+        display: flex;
+        flex-direction: column;
+        /* Allow content to grow */
+        flex-grow: 1;
+    }
+    .trust-review-card p {
+        color: #333;
+        line-height: 1.6;
+        margin: 0 0 10px;
+        flex-grow: 1; /* Makes text fill space */
+    }
+    .trust-stars {
+      color: #00b67a;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .trust-title {
+      font-weight: 700;
+      color: #111;
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+    .trust-author {
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    /* CTA Card in grid (avatar removed) */
+    .trust-review-card.cta-card {
+        background: linear-gradient(135deg,#2a7fff,#ff4081);
+        color: #fff;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        /* Reset flex direction */
+        flex-direction: column;
+    }
+    .trust-review-card.cta-card h3 {
+        color: #fff;
+        font-size: 20px;
+    }
+    .trust-review-card.cta-card .btn {
+        background: #fff;
+        color: #2a7fff;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+    /* --- END OF MODIFIED CSS --- */
+
 
     .footer { margin-top:auto; background:#0b1328; color:#9cb2ff; text-align:center; padding:14px; }
 
-    /* ✅ Popups (Shared Styles) */
+    /* Popups (Shared Styles) */
     .popup-backdrop {
       position:fixed; inset:0; display:none;
       align-items:center; justify-content:center;
@@ -131,7 +228,6 @@
     }
     .btn.tg:hover { opacity:0.9; }
 
-    /* ✅ NEW styles for the popup buttons */
     .popup .button-row { display: flex; gap: 10px; margin-top: 20px; }
     .popup .button-row .btn { flex: 1; padding: 12px; font-size: 15px; font-weight: 700; color: #fff; background: linear-gradient(90deg,#2a7fff,#ff4081); }
     .popup .button-row .btn.ghost { background: #fff; color: #2a7fff; border: 2px solid #2a7fff; }
@@ -146,6 +242,12 @@
       .sidebar { transform:translateX(0); }
       .page { margin-left:220px; }
       .burger { display:none; }
+    }
+    
+    @media(max-width: 400px) {
+        .trust-review-grid {
+            grid-template-columns: 1fr;
+        }
     }
   </style>
 </head>
@@ -181,7 +283,108 @@
         <button class="btn" id="prevBtn">Previous</button>
         <button class="btn" id="nextBtn">Next</button>
       </div>
-    </main>
+      
+      <h2 class="section-title">More Member Feedback</h2>
+      <div class="trust-review-grid">
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #2a7fff;">MK</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">The best trading community!</h3>
+            <p>I've been in 3 other groups and this is the first one where the mentors actually care. The daily watchlist is worth the price alone.</p>
+            <div class="trust-author">- Marcus K.</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #ff4081;">SL</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">Finally profitable!</h3>
+            <p>The technical analysis modules are so easy to understand. I finally get support and resistance. My trading has improved 100%.</p>
+            <div class="trust-author">- Sarah L.</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #00b67a;">DP</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">Grateful for this team</h3>
+            <p>Honest, transparent, and professional. They don't just give signals, they teach you *why* they are taking a trade. Highly recommended.</p>
+            <div class="trust-author">- David P.</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #f9a825;">JC</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★☆</div>
+            <h3 class="trust-title">Solid group, very helpful</h3>
+            <p>A really great resource. The community is active and the mentors answer questions quickly. My only wish is for more swing trade alerts.</p>
+            <div class="trust-author">- J. Chen</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #6a11cb;">AR</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">Changed my trading career</h3>
+            <p>I was about to quit trading before I found OTU. The mentorship is personal and actionable. I've made back my membership fee 10x over.</p>
+            <div class="trust-author">- Amanda R.</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #2575fc;">KT</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">The modules are gold</h3>
+            <p>I've paid for courses that cost 5x as much and didn't learn half of what's in the modules. The Elliott Wave content is fantastic.</p>
+            <div class="trust-author">- Kevin T.</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #ff8a65;">MS</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★☆</div>
+            <h3 class="trust-title">Great for beginners</h3>
+            <p>As someone totally new, I was intimidated. But the mentors are patient and the community is supportive. I'm building my confidence every day.</p>
+            <div class="trust-author">- Mike S.</div>
+          </div>
+        </div>
+        
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #ad1457;">RB</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">Real professionals</h3>
+            <p>No fluff, no hype, just solid trade ideas and education. You can tell they are real traders. The premarket hitlist is my favorite part of the day.</p>
+            <div class="trust-author">- Rachel B.</div>
+          </div>
+        </div>
+
+        <div class="trust-review-card">
+          <div class="trust-avatar" style="background-color: #0277bd;">CW</div>
+          <div class="trust-review-content">
+            <div class="trust-stars">★★★★★</div>
+            <h3 class="trust-title">A+, 10/10 Service</h3>
+            <p>The VIP support is worth it. I had a question about a position and got a detailed answer from a mentor in 15 minutes. Can't beat that.</p>
+            <div class="trust-author">- Chris W.</div>
+          </div>
+        </div>
+
+        <div class="trust-review-card cta-card">
+          <h3>Ready to Join Them?</h3>
+          <p>Become our next success story.</p>
+          <a href="#" class="btn smart-tg-link">Become a Member</a>
+        </div>
+
+      </div>
+      </main>
 
     <footer class="footer">© 2025 Options Trading University</footer>
   </div>
@@ -242,21 +445,21 @@
       
       function renderTestimonial(){
         if(!testimonials.length) {
-            container.innerHTML = `<p style="text-align:center; color:#888;">Loading testimonials...</p>`;
+            container.innerHTML = \`<p style="text-align:center; color:#888;">Loading testimonials...</p>\`;
             return;
         }
         const t=testimonials[currentIndex];
         container.innerHTML=`
           <div class="testimonial-card">
             <div class="testimonial-header">
-              <img src="${t.photo}" alt="${t.name}">
+              <img src="\${t.photo}" alt="\${t.name}">
               <div>
-                <div class="testimonial-author">${t.name}</div>
-                <div class="testimonial-profit">${t.profit}</div>
+                <div class="testimonial-author">\${t.name}</div>
+                <div class="testimonial-profit">\${t.profit}</div>
               </div>
             </div>
-            <div class="testimonial-proof"><img src="${t.profitImage}" alt="Profit proof"></div>
-            <div class="testimonial-content">"${t.testimonial}"</div>
+            <div class="testimonial-proof"><img src="\${t.profitImage}" alt="Profit proof"></div>
+            <div class="testimonial-content">"\${t.testimonial}"</div>
           </div>`;
       }
       
@@ -269,7 +472,7 @@
       
       fetch('testimonials.json')
         .then(res => {
-            if (!res.ok) { throw new Error(`HTTP error! status: ${res.status}`); }
+            if (!res.ok) { throw new Error(\`HTTP error! status: \${res.status}\`); }
             return res.json();
         })
         .then(data => {
@@ -279,9 +482,9 @@
         })
         .catch(err => {
             document.getElementById("testimonial-container").innerHTML = 
-              `<p style="text-align:center; color:red;">
+              \`<p style="text-align:center; color:red;">
                  ⚠️ Error loading testimonials. Please ensure <b>testimonials.json</b> is in the correct directory.
-               </p>`;
+               </p>\`;
             console.error("Error fetching testimonials.json:", err);
         });
       
@@ -308,16 +511,14 @@
         });
       });
 
-      // ✅ NEW Success Popup Logic (Timed)
+      // Success Popup Logic (Timed)
       const successPopup = document.getElementById('success-popup');
       const closeSuccessPopupBtn = document.getElementById('close-success-popup');
 
-      // Show the popup after 5 seconds
       setTimeout(() => {
           successPopup.style.display = 'flex';
       }, 5000);
 
-      // Logic to close the new success popup
       const closeSuccessPopup = () => successPopup.style.display = 'none';
       closeSuccessPopupBtn.addEventListener('click', closeSuccessPopup);
       successPopup.addEventListener('click', (e) => {
