@@ -95,7 +95,7 @@
         content: '✓'; color: #2a7fff; position: absolute; left: 0; font-weight: bold;
     }
     
-    /* --- MODIFIED CSS FOR SLIDER WITH AVATAR --- */
+    /* --- CSS FOR SLIDER WITH AVATAR --- */
     .trust-review-section {
       background: #f4f7fa;
       text-align: center;
@@ -118,13 +118,11 @@
       flex-shrink: 0;
       box-sizing: border-box; 
       min-height: 180px;
-      /* ✅ NEW: Use flex to position avatar */
       display: flex;
       align-items: flex-start;
       gap: 16px;
       text-align: left;
     }
-    /* ✅ NEW: Avatar styles */
     .trust-avatar {
         width: 48px;
         height: 48px;
@@ -135,9 +133,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0; /* Prevents avatar from shrinking */
+        flex-shrink: 0; 
     }
-    /* ✅ NEW: Wrapper for text content */
     .trust-review-content {
         display: flex;
         flex-direction: column;
@@ -153,13 +150,16 @@
       font-size: 18px;
       margin: 0 0 8px;
     }
+    .trust-review-card p {
+      color: #333;
+    }
     .trust-author {
       font-style: italic;
       color: #555;
       font-size: 14px;
       margin-top: 12px;
     }
-    /* --- END OF MODIFIED CSS --- */
+    /* --- END OF SLIDER CSS --- */
 
     .success-stories-section {
       background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff); background-size:800% 800%;
@@ -380,7 +380,7 @@
       setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
 
       
-      // --- ✅ MODIFIED SLIDING Trustpilot-Style Review Slider ---
+      // --- ✅ FIXED SLIDING Trustpilot-Style Review Slider ---
       const trustReviews = [
         { stars: 5, title: "The best trading community!", text: "I've been in 3 other groups and this is the first one where the mentors actually care. The daily watchlist is worth the price alone.", author: "Marcus K.", initials: "MK", color: "#2a7fff" },
         { stars: 5, title: "Finally profitable!", text: "The technical analysis modules are so easy to understand. I finally get support and resistance. My trading has improved 100%.", author: "Sarah L.", initials: "SL", color: "#ff4081" },
@@ -389,35 +389,43 @@
       ];
       
       const slider = document.getElementById("trust-review-slider");
-      let reviewsHTML = "";
       
-      // 1. Load all reviews into the slider track
-      trustReviews.forEach(r => {
-        const starsHTML = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-        reviewsHTML += `
-          <div class="trust-review-card">
-            <div class="trust-avatar" style="background-color: ${r.color};">${r.initials}</div>
-            
-            <div class="trust-review-content">
-              <div class="trust-stars">${starsHTML}</div>
-              <h3 class="trust-title">${r.title}</h3>
-              <p>${r.text}</p>
-              <div class="trust-author">- ${r.author}</div>
+      // Check if the slider element exists before trying to use it
+      if (slider) {
+        let reviewsHTML = "";
+        
+        // 1. Load all reviews into the slider track
+        trustReviews.forEach(r => {
+          const starsHTML = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+          // Using backticks (`) for multi-line string
+          reviewsHTML += `
+            <div class="trust-review-card">
+              <div class="trust-avatar" style="background-color: ${r.color};">${r.initials}</div>
+              <div class="trust-review-content">
+                <div class="trust-stars">${starsHTML}</div>
+                <h3 class="trust-title">${r.title}</h3>
+                <p>${r.text}</p>
+                <div class="trust-author">- ${r.author}</div>
+              </div>
             </div>
-          </div>
-        `;
-      });
-      slider.innerHTML = reviewsHTML;
+          `;
+        });
+        slider.innerHTML = reviewsHTML;
 
-      // 2. Animate the slider
-      let trIndex = 0;
-      const totalReviews = trustReviews.length;
-      
-      setInterval(() => {
-        trIndex = (trIndex + 1) % totalReviews;
-        slider.style.transform = \`translateX(-\${trIndex * 100}%)\`;
-      }, 5000); 
-      // --- ✅ END OF MODIFIED JAVASCRIPT ---
+        // 2. Animate the slider
+        let trIndex = 0;
+        const totalReviews = trustReviews.length;
+        
+        setInterval(() => {
+          trIndex = (trIndex + 1) % totalReviews;
+          // ✅ THIS IS THE FIX: Using backticks (`) correctly
+          slider.style.transform = \`translateX(-${trIndex * 100}%)\`;
+        }, 5000); 
+
+      } else {
+        console.error("Error: Could not find element with ID 'trust-review-slider'");
+      }
+      // --- ✅ END OF FIXED JAVASCRIPT ---
 
 
       // Discount Popup
