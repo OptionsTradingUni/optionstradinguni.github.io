@@ -94,6 +94,44 @@
     .membership-card li::before {
         content: '✓'; color: #2a7fff; position: absolute; left: 0; font-weight: bold;
     }
+    
+    /* ✅ NEW TRUSTPILOT CSS START */
+    .trust-review-section {
+      background: #f4f7fa; /* A slightly different background */
+      text-align: center;
+    }
+    #trust-review-slider-container {
+        transition: opacity 0.4s ease-in-out;
+        min-height: 160px; /* Prevents layout jump during content swap */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .trust-review-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid #e0e6ed;
+    }
+    .trust-stars {
+      color: #00b67a; /* Trustpilot green */
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .trust-title {
+      font-weight: 700;
+      color: #111;
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+    .trust-author {
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    /* ✅ NEW TRUSTPILOT CSS END */
 
     .success-stories-section {
       background: linear-gradient(270deg,#6a11cb,#2575fc,#ff4081,#2a7fff); background-size:800% 800%;
@@ -216,6 +254,11 @@
           <p>Depending on your plan, you’ll gain access to an online chat board with over 1500 members to learn from and share trade ideas. You also get direct access to our mentors during trading hours for Q&A and can instantly watch pre-recorded technical training videos.</p>
       </section>
 
+      <section class="card trust-review-section">
+        <h2>Trusted by Traders Like You</h2>
+        <div id="trust-review-slider-container">
+          </div>
+      </section>
       <section class="card charity-card">
         <h2>A Mission Beyond Trading</h2>
         <p>For each membership purchased, OTU will donate it to local and international Christian-based organizations feeding the poor and supporting children's orphanages in Vietnam, Uganda, Honduras, and Mongolia.</p>
@@ -305,6 +348,53 @@
       }
       renderTestimonial();
       setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; renderTestimonial(); },5000);
+
+      
+      // --- ✅ NEW Trustpilot-Style Review Slider START ---
+      const trustReviews = [
+        { stars: 5, title: "The best trading community!", text: "I've been in 3 other groups and this is the first one where the mentors actually care. The daily watchlist is worth the price alone.", author: "Marcus K." },
+        { stars: 5, title: "Finally profitable!", text: "The technical analysis modules are so easy to understand. I finally get support and resistance. My trading has improved 100%.", author: "Sarah L." },
+        { stars: 5, title: "Grateful for this team", text: "Honest, transparent, and professional. They don't just give signals, they teach you *why* they are taking a trade. Highly recommended.", author: "David P." },
+        { stars: 4, title: "Solid group, very helpful", text: "A really great resource. The community is active and the mentors answer questions quickly. My only wish is for more swing trade alerts.", author: "J. Chen" }
+      ];
+      
+      const trustSlider = document.getElementById("trust-review-slider-container");
+      let trIndex = 0;
+
+      function renderTrustReview() {
+        if (!trustSlider) return; // Safety check
+        const r = trustReviews[trIndex];
+        // Uses '★' for filled stars and '☆' for empty ones
+        const starsHTML = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+        
+        // Fade out
+        trustSlider.style.opacity = 0;
+        
+        setTimeout(() => {
+          // Update content after fade out
+          trustSlider.innerHTML = `
+            <div class="trust-review-card">
+              <div class="trust-stars">${starsHTML}</div>
+              <h3 class="trust-title">${r.title}</h3>
+              <p>${r.text}</p>
+              <div class="trust-author">- ${r.author}</div>
+            </div>
+          `;
+          // Fade in
+          trustSlider.style.opacity = 1;
+        }, 400); // This delay should be the same as your CSS transition time
+      }
+
+      // Initial render
+      renderTrustReview();
+      
+      // Change review every 5 seconds
+      setInterval(() => {
+        trIndex = (trIndex + 1) % trustReviews.length;
+        renderTrustReview();
+      }, 5000); // 5 seconds, just like your other slider
+      // --- ✅ NEW Trustpilot-Style Review Slider END ---
+
 
       // Discount Popup
       const discountPopup=document.getElementById("discount-popup");
